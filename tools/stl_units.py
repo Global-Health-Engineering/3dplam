@@ -37,7 +37,13 @@ def max_dimension(triangles):
 
 
 def rescale_stl(src, dst, factor):
-    """Copy src to dst with every vertex and normal scaled by factor."""
+    """Copy src to dst with every vertex scaled by factor.
+
+    Normals are deliberately left untouched: they are unit direction
+    vectors, so under a uniform positive scale they are already correct.
+    Scaling them would produce length-`factor` "unit" normals that some
+    consumers reject.
+    """
     with open(src, "rb") as f:
         header = f.read(HEADER_BYTES)
         count = struct.unpack("<I", f.read(4))[0]
