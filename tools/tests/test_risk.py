@@ -1,5 +1,5 @@
 import pytest
-from tools.risk import classify, geometric_mean, near_threshold, is_acceptable
+from tools.risk import classify, geometric_mean, near_threshold, is_acceptable, separating_threshold
 
 
 @pytest.mark.parametrize("cfu,expected", [
@@ -68,3 +68,25 @@ def test_headline_result_is_fifteen_of_sixteen():
     accepted = sum(1 for t, r in pairs if is_acceptable(t, r))
     assert raw == 12, "raw category matching"
     assert accepted == 15, "after the 5% threshold rule"
+
+
+def test_proximity_must_be_to_the_separating_boundary():
+    """1.03 is near the 1.0 threshold, but 1.0 is not what separates it from 50."""
+    assert classify(1.03) == "intermediate risk"
+    assert classify(50.0) == "high risk"
+    assert is_acceptable(1.03, 50.0) is False
+
+
+def test_separating_threshold_picks_the_shared_boundary():
+    assert separating_threshold("intermediate risk", "high risk") == 10.0
+    assert separating_threshold("high risk", "very high risk") == 100.0
+    assert separating_threshold("low risk", "intermediate risk") == 1.0
+    assert separating_threshold("low risk", "high risk") is None
+
+
+def test_band_cut_points_are_at_round_numbers():
+    """Pins the convention the headline result depends on."""
+    assert classify(10.0) == "high risk"
+    assert classify(9.999) == "intermediate risk"
+    assert classify(100.0) == "very high risk"
+    assert classify(99.999) == "high risk"

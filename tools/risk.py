@@ -10,6 +10,13 @@ matches into the published 15/16.
 """
 import math
 
+# WHO states the bands with integer gaps: "<1", "1-10", "11-100",
+# "101-1000". They are implemented here as half-open intervals cutting at
+# the round numbers 1, 10 and 100, so classify(10.0) is "high risk".
+# This is deliberate and load-bearing: it is what makes the published
+# raw 12/16 and accepted 15/16 counts reproduce. Moving the cuts to 11
+# and 101 to match the literal WHO wording would silently change the
+# headline result. Do not "correct" these values.
 BANDS = [
     ("low risk", 0.0, 1.0),
     ("intermediate risk", 1.0, 10.0),
@@ -47,17 +54,32 @@ def near_threshold(cfu, tolerance=DEFAULT_TOLERANCE):
     return any(abs(cfu - t) <= t * tolerance for t in THRESHOLDS)
 
 
+def separating_threshold(band_a, band_b):
+    """The single boundary between two adjacent bands, or None if not adjacent."""
+    names = [b[0] for b in BANDS]
+    i, j = names.index(band_a), names.index(band_b)
+    if abs(i - j) != 1:
+        return None
+    return BANDS[max(i, j)][1]
+
+
 def is_acceptable(test_cfu, reference_cfu, tolerance=DEFAULT_TOLERANCE):
     """True if a test manifold's classification is acceptable.
 
-    Acceptable when the bands match outright, or when either value lies
-    within `tolerance` of a boundary and the two land in adjacent bands.
+    Acceptable when the bands match outright, or when the two bands are
+    adjacent AND at least one value lies within `tolerance` of *the
+    boundary that separates those two bands specifically*.
+
+    The boundary must be the separating one. Checking proximity to any
+    threshold would accept pairs straddling a boundary neither value is
+    near — e.g. 1.03 (intermediate, near the 1.0 boundary) against 50.0
+    (high), whose separating boundary is 10.0 and which nothing is near.
     """
-    if classify(test_cfu) == classify(reference_cfu):
+    test_band, ref_band = classify(test_cfu), classify(reference_cfu)
+    if test_band == ref_band:
         return True
-    if not (near_threshold(test_cfu, tolerance)
-            or near_threshold(reference_cfu, tolerance)):
+    boundary = separating_threshold(test_band, ref_band)
+    if boundary is None:
         return False
-    names = [b[0] for b in BANDS]
-    return abs(names.index(classify(test_cfu))
-               - names.index(classify(reference_cfu))) == 1
+    return (abs(test_cfu - boundary) <= boundary * tolerance
+            or abs(reference_cfu - boundary) <= boundary * tolerance)
