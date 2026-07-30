@@ -29,5 +29,6 @@ Bambu Studio so they carry the print profile. See `hardware/print-profiles/`.
 After any re-export, run:
 
 ```bash
-python3 -m tools.verify_units "hardware/**/*.stl"
+python3 tools/verify_units.py "hardware/**/*.stl"
+# or: python3 -m tools.verify_units "hardware/**/*.stl"
 ```

@@ -5,11 +5,20 @@ The handover STLs were exported in metres. STL has no unit header, so a
 slicer would import a 77 mm base as a 0.077 mm speck. This check fails the
 build rather than shipping unprintable geometry.
 
-Usage:  python3 tools/verify_units.py hardware/stl/*.stl
+Usage:  python3 tools/verify_units.py "hardware/stl/*.stl"
+   or:  python3 -m tools.verify_units "hardware/stl/*.stl"
 """
 import glob
+import os
 import sys
-from tools.stl_units import read_stl, max_dimension
+
+# Make the repository root importable so this file works both as a script
+# (python3 tools/verify_units.py) and as a module (python3 -m tools.…).
+# Without this, direct script invocation fails with ModuleNotFoundError
+# because tools/ — not the repo root — is what lands on sys.path.
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from tools.stl_units import read_stl, max_dimension  # noqa: E402
 
 MIN_MM = 10.0
 MAX_MM = 500.0

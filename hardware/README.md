@@ -16,7 +16,11 @@ In ABS at the recommended settings the set costs about **$0.80**, weighs
 about **32 g**, and prints in about **100 minutes**.
 
 **Print settings are not optional.** The manifold must be gas-tight or the
-syringe cannot pull a vacuum. See [`print-profiles/`](print-profiles/).
+syringe cannot pull a vacuum. Full print profiles are **not yet published in
+this repository** — `print-profiles/` is empty, pending Task 8. Until then,
+the essential requirement is **6 wall loops with 6 top and 6 bottom shell
+layers at 0.2 mm layer height**; a part sliced at defaults will look correct
+and still fail to hold vacuum.
 
 ## Variants
 
@@ -54,7 +58,8 @@ and has been deferred.
 Every STL here is in millimetres and is checked in CI:
 
 ```bash
-python3 -m tools.verify_units "hardware/**/*.stl"
+python3 tools/verify_units.py "hardware/**/*.stl"
+# or: python3 -m tools.verify_units "hardware/**/*.stl"
 ```
 
 STEP files declare `SI_UNIT(.METRE.)` and are handled correctly by CAD
