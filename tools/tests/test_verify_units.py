@@ -50,3 +50,23 @@ def test_main_returns_one_when_any_fails(tmp_path):
     good = write_cube(tmp_path / "good.stl", 77.0)
     bad = write_cube(tmp_path / "bad.stl", 0.077)
     assert main([good, bad]) == 1
+
+
+def test_unreadable_file_fails_without_raising(tmp_path):
+    p = tmp_path / "truncated.stl"
+    p.write_bytes(b"\0" * 80 + b"\xff\xff\xff\xff" + b"garbage")
+    ok, dim, msg = check_file(str(p))
+    assert ok is False
+    assert "binary STL" in msg
+
+
+def test_one_bad_file_does_not_abort_the_batch(tmp_path):
+    good = write_cube(tmp_path / "good.stl", 77.0)
+    bad = tmp_path / "bad.stl"
+    bad.write_bytes(b"\0" * 80 + b"\xff\xff\xff\xff" + b"garbage")
+    later = write_cube(tmp_path / "later.stl", 37.3)
+    assert main([good, str(bad), later]) == 1
+
+
+def test_no_matching_files_is_a_failure_not_a_silent_pass(tmp_path):
+    assert main([str(tmp_path / "nothing-here-*.stl")]) == 1

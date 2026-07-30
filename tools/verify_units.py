@@ -16,9 +16,17 @@ MAX_MM = 500.0
 
 
 def check_file(path):
-    """Return (ok, max_dimension, message) for one STL."""
-    triangles, _ = read_stl(path)
-    dim = max_dimension(triangles)
+    """Return (ok, max_dimension, message) for one STL.
+
+    Never raises: an unreadable file is a gate failure like any other, so
+    that one bad file cannot abort the batch and hide the state of the
+    files after it.
+    """
+    try:
+        triangles, _ = read_stl(path)
+        dim = max_dimension(triangles)
+    except Exception as exc:
+        return False, 0.0, f"could not be read as a binary STL: {exc}"
     if dim < MIN_MM:
         return False, dim, (
             f"{dim:.4f} mm is below {MIN_MM} mm — this looks like a file "
