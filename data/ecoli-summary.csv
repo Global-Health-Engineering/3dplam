@@ -1,0 +1,25 @@
+manifold_id,material,sample_no,sample_site,geometric_mean,risk_category,is_reference,matches_reference,acceptable_within_5pct
+ft1,rPET,1,"Limmat, Platzspitz",27.56,high risk,no,yes,yes
+ft2,ABS,1,"Limmat, Platzspitz",22.68,high risk,no,yes,yes
+ft3,Steel,1,"Limmat, Platzspitz",29.55,high risk,yes,,
+ft1,rPET,2,"Sihl, Treppen bei der Sihl",51.22,high risk,no,yes,yes
+ft2,ABS,2,"Sihl, Treppen bei der Sihl",38.90,high risk,no,yes,yes
+ft3,Steel,2,"Sihl, Treppen bei der Sihl",55.96,high risk,yes,,
+ft1,rPET,3,"Lake of Zurich, Rentenwiese",12.21,high risk,no,yes,yes
+ft2,ABS,3,"Lake of Zurich, Rentenwiese",10.49,high risk,no,yes,yes
+ft3,Steel,3,"Lake of Zurich, Rentenwiese",16.19,high risk,yes,,
+ft1,rPET,4,"Lake of Zurich, Aussichtspunkt Riesbach",12.06,high risk,no,yes,yes
+ft2,ABS,4,"Lake of Zurich, Aussichtspunkt Riesbach",9.97,intermediate risk,no,no,yes
+ft3,Steel,4,"Lake of Zurich, Aussichtspunkt Riesbach",11.05,high risk,yes,,
+ft1,rPET,5,"Irchel Campus, Ircheltuempel",62.07,high risk,no,no,yes
+ft2,ABS,5,"Irchel Campus, Ircheltuempel",50.78,high risk,no,no,yes
+ft3,Steel,5,"Irchel Campus, Ircheltuempel",103.16,very high risk,yes,,
+ft1,rPET,6,"Zurichberg, Resi-Weiher",3.42,intermediate risk,no,yes,yes
+ft2,ABS,6,"Zurichberg, Resi-Weiher",1.82,intermediate risk,no,yes,yes
+ft3,Steel,6,"Zurichberg, Resi-Weiher",5.24,intermediate risk,yes,,
+ft1,rPET,7,"ETH Zurich CLD, tap water + fecal suspension",3.66,intermediate risk,no,no,no
+ft2,ABS,7,"ETH Zurich CLD, tap water + fecal suspension",23.45,high risk,no,yes,yes
+ft3,Steel,7,"ETH Zurich CLD, tap water + fecal suspension",90.41,high risk,yes,,
+ft1,rPET,8,"ETH Zurich CLA, tap water",0.50,low risk,no,yes,yes
+ft2,ABS,8,"ETH Zurich CLA, tap water",0.50,low risk,no,yes,yes
+ft3,Steel,8,"ETH Zurich CLA, tap water",0.50,low risk,yes,,

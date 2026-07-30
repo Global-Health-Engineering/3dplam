@@ -1,0 +1,6 @@
+Name,id,Material,Critical Structural Damage (14 days),UV Discoloration (14 days),Description
+3DPLAM_V4,env1,PLA,no,no,"No discoloration due to UV radiation; Bottom brim is bent / uneven, asumeably due to the slightly uneven surface it was screwed onto; some debris buildup witin the funnel, below the Filter Support and within the tunnel"
+3DPLAM_V4,env2,PETG,no,no,"No discolouration due to UV radiation; some debris buildup within the funnel, below the Filter Support and within the tunnel"
+3DPLAM_V4,env3,rPET,no,no,"No discolouration due to UV radiation; some debris buildup within the funnel, below the Filter Support and within the tunnel"
+3DPLAM_V4,env4,ABS,no,no,"No discolouration due to UV radiation; some debris buildup within the funnel, below the Filter Support and within the tunnel"
+3DPLAM_V4,env5,ASA,no,no,"No discolouration due to UV radiation; Bottom brim is bent / uneven, asumeably due to the slightly uneven surface it was screwed onto; some debris buildup witin the funnel, below the Filter Support and within the tunnel"

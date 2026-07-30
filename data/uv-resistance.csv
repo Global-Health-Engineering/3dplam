@@ -1,0 +1,6 @@
+Name,id,Material,Structural Damage (48h),Discolouration,Description
+3DPLAM_V4,uv1,PLA,no,yes,Mild whitening when compared to the Base
+3DPLAM_V4,uv2,PETG,no,no,No visible discoloration
+3DPLAM_V4,uv3,rPET,no,N.D.,N.D.
+3DPLAM_V4,uv4,ABS,no,yes,"good visible whitening when compared to the Base; assumably due to its original ""natural white"" tone"
+3DPLAM_V4,uv5,ASA,no,yes,visible whitening when compared to the Base; Some colour change can be observed at the taped-untaped boundary
