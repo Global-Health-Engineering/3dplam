@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this hardware, please cite it as below."
+title: "3DPLAM — 3D-Printed Lightweight Affordable Manifold for Microbial Water Quality Testing"
+abstract: >-
+  An open-source, 3D-printable membrane-filtration manifold for Escherichia coli
+  quantification in drinking water, validated against the Millipore EZ-Fit
+  stainless-steel manifold. Comprises a base, funnel and filter support, all
+  printable without support structures on a consumer FDM printer.
+type: software
+license: CERN-OHL-S-2.0
+repository-code: "https://github.com/Global-Health-Engineering/3dplam"
+url: "https://global-health-engineering.github.io/3dplam"
+keywords:
+  - open hardware
+  - water quality
+  - Escherichia coli
+  - membrane filtration
+  - 3D printing
+  - WASH
+authors:
+  - family-names: Gabriel
+    given-names: Moreno
+    affiliation: "ETH Zurich, Global Health Engineering"
+  - family-names: Tkaczuk
+    given-names: Jakub
+    orcid: "https://orcid.org/0000-0001-7997-9423"
+    affiliation: "ETH Zurich, Global Health Engineering"
+  - family-names: Dorea
+    given-names: Caetano
+    affiliation: "University of Victoria"
+  - family-names: Tilley
+    given-names: Elizabeth
+    orcid: "https://orcid.org/0000-0002-2095-9724"
+    affiliation: "ETH Zurich, Global Health Engineering"
