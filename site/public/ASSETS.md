@@ -18,7 +18,7 @@ Converted from PNG to WebP at quality 82 and resized for web (17 MB → 0.8 MB).
 
 | File | Shows |
 |---|---|
-| `base-printing-timelapse.mp4` | Timelapse of the base printing. 1168 × 720, H.264, 8.6 s, 3.0 MB |
+| `base-printing-timelapse.gif` | Timelapse of the base printing. 720 × 720, 86 frames, 8.6 s at 10 fps, 8.5 MB. Author-supplied; loops without interaction |
 
 Use a plain `<video>` element with `muted`, `loop`, `playsinline` and
 `preload="metadata"`. It requires no third-party player and no external
