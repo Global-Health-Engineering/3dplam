@@ -11,6 +11,8 @@ No figure is a one-off screenshot.
 | `tidy_data.py` | `data/*.csv` from the handover spreadsheets |
 | `plot_validation.py` | `site/public/figures/validation.svg` |
 | `render_parts.py` | `site/public/renders/*.png` (requires Blender) |
+| `verify_scope.py` | CI gate — fails if a tracked file is out of scope (third-party CAD, grading, planning content, raw media) |
+| `verify_copy.py` | CI gate — fails if banned Millipore-replacement phrasing reaches the docs or the built site |
 
 ```bash
 pip install -r requirements.txt

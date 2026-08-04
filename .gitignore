@@ -10,3 +10,6 @@ site/.astro/
 
 # staging for supplied assets — never published
 incoming/
+
+# SDD planning content for this release project — process, not product
+.superpowers/
