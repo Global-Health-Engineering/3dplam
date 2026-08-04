@@ -92,7 +92,6 @@ const navLinks = [
     </main>
 
     <footer class="site-footer">
-      <img class="brand-logo" src={logoSrc} alt="Global Health Engineering, ETH Zurich" height="18" />
       <ul class="footer-links">
         <li><a href="https://ghe.ethz.ch">Global Health Engineering Group at ETH Zurich</a></li>
         <li><a href={site.repo}>GitHub</a></li>
@@ -340,7 +339,7 @@ const navLinks = [
     flex-wrap: wrap;
     align-items: center;
     gap: 24px;
-    max-width: 1120px;
+    max-width: var(--content-width);
     margin: 0 auto;
     padding: 36px 24px 56px;
   }

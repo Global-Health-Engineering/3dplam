@@ -10,11 +10,15 @@ const parts = [
   { name: 'Filter support', file: 'filter-support-strand-mesh.stl', envelope: '37.3 × 37.3 × 2.9 mm', volume: '1.4 cm³ solid' },
 ];
 
+// Two pairs, each a two-up grid at the page's single content width. Row 1
+// is the assembly renders; row 2 is the filter-support render next to the
+// close-up photograph of the same part. assembly-section.png has been
+// dropped from the design — do not re-add a reference to it.
 const renders = [
-  { src: 'assembly-exploded.png', alt: 'The three printed parts separated in an exploded view, showing the correct stacking order: base, filter support, funnel.', caption: 'Exploded view — base, filter support, funnel, in stacking order.' },
-  { src: 'assembly-section.png', alt: 'A full section cut through the assembled manifold, showing the water path from the funnel through the membrane to the syringe port.', caption: 'Full section — the water path from funnel, through the membrane, to the syringe port.' },
-  { src: 'membrane-clamp.png', alt: 'Close-up section of the sealing interface, where the membrane is clamped between the base’s raised edge and the funnel’s inner slope.', caption: 'The seal — membrane clamped between the base’s raised edge and the funnel’s slope.' },
-  { src: 'filter-support-section.png', alt: 'A section cut through the filter support, showing the individual printed strands of the strand-mesh design.', caption: 'Cut through the strand mesh — parallel in-air strands, each layer rotated 120°.' },
+  { dir: 'renders', src: 'assembly-exploded.png', alt: 'The three printed parts separated in an exploded view, showing the correct stacking order: base, filter support, funnel.', caption: 'Exploded view — base, filter support, funnel, in stacking order.' },
+  { dir: 'renders', src: 'membrane-clamp.png', alt: 'Close-up section of the sealing interface, where the membrane is clamped between the base’s raised edge and the funnel’s inner slope.', caption: 'The seal — membrane clamped between the base’s raised edge and the funnel’s slope.' },
+  { dir: 'renders', src: 'filter-support-section.png', alt: 'A section cut through the filter support, showing the individual printed strands of the strand-mesh design.', caption: 'Cut through the strand mesh — parallel in-air strands, each layer rotated 120°.' },
+  { dir: 'photos', src: 'filter-support-strand-mesh.webp', alt: 'Close-up photograph of the printed filter support, individual in-air printed strands visible.', caption: 'The strand-mesh filter support as printed — the default, and the one used for the <em>E. coli</em> validation.' },
 ];
 ---
 <section id="device">
@@ -64,29 +68,16 @@ const renders = [
   <div class="render-grid">
     {renders.map((r) => (
       <figure class="render">
-        <img src={`${base}/renders/${r.src}`} alt={r.alt} loading="lazy" width="2000" height="2000" />
-        <figcaption>{r.caption}</figcaption>
+        <img src={`${base}/${r.dir}/${r.src}`} alt={r.alt} loading="lazy" />
+        <figcaption set:html={r.caption} />
       </figure>
     ))}
   </div>
-
-  <figure class="device-photo device-photo-pair">
-    <img
-      src={`${base}/photos/filter-support-strand-mesh.webp`}
-      alt="Close-up photograph of the printed filter support, individual in-air printed strands visible."
-      loading="lazy"
-    />
-    <figcaption>
-      The strand-mesh filter support as printed — the default, and the one
-      used for the <em>E. coli</em> validation.
-    </figcaption>
-  </figure>
 </section>
 
 <style>
   .device-photo {
     margin: 24px 0;
-    max-width: 640px;
   }
   .device-photo img {
     display: block;
@@ -137,8 +128,6 @@ const renders = [
     color: var(--fg-dim);
     line-height: 1.45;
   }
-
-  .device-photo-pair { max-width: 480px; margin: 28px auto 0; }
 
   @media (max-width: 700px) {
     .render-grid { grid-template-columns: 1fr; }

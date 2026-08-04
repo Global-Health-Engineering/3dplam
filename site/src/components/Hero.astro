@@ -45,8 +45,8 @@ const costLabel = `$${site.cost_usd.toFixed(2)}`;
   .hero {
     padding-top: 40px;
   }
-  .hero-copy { min-width: 0; max-width: 640px; }
-  .hero h1 { margin: 14px 0 12px; max-width: 22ch; }
+  .hero-copy { min-width: 0; }
+  .hero h1 { margin: 14px 0 12px; }
   .hero-meta {
     font-family: var(--mono);
     font-size: 14px;
@@ -85,13 +85,7 @@ const costLabel = `$${site.cost_usd.toFixed(2)}`;
     margin: 0;
   }
   .hero-photo {
-    /* The one image that earns more room than the 560-700px figure cap
-       used elsewhere on the page, because it is the single frame that
-       shows the whole device concept — assembled, loaded, mid-filtration.
-       Still capped well short of the section's full width, so it reads as
-       an illustration next to the copy above it, not a full-bleed hero. */
     margin: 28px 0 0;
-    max-width: 720px;
     min-width: 0;
   }
   .hero-photo img {

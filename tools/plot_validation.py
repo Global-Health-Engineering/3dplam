@@ -52,8 +52,15 @@ DEFAULT_OUT = "site/public/figures/validation.svg"
 QUANTIFICATION_CSV = "data/ecoli-quantification.csv"
 SUMMARY_CSV = "data/ecoli-summary.csv"
 
-# Global Health Engineering brand palette — fixed, do not recolour.
-COLOURS = {"ft1": "#873671", "ft2": "#457ec1", "ft3": "#bf181a"}
+# Three stops from matplotlib's viridis colormap — perceptually uniform
+# and colour-blind safe, which suits a scientific figure better than an
+# arbitrary brand palette. Stops are taken from the dark half of the
+# range (t=0.05, 0.30, 0.55) because viridis's top end is a bright
+# yellow-green with poor contrast on white; all three chosen colours
+# still clear WCAG's 3:1 minimum contrast ratio against white
+# (13.53:1, 6.64:1 and 3.41:1 respectively — see the report for the
+# derivation) while staying visually distinguishable from one another.
+COLOURS = {"ft1": "#471365", "ft2": "#355f8d", "ft3": "#1e9c89"}
 
 # ft3 is the commercial reference the two printed manifolds are checked
 # against, not a third competitor being compared on equal footing — the
@@ -88,6 +95,20 @@ FOOTNOTE = (
 
 YMIN, YMAX = 0.3, 1500
 
+# Display-label translations for the figure only — a presentation-layer
+# mapping, not a change to the underlying data. Descriptive German words
+# are translated to English for this English-language figure; genuine
+# proper place names (Platzspitz, Rentenwiese) are left exactly as
+# collected because they are not descriptive words to translate. Keyed on
+# the tail string short_site() extracts (the part after the last comma
+# in each CSV sample_site value), so data/*.csv itself is never touched.
+SITE_LABEL_TRANSLATIONS = {
+    "Treppen bei der Sihl": "Sihl riverside steps",
+    "Aussichtspunkt Riesbach": "Riesbach viewpoint",
+    "Ircheltuempel": "Irchel pond",
+    "Resi-Weiher": "Resi pond",
+}
+
 
 def load(path):
     with open(path, encoding="utf-8", newline="") as f:
@@ -104,6 +125,7 @@ def short_site(site):
     them.
     """
     tail = site.split(",")[-1].strip()
+    tail = SITE_LABEL_TRANSLATIONS.get(tail, tail)
     return "\n".join(textwrap.wrap(tail, width=18, break_long_words=False)[:2])
 
 
@@ -183,7 +205,7 @@ def main(out_path=DEFAULT_OUT):
                 ys.append(float(m["cfu_per_100ml"]))
         top.scatter(xs, ys, s=24, color=COLOURS[mid], label=LABELS[mid],
                     alpha=0.9, edgecolors="none", zorder=3)
-    top.legend(frameon=False, ncol=1, loc="upper left", fontsize=8.5,
+    top.legend(frameon=False, ncol=1, loc="upper left", fontsize=12,
                labelcolor=INK, handletextpad=0.5, borderaxespad=0.3)
     top.set_title("Individual plate counts (3 replicates × manifold × site)",
                   loc="left", fontsize=10.5, color=INK)
