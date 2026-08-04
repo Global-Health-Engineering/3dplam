@@ -17,10 +17,11 @@ about **32 g**, and prints in about **100 minutes**.
 
 **Print settings are not optional.** The manifold must be gas-tight or the
 syringe cannot pull a vacuum — a part sliced at defaults looks correct and
-still fails. Slicer profiles are **not yet published here**;
-`print-profiles/` is empty for now. The essential requirement is **6 wall
-loops, 6 bottom shell layers, and 1.3 mm top and bottom shell thickness at
-0.2 mm layer height**. See `print-profiles/` when it lands.
+still fails. The essential requirement is **6 wall loops, 6 bottom shell
+layers, and 1.3 mm top and bottom shell thickness at 0.2 mm layer height**.
+Importable Bambu Studio profiles for the X1 Carbon and P2S are in
+[`print-profiles/`](print-profiles/), along with the full requirement and
+cross-slicer equivalents.
 
 ## Choosing a filter support
 
@@ -63,7 +64,7 @@ funnels**, so an existing kit can be used with a printed base.
 | `step/` | Editable B-rep — modify the design here |
 | `rpet/` | Shrinkage-compensated variants for recycled PET (STL + STEP) |
 | `assembly/` | Reference assembly — **not** a printable part |
-| `print-profiles/` | Slicer settings for a gas-tight print (pending) |
+| `print-profiles/` | Slicer settings for a gas-tight print |
 
 `hardware/3mf/` — Bambu Studio projects with the profile embedded — is not
 part of this release; generating those requires the Bambu Studio GUI.
