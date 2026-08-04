@@ -1,0 +1,272 @@
+---
+import site from '../data/site.json';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+// BASE_URL is '/3dplam' in production (no guaranteed trailing slash — do
+// not assume one when joining paths) and '/' in dev.
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+const homeHref = base === '' ? '/' : base;
+const logoSrc = `${base}/brand/ETH_GHE_logo.svg`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const navLinks = [
+  { href: '#why', label: 'Why' },
+  { href: '#device', label: 'Device' },
+  { href: '#print', label: 'Print' },
+  { href: '#use', label: 'Use' },
+  { href: '#performance', label: 'Performance' },
+  { href: '#rpet', label: 'rPET' },
+  { href: '#limits', label: 'Limits' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!--
+      Theme bootstrap — must run synchronously, before first paint, so a
+      previously-saved explicit preference never flashes the wrong theme.
+      `is:inline` stops Astro from deferring or bundling this as a module
+      script (module scripts run after the HTML has started rendering,
+      which is exactly the flash this exists to prevent). When nothing is
+      stored, no attribute is set at all and the `@media
+      (prefers-color-scheme)` rules in global.css take over — still no
+      flash, because that's a synchronous CSS decision, not a JS one.
+    -->
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          if (stored === 'dark' || stored === 'light') {
+            document.documentElement.setAttribute('data-theme', stored);
+          }
+        } catch (e) {
+          /* localStorage unavailable (private mode, disabled) — fall back
+             to the media query, no crash. */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-nav">
+      <a class="brand" href={homeHref} aria-label={`${site.name} home`}>
+        <img class="brand-logo" src={logoSrc} alt="Global Health Engineering, ETH Zurich" height="28" />
+        <span class="brand-name">{site.name}</span>
+      </a>
+      <nav aria-label="Sections">
+        <ul>
+          {navLinks.map((link) => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a class="repo-link" href={site.repo}>GitHub</a>
+        <button id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+          <span id="theme-toggle-icon" aria-hidden="true">&#9789;</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <img class="brand-logo" src={logoSrc} alt="Global Health Engineering, ETH Zurich" height="24" />
+      <ul class="footer-links">
+        <li><a href="https://ghe.ethz.ch">Global Health Engineering Group at ETH Zurich</a></li>
+        <li><a href={site.repo}>GitHub</a></li>
+        <li><a href="https://matrix.to/#/#ghe-open:staffchat.ethz.ch">Matrix #ghe-open</a></li>
+        <li><a href={`mailto:ghe@mavt.ethz.ch?subject=${site.name}`}>ghe@mavt.ethz.ch</a></li>
+      </ul>
+    </footer>
+
+    <!--
+      Toggle interaction — deliberately a second, separate inline script
+      from the bootstrap above. This one touches the DOM (the button) and
+      so must run after it exists; the bootstrap script must NOT wait,
+      since waiting is what causes the flash. Keeping them apart keeps
+      that ordering constraint obvious instead of accidentally coupling
+      them later.
+    -->
+    <script is:inline>
+      (function () {
+        var root = document.documentElement;
+        var btn = document.getElementById('theme-toggle');
+        var icon = document.getElementById('theme-toggle-icon');
+        if (!btn) return;
+
+        function effectiveTheme() {
+          var explicit = root.getAttribute('data-theme');
+          if (explicit === 'dark' || explicit === 'light') return explicit;
+          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function render() {
+          var current = effectiveTheme();
+          var next = current === 'dark' ? 'light' : 'dark';
+          btn.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+          btn.setAttribute('aria-pressed', String(current === 'dark'));
+          // Sun for "switch to light" affordance in dark mode, moon otherwise.
+          icon.innerHTML = current === 'dark' ? '&#9788;' : '&#9789;';
+        }
+
+        btn.addEventListener('click', function () {
+          var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
+          root.setAttribute('data-theme', next);
+          try {
+            localStorage.setItem('theme', next);
+          } catch (e) {
+            /* persistence best-effort only */
+          }
+          render();
+        });
+
+        render();
+      })();
+    </script>
+  </body>
+</html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    left: -999px;
+    top: 0;
+    background: var(--accent);
+    color: var(--ghe-white);
+    padding: 8px 16px;
+    z-index: 100;
+  }
+  .skip-link:focus {
+    left: 0;
+  }
+
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 12px 24px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--fg);
+  }
+  .brand-logo {
+    display: block;
+    border-radius: 4px;
+  }
+  .brand-name {
+    font-family: var(--serif);
+    font-weight: 600;
+    letter-spacing: -.01em;
+  }
+  .site-nav nav {
+    flex: 1;
+    overflow-x: auto;
+  }
+  .site-nav nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+  }
+  .site-nav nav a {
+    color: var(--fg-dim);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .site-nav nav a:hover {
+    color: var(--accent);
+  }
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .repo-link {
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--fg-dim);
+  }
+  .repo-link:hover {
+    color: var(--accent);
+  }
+  #theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--bg-2);
+    color: var(--fg);
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+  }
+  #theme-toggle:hover {
+    border-color: var(--accent);
+  }
+
+  main {
+    display: block;
+  }
+
+  .site-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 48px 24px 88px;
+  }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .footer-links a {
+    color: var(--fg-dim);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .footer-links a:hover {
+    color: var(--accent);
+  }
+</style>

@@ -1,0 +1,112 @@
+/* Design tokens — GHE brand palette, light default / dark via media query
+   or an explicit `data-theme` attribute on <html>. See Base.astro for the
+   no-flash theme bootstrap and the persisted-preference toggle. */
+:root {
+  --ghe-magenta: #873671;
+  --ghe-blue: #457ec1;
+  --ghe-red: #bf181a;
+  --ghe-black: #000000;
+  --ghe-white: #ffffff;
+  --ghe-grey: #d1d1d1;
+
+  --bg: #ffffff;
+  --bg-2: #f6f7f9;
+  --line: #e3e6ea;
+  --fg: #14181d;
+  --fg-dim: #5b636d;
+  --accent: var(--ghe-magenta);
+  --accent-2: var(--ghe-blue);
+
+  --radius: 10px;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Inter", "Segoe UI", sans-serif;
+  --serif: ui-serif, "Source Serif Pro", Georgia, serif;
+  --mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace;
+}
+
+/* Dark by OS preference, unless explicitly forced to light. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1014;
+    --bg-2: #141920;
+    --line: #232a33;
+    --fg: #e8ebee;
+    --fg-dim: #98a1ab;
+    --accent: #c76fae;
+    --accent-2: #7aa9dd;
+  }
+}
+
+/* Explicit attribute always wins, in both directions. */
+:root[data-theme="dark"] {
+  --bg: #0d1014;
+  --bg-2: #141920;
+  --line: #232a33;
+  --fg: #e8ebee;
+  --fg-dim: #98a1ab;
+  --accent: #c76fae;
+  --accent-2: #7aa9dd;
+}
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --bg-2: #f6f7f9;
+  --line: #e3e6ea;
+  --fg: #14181d;
+  --fg-dim: #5b636d;
+  --accent: var(--ghe-magenta);
+  --accent-2: var(--ghe-blue);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { color-scheme: light dark; }
+:root[data-theme="dark"] { color-scheme: dark; }
+:root[data-theme="light"] { color-scheme: light; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .15s ease, color .15s ease;
+}
+
+section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 88px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  margin: 0;
+  color: var(--fg);
+}
+h1 { font-size: clamp(38px, 6vw, 60px); line-height: 1.05; }
+h2 { font-size: clamp(27px, 4vw, 38px); margin-bottom: 16px; }
+
+p { color: var(--fg-dim); margin: 0 0 14px; max-width: 66ch; }
+
+a { color: var(--accent); }
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+img { max-width: 100%; height: auto; }
+
+.scroll-x { overflow-x: auto; }
+
+table { border-collapse: collapse; width: 100%; }
+th, td { border-bottom: 1px solid var(--line); padding: 8px 12px; text-align: left; }
+
+code, pre { font-family: var(--mono); }
