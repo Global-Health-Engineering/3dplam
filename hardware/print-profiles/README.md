@@ -6,22 +6,18 @@ membrane, and filtration fails.
 
 ## Required settings
 
-These values are transcribed directly from the author's Bambu Studio
-screenshot of the profile used for the validated prints (a file named
-*"Bambu Studio Settings for airtight print"*). They are pending final
-confirmation from the author, but are stated here plainly because they are
-what was actually printed and tested — not a paraphrase.
+These are the settings the author used for the validated prints, confirmed
+by the author as the final profile. The Bambu Studio process profiles in
+this directory implement them exactly.
 
 | Setting | Value | Changed from stock? |
 |---|---|---|
-| Base profile | `0.20mm Standard @BBL X1C` / `@BBL P2S` | — |
+| Base profile | `0.16mm Optimal @BBL X1C` / `@BBL P2S` | — |
 | Filament | ABS | — |
-| Layer height | 0.2 mm | no |
+| Layer height | 0.16 mm | no |
 | Wall loops | **6** | yes (stock 2) |
-| Top shell layers | 5 | **no — stock default** |
-| Top shell thickness | **1.3 mm** | yes |
+| Top shell layers | **6** | yes (stock 5) |
 | Bottom shell layers | **6** | yes (stock 3) |
-| Bottom shell thickness | **1.3 mm** | yes |
 | Top / bottom surface pattern | Monotonic | — |
 | Top / bottom surface density | 100% | — |
 | Sparse infill | 15% grid | no |
@@ -29,40 +25,18 @@ what was actually printed and tested — not a paraphrase.
 | Supports | off | no |
 | Brim | 5 mm auto-brim | no |
 
-### Layer count and thickness
-
-Bambu Studio treats shell **layer count** (`top_shell_layers` /
-`bottom_shell_layers`) and shell **thickness**
-(`top_shell_thickness` / `bottom_shell_thickness`) as independent
-constraints, and slices whichever one demands more material at the current
-layer height. At 0.2 mm layers, a thickness of 1.3 mm forces roughly 7
-solid layers regardless of what the layer-count field says — which is why
-`top_shell_layers` is left at its stock value of 5 and the thickness field
-does the real work.
-
-This also reconciles the thesis, which describes the requirement in prose
-as *"a wall and shell thickness of 6 layers."* That is a paraphrase of a
-setting that was actually authored as a millimetre thickness, not a raw
-layer count. The screenshot is the primary source; the numbers above are
-transcribed from it.
-
 Everything else can stay at your slicer's defaults for the material.
 
 ## Any slicer
 
 The requirement is geometric, not vendor-specific: at least 6 perimeter
-loops, and a top/bottom shell of at least ~1.3 mm (about 6–7 layers at
-0.2 mm layer height).
+loops, and top and bottom shells of at least 6 solid layers each.
 
 | Bambu Studio | PrusaSlicer / OrcaSlicer | Cura |
 |---|---|---|
 | Wall loops = 6 | Perimeters = 6 | Wall Line Count = 6 |
-| Top shell thickness = 1.3 mm (layers stay at 5) | Top minimum shell thickness = 1.3 mm | Top Thickness = 1.3 mm |
-| Bottom shell layers = 6, thickness = 1.3 mm | Bottom solid layers = 6 (or bottom minimum shell thickness = 1.3 mm) | Bottom Layers = 6 (or Bottom Thickness = 1.3 mm) |
-
-If your slicer only exposes a layer-count field and no thickness field,
-round up: use 7 top layers and 7 bottom layers at 0.2 mm to guarantee at
-least 1.3 mm of solid shell.
+| Top shell layers = 6 | Top solid layers = 6 | Top Layers = 6 |
+| Bottom shell layers = 6 | Bottom solid layers = 6 | Bottom Layers = 6 |
 
 ## Printers used
 

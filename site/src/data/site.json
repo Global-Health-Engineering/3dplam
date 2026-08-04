@@ -9,12 +9,10 @@
   "glam2_cost_usd": 1.50,
 
   "print_profile": {
-    "layer_height_mm": 0.2,
+    "layer_height_mm": 0.16,
     "wall_loops": 6,
-    "top_shell_layers": 5,
-    "top_shell_thickness_mm": 1.3,
+    "top_shell_layers": 6,
     "bottom_shell_layers": 6,
-    "bottom_shell_thickness_mm": 1.3,
     "infill_pct": 15,
     "infill_pattern": "grid",
     "nozzle_mm": 0.4

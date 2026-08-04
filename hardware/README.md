@@ -17,8 +17,8 @@ about **32 g**, and prints in about **100 minutes**.
 
 A part sliced at default settings looks correct but is not gas-tight: the
 syringe cannot pull a vacuum through it, and filtration fails. The required
-settings are **6 wall loops, 6 bottom shell layers, and 1.3 mm top and
-bottom shell thickness at 0.2 mm layer height**. Importable Bambu Studio
+settings are **6 wall loops, 6 top shell layers, and 6 bottom shell layers,
+at the preset's 0.16 mm layer height**. Importable Bambu Studio
 profiles for the X1 Carbon and P2S are in
 [`print-profiles/`](print-profiles/), along with the full requirement and
 cross-slicer equivalents.
