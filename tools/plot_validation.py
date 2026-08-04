@@ -65,10 +65,8 @@ LABELS = {
 }
 ORDER = ["ft1", "ft2", "ft3"]
 
-# Neutral greys, chosen to hold reasonable contrast against both a white
-# and a near-black page background — this figure ships with a transparent
-# background (see main()) for a site that renders in both light and dark
-# themes, so no colour here can be tuned for one background only.
+# Ink colour optimized for white background (light mode primary design target).
+# In dark theme, the figure sits on a white card via CSS, keeping text legible.
 INK = "#3d444d"           # axis text, ticks, spines, titles, legend, footnote
 GRID = "#9aa3ad"          # WHO threshold lines
 BAND_FILL = "#8f97a3"     # risk-band shading (opacity increases with risk)

@@ -115,7 +115,7 @@ from the upstream project.
 - **Moreno Gabriel** — ETH Zürich, Global Health Engineering — *design,
   construction, testing, writing*
 - **Jakub Tkaczuk** — [![ORCID](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png) 0000-0001-7997-9423](https://orcid.org/0000-0001-7997-9423) — ETH Zürich, Global Health Engineering — *supervision, page development & maintenance*
-- **Caetano Dorea** — University of Victoria — *supervision*
+- **Caetano Dorea** — [![ORCID](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png) 0000-0001-9367-0668](https://orcid.org/0000-0001-9367-0668) — University of Victoria — *supervision*
 - **Elizabeth Tilley** — [![ORCID](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png) 0000-0002-2095-9724](https://orcid.org/0000-0002-2095-9724) — ETH Zürich, Global Health Engineering — *supervision*
 
 <br>
