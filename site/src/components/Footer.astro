@@ -1,0 +1,88 @@
+---
+import site from '../data/site.json';
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+const logoSrc = `${base}/brand/ETH_GHE_logo.svg`;
+
+const licences = [
+  { component: 'Hardware design (CAD, STL, STEP in hardware/)', licence: 'CERN-OHL-S v2', href: `${site.repo}/blob/main/LICENSE-CERN-OHL-S-2.0.md` },
+  { component: 'Documentation, data and this site', licence: 'CC BY 4.0', href: `${site.repo}/blob/main/LICENSE-CC-BY-4.0.md` },
+];
+
+const authors = [
+  'Moreno Gabriel — ETH Zürich, Global Health Engineering',
+  'Jakub Tkaczuk — ETH Zürich, Global Health Engineering',
+  'Caetano Dorea — University of Victoria',
+  'Elizabeth Tilley — ETH Zürich, Global Health Engineering',
+];
+---
+<section id="cite" class="footer-section">
+  <div class="eyebrow">Cite &amp; license</div>
+  <div class="cite-grid">
+    <div class="cite-block">
+      <img class="ghe-logo" src={logoSrc} alt="Global Health Engineering, ETH Zurich" height="32" />
+      <h3>Citation</h3>
+      <p>
+        If you use this hardware, please cite it. Full machine-readable
+        metadata: <a href={`${site.repo}/blob/main/CITATION.cff`}>CITATION.cff</a>.
+      </p>
+      <p class="citation-text">
+        {site.name} — 3D-Printed Lightweight Affordable Manifold for
+        Microbial Water Quality Testing.{' '}
+        {authors.map((a, i) => (i > 0 ? `, ${a}` : a))}.{' '}
+        <a href={site.repo}>{site.repo}</a>
+      </p>
+      {site.oshwa_uid && (
+        <p class="oshwa">
+          Certified by the Open Source Hardware Association:
+          <a href={`https://certification.oshwa.org/${site.oshwa_uid.toLowerCase()}.html`}>
+            {site.oshwa_uid}
+          </a>
+        </p>
+      )}
+    </div>
+
+    <div class="licence-block">
+      <h3>Licences</h3>
+      <div class="scroll-x">
+        <table>
+          <thead><tr><th>Component</th><th>Licence</th></tr></thead>
+          <tbody>
+            {licences.map((l) => (
+              <tr><td>{l.component}</td><td><a href={l.href}>{l.licence}</a></td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .footer-section { padding-bottom: 64px; }
+  .ghe-logo { display: block; margin-bottom: 18px; border-radius: 4px; }
+  .cite-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px;
+  }
+  h3 { font-size: 18px; margin-bottom: 10px; }
+  .citation-text {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.6;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .cite-block, .licence-block { min-width: 0; }
+  .oshwa { font-size: 13.5px; }
+
+  @media (max-width: 780px) {
+    .cite-grid { grid-template-columns: 1fr; }
+  }
+</style>

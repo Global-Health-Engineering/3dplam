@@ -1,0 +1,121 @@
+---
+import site from '../data/site.json';
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+
+const steps = [
+  'Disinfect hands using 70% ethanol.',
+  'Sterilize the upper surface of the filter support and the inner surface of the funnel using a 70% isopropyl alcohol wipe.',
+  'Disinfect the forceps using pure ethanol and a flame.',
+  'Place the filter membrane, gridded side up, on the filter support using the forceps.',
+  'Lock the funnel onto the base.',
+  'Shake the sample thoroughly and fill the funnel up to the 100 mL mark.',
+  'Extract 1 mL of the sample from the funnel with a sterile 1 mL syringe and inoculate the culture plate.',
+  'Operate the 100 mL syringe to pull the entire water sample through the filter membrane.',
+  'Remove the funnel.',
+  'Disinfect the forceps again (repeat step 3).',
+  'Transfer the filter membrane, gridded side up, onto the same culture plate.',
+  'Dry the funnel, filter support and any remaining wet surfaces with a paper towel.',
+];
+
+const consumables = [
+  { item: 'Membrane filter', spec: '0.45 µm nitrocellulose mixed-ester (MCE), ADVANTEC' },
+  { item: 'Culture plate', spec: 'Compact Dry™ ECO, Shimadzu Diagnostics' },
+  { item: 'Sample-pull syringe', spec: '100 mL PVC' },
+  { item: 'Forceps', spec: 'for membrane handling' },
+  { item: 'Disinfecting wipes', spec: '70% isopropyl alcohol, 60 × 30 mm' },
+  { item: 'Disinfectant', spec: '70% ethanol (hands, forceps)' },
+];
+---
+<section id="use">
+  <div class="eyebrow">Use</div>
+  <h2>Filtration, start to finish.</h2>
+  <p class="lead">
+    The full <em>E. coli</em> membrane-filtration protocol, transcribed
+    verbatim from the author's own lab documentation. It is a laboratory
+    protocol — follow it as written, not paraphrased.
+  </p>
+
+  <div class="use-grid">
+    <ol class="steps">
+      {steps.map((s) => <li>{s}</li>)}
+    </ol>
+    <figure class="use-photo">
+      <img
+        src={`${base}/photos/base-with-filter-support.webp`}
+        alt="The base with the strand-mesh filter support seated, syringe port visible."
+        loading="lazy"
+      />
+      <figcaption>The base with the filter support seated — step 4.</figcaption>
+    </figure>
+  </div>
+
+  <h3>Consumables</h3>
+  <div class="scroll-x">
+    <table>
+      <thead><tr><th>Item</th><th>Spec / supplier</th></tr></thead>
+      <tbody>
+        {consumables.map((c) => (
+          <tr><td>{c.item}</td><td>{c.spec}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    Incubate the inoculated plate for 24 h at 37 °C, then count colonies —
+    how those counts become a WHO risk classification is covered in
+    <a href="#performance">Performance</a>. Full protocol notes, including
+    two samples that needed non-standard handling, are in
+    <a href={`${site.repo}/blob/main/docs/operation.md`}>docs/operation.md</a>;
+    assembling the manifold itself is covered in
+    <a href={`${site.repo}/blob/main/docs/assembly.md`}>docs/assembly.md</a>.
+  </p>
+</section>
+
+<style>
+  #use h2 { max-width: 16ch; }
+  .use-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 40px;
+    align-items: start;
+    margin: 32px 0 40px;
+  }
+  .steps {
+    margin: 0;
+    padding-left: 22px;
+    display: grid;
+    gap: 10px;
+  }
+  .steps li {
+    color: var(--fg-dim);
+    padding-left: 4px;
+    line-height: 1.5;
+  }
+  .steps li::marker {
+    color: var(--accent);
+    font-weight: 600;
+    font-family: var(--mono);
+  }
+  .use-photo { margin: 0; }
+  .use-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+  }
+  .use-photo figcaption {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--fg-dim);
+  }
+  #use h3 { font-size: 20px; margin: 0 0 12px; }
+
+  @media (max-width: 780px) {
+    .use-grid { grid-template-columns: 1fr; }
+    .use-photo { order: -1; }
+  }
+</style>

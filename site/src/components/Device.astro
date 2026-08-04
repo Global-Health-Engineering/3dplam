@@ -1,0 +1,146 @@
+---
+import site from '../data/site.json';
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+
+const parts = [
+  { name: 'Base', file: 'base.stl', envelope: '77.0 × 77.0 × 38.7 mm', volume: '39.7 cm³ solid' },
+  { name: 'Funnel', file: 'funnel.stl', envelope: '71.8 × 71.8 × 55.5 mm', volume: '16.0 cm³ solid' },
+  { name: 'Filter support', file: 'filter-support-strand-mesh.stl', envelope: '37.3 × 37.3 × 2.9 mm', volume: '1.4 cm³ solid' },
+];
+
+const renders = [
+  { src: 'assembly-exploded.png', alt: 'The three printed parts separated in an exploded view, showing the correct stacking order: base, filter support, funnel.', caption: 'Exploded view — base, filter support, funnel, in stacking order.' },
+  { src: 'assembly-section.png', alt: 'A full section cut through the assembled manifold, showing the water path from the funnel through the membrane to the syringe port.', caption: 'Full section — the water path from funnel, through the membrane, to the syringe port.' },
+  { src: 'membrane-clamp.png', alt: 'Close-up section of the sealing interface, where the membrane is clamped between the base’s raised edge and the funnel’s inner slope.', caption: 'The seal — membrane clamped between the base’s raised edge and the funnel’s slope.' },
+  { src: 'filter-support-section.png', alt: 'A section cut through the filter support, showing the individual printed strands of the strand-mesh design.', caption: 'Cut through the strand mesh — parallel in-air strands, each layer rotated 120°.' },
+];
+---
+<section id="device">
+  <div class="eyebrow">Device</div>
+  <h2>Three printed parts. No supports.</h2>
+  <p class="lead">
+    A base, a funnel and a filter support print separately, without support
+    structures, and lock together with no glue except at the syringe joint.
+    A 100 mL PVC syringe and a 0.45 µm membrane filter complete the
+    manifold.
+  </p>
+
+  <figure class="device-photo">
+    <img
+      src={`${base}/photos/manifold-assembled.webp`}
+      alt="The assembled 3DPLAM manifold printed in dark blue ABS, three-quarter view."
+      loading="lazy"
+    />
+    <figcaption>The assembled manifold, printed in ABS.</figcaption>
+  </figure>
+
+  <div class="scroll-x">
+    <table>
+      <thead>
+        <tr><th>Part</th><th>File</th><th>Envelope</th><th>Volume</th></tr>
+      </thead>
+      <tbody>
+        {parts.map((p) => (
+          <tr>
+            <td>{p.name}</td>
+            <td><code>stl/{p.file}</code></td>
+            <td>{p.envelope}</td>
+            <td>{p.volume}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">
+    Dimensions and files for the default configuration — strand-mesh filter
+    support, clamped-membrane funnel. See <a href={`${site.repo}/blob/main/hardware/README.md`}>hardware/README.md</a>
+    for the concurrent alternatives: <code>filter-support-hex-hole.stl</code>
+    (more forgiving to print) and <code>funnel-tape-fit.stl</code> (for a
+    tape-sealed base joint).
+  </p>
+
+  <div class="render-grid">
+    {renders.map((r) => (
+      <figure class="render">
+        <img src={`${base}/renders/${r.src}`} alt={r.alt} loading="lazy" width="2000" height="2000" />
+        <figcaption>{r.caption}</figcaption>
+      </figure>
+    ))}
+  </div>
+
+  <figure class="device-photo device-photo-pair">
+    <img
+      src={`${base}/photos/filter-support-strand-mesh.webp`}
+      alt="Close-up photograph of the printed filter support, individual in-air printed strands visible."
+      loading="lazy"
+    />
+    <figcaption>
+      The strand-mesh filter support as printed — the default, and the one
+      used for the <em>E. coli</em> validation.
+    </figcaption>
+  </figure>
+</section>
+
+<style>
+  #device h2 { max-width: 18ch; }
+  .device-photo {
+    margin: 32px 0;
+  }
+  .device-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+  }
+  .device-photo figcaption {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--fg-dim);
+  }
+  .table-note {
+    font-size: 13.5px;
+    margin-top: 14px;
+  }
+  code {
+    background: var(--bg-2);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: .92em;
+    overflow-wrap: break-word;
+  }
+
+  .render-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .render {
+    margin: 0;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 14px;
+  }
+  .render img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  .render figcaption {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--fg-dim);
+    line-height: 1.45;
+  }
+
+  .device-photo-pair { max-width: 480px; margin: 40px auto 0; }
+
+  @media (max-width: 700px) {
+    .render-grid { grid-template-columns: 1fr; }
+  }
+</style>

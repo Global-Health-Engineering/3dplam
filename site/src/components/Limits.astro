@@ -1,0 +1,69 @@
+---
+const limits = [
+  {
+    title: 'Particle-laden samples behaved differently.',
+    detail: 'Samples 5 and 7 both needed non-standard handling — sample 5 stalled partway through filtration (~80 mL of the 100 mL sample actually pulled through), and sample 7 is a spiked positive control, not a field sample — and both are implicated in the classification disagreements above.',
+  },
+  {
+    title: 'The two 3D-printed manifolds were not printed identically.',
+    detail: 'The ABS manifold used a fully 3D-printed funnel; the rPET manifold used a commercial Millipore funnel on a printed base. If a printed funnel traps bacteria more readily than a steel one, that would show up as the all-printed manifold reading systematically low — and it does: the ABS manifold returned the lowest count of the three manifolds at 6 of the 8 sites (1–6). At site 7, the rPET manifold — with its commercial funnel — read lowest instead, and that is also the sole classification mismatch. At site 8 all three manifolds tied at the detection floor.',
+  },
+  {
+    title: 'Single operator, single season.',
+    detail: 'All 72 filtrations were run by one person across one testing period. Neither operator variability nor seasonal variation in source water is captured.',
+  },
+  {
+    title: 'Filtration order was not randomised across manifolds.',
+    detail: 'The Millipore reference was filtered last at each site, so any sedimentation of the sample while the printed manifolds were run earlier could inflate its counts relative to them.',
+  },
+];
+---
+<section id="limits">
+  <div class="eyebrow">Limits</div>
+  <h2>Honest limits.</h2>
+  <p class="lead">
+    The 3DPLAM is an open, locally printable alternative route to the same
+    measurement the Millipore performs — validated against it as the
+    reference instrument, not proven identical to it. These limits are
+    reported as found, not softened.
+  </p>
+
+  <ul class="limits-list">
+    {limits.map((l) => (
+      <li>
+        <strong>{l.title}</strong>
+        <span>{l.detail}</span>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  #limits h2 { max-width: 12ch; }
+  .limits-list {
+    list-style: none;
+    padding: 0;
+    margin: 32px 0 0;
+    display: grid;
+    gap: 16px;
+  }
+  .limits-list li {
+    padding: 20px 22px;
+    background: var(--bg-2);
+    border-left: 3px solid var(--ghe-red);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+  .limits-list strong {
+    display: block;
+    color: var(--fg);
+    font-weight: 600;
+    font-size: 15.5px;
+    margin-bottom: 6px;
+  }
+  .limits-list span {
+    display: block;
+    color: var(--fg-dim);
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+</style>

@@ -1,0 +1,186 @@
+---
+import site from '../data/site.json';
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+const v = site.validation;
+
+const mismatches = [
+  { sample: 4, manifold: 'ABS', gm: '9.97', band: 'intermediate', ref: '11.05', refBand: 'high', outcome: 'Accepted — within 5% of the 10 boundary' },
+  { sample: 5, manifold: 'rPET', gm: '62.07', band: 'high', ref: '103.16', refBand: 'very high', outcome: 'Accepted — reference is within 5% of the 100 boundary' },
+  { sample: 5, manifold: 'ABS', gm: '50.78', band: 'high', ref: '103.16', refBand: 'very high', outcome: 'Accepted — same boundary' },
+  { sample: 7, manifold: 'rPET', gm: '3.66', band: 'intermediate', ref: '90.41', refBand: 'high', outcome: 'Mismatch — neither value is within 5% of the 10 boundary' },
+];
+
+const materials = [
+  { material: 'ABS', result: 'No critical damage under heat, UV or outdoor exposure — recommended' },
+  { material: 'ASA', result: 'No critical damage under heat, UV or outdoor exposure' },
+  { material: 'PETG', result: 'Critical dimensional damage at 80 °C; fine under UV and outdoors' },
+  { material: 'rPET', result: 'Critical dimensional damage at 80 °C; fine under UV and outdoors' },
+  { material: 'PLA', result: 'Critical damage at 80 °C — parts no longer fit together' },
+];
+---
+<section id="performance">
+  <div class="eyebrow">Performance</div>
+  <h2>Validated against the Millipore reference.</h2>
+  <p class="lead">
+    {v.sites} sample sites, {v.manifolds} manifolds — an ABS 3DPLAM, an rPET
+    3DPLAM, and the steel Millipore EZ-Fit™ as the <strong>reference
+    instrument</strong> — {v.replicates} replicates each:
+    {v.filtrations} filtrations, {v.comparisons} printed-manifold-vs-reference
+    comparisons.
+  </p>
+
+  <figure class="validation-figure">
+    <img
+      src={`${base}/figures/validation.svg`}
+      alt="Two-panel validation figure: geometric-mean E. coli counts per site and manifold against WHO risk bands, and the boundary-tolerance comparison to the Millipore reference."
+      loading="lazy"
+    />
+  </figure>
+
+  <div class="headline-row">
+    <div class="headline">
+      <div class="num">{v.accepted_within_tolerance} of {v.accepted_within_tolerance_of}</div>
+      <div class="label">
+        classifications <strong>accepted</strong>, once a geometric mean
+        within {v.boundary_tolerance_pct}% of a WHO band boundary is allowed
+        into either adjacent band
+      </div>
+    </div>
+    <div class="headline">
+      <div class="num">{v.matches_no_tolerance} of {v.matches_no_tolerance_of}</div>
+      <div class="label">
+        classifications <strong>match exactly</strong>, with
+        <strong>no tolerance</strong> applied
+      </div>
+    </div>
+  </div>
+
+  <p>
+    These are two different counts for two different rules — always state
+    which one is meant. Four raw mismatches sit right at a WHO band
+    boundary, where a small measurement difference flips the classified
+    band without reflecting a real disagreement about water quality; the
+    {v.boundary_tolerance_pct}% rule resolves three of the four:
+  </p>
+
+  <div class="scroll-x">
+    <table>
+      <thead>
+        <tr><th>Sample</th><th>Manifold</th><th>Geometric mean</th><th>Band</th><th>Reference</th><th>Band</th><th>Outcome</th></tr>
+      </thead>
+      <tbody>
+        {mismatches.map((m) => (
+          <tr class={m.outcome.startsWith('Mismatch') ? 'row-mismatch' : ''}>
+            <td>{m.sample}</td>
+            <td>{m.manifold}</td>
+            <td>{m.gm}</td>
+            <td>{m.band}</td>
+            <td>{m.ref}</td>
+            <td>{m.refBand}</td>
+            <td>{m.outcome}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">
+    The sole comparison that fails even with the tolerance applied is
+    sample 7, rPET — the same sample that is a spiked positive control, not
+    a field sample. Reproduce both counts directly from the shipped data:
+  </p>
+  <div class="scroll-x">
+    <pre><code>python3 -c "
+import csv
+rows = [r for r in csv.DictReader(open('data/ecoli-summary.csv')) if r['is_reference'] == 'no']
+print('accepted', sum(1 for r in rows if r['acceptable_within_5pct'] == 'yes'), 'of', len(rows))
+print('raw match', sum(1 for r in rows if r['matches_reference'] == 'yes'), 'of', len(rows))
+"</code></pre>
+  </div>
+
+  <h3>Material and fatigue results</h3>
+  <div class="scroll-x">
+    <table>
+      <thead><tr><th>Material</th><th>2 h at 80 °C / 48 h UV / 14 days outdoors</th></tr></thead>
+      <tbody>
+        {materials.map((m) => (
+          <tr><td>{m.material}</td><td>{m.result}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p>
+    Across all five materials, the printed funnel survived 25 cycles of
+    alcohol-wipe decontamination with no damage or leakage, and the 100 mL
+    PVC syringe survived all {v.filtrations} filtrations of this validation
+    without structural damage or leakage. Separately, watertightness
+    prototyping found a taped rPET–Millipore-funnel joint leaking at
+    roughly 5 minutes, which is what motivated the clamped-membrane seal
+    used in the published base; an ABS base with an ABS funnel (also
+    taped) showed no leakage over 2.5 hours. Full breakdown:
+    <a href={`${site.repo}/blob/main/docs/validation.md`}>docs/validation.md</a>.
+  </p>
+</section>
+
+<style>
+  #performance h2 { max-width: 20ch; }
+  #performance h3 { font-size: 20px; margin: 44px 0 12px; }
+
+  .validation-figure {
+    margin: 32px 0;
+    padding: 20px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .validation-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .headline-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin: 8px 0 32px;
+  }
+  .headline {
+    padding: 24px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .headline .num {
+    font-family: var(--serif);
+    font-size: 42px;
+    line-height: 1;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .headline .label {
+    font-size: 14px;
+    color: var(--fg-dim);
+    line-height: 1.5;
+    max-width: none;
+  }
+
+  tr.row-mismatch td:first-child { border-left: 3px solid var(--ghe-red); }
+
+  .table-note { font-size: 13.5px; margin-top: 14px; }
+
+  pre {
+    margin: 0;
+    padding: 14px 18px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--fg);
+  }
+
+  @media (max-width: 560px) {
+    .headline-row { grid-template-columns: 1fr; }
+  }
+</style>

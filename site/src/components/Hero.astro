@@ -1,0 +1,106 @@
+---
+import site from '../data/site.json';
+
+// Same base-normalization as Base.astro: import.meta.env.BASE_URL has no
+// guaranteed trailing slash in this Astro version, so join explicitly.
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+const costLabel = `$${site.cost_usd.toFixed(2)}`;
+---
+<section id="hero" class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">CERN-OHL-S v2 · CC BY 4.0</div>
+    <h1>{site.tagline}.</h1>
+    <p class="hero-meta">
+      open hardware · any FDM printer · ~{site.print_minutes} min · no supports
+    </p>
+    <p class="lead">
+      Three printed parts — base, funnel, filter support — plus a syringe
+      and a membrane filter. Validated against a Millipore EZ-Fit
+      stainless-steel manifold as the reference instrument for household
+      drinking-water testing.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href={site.repo}>Get the files on GitHub →</a>
+      <a class="btn btn-ghost" href="#why">Why it exists</a>
+    </div>
+    <p class="hero-secondary">
+      About {costLabel} in materials per set, printed in ABS.
+    </p>
+  </div>
+  <figure class="hero-photo">
+    <img
+      src={`${base}/photos/manifold-in-use.webp`}
+      alt="The assembled 3DPLAM manifold mid-filtration: membrane loaded, funnel locked down, syringe attached and drawing the sample through."
+      width="1800"
+      height="929"
+      loading="eager"
+    />
+    <figcaption>Membrane loaded, syringe attached, mid-filtration.</figcaption>
+  </figure>
+</section>
+
+<style>
+  .hero {
+    padding-top: 64px;
+  }
+  .hero-copy { min-width: 0; max-width: 640px; }
+  .hero h1 { margin: 18px 0 14px; max-width: 17ch; }
+  .hero-meta {
+    font-family: var(--mono);
+    font-size: 14px;
+    letter-spacing: .01em;
+    color: var(--accent-2);
+    margin: 0 0 18px;
+  }
+  .hero .lead { font-size: 17px; }
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 24px 0 18px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 11px 20px;
+    border-radius: 999px;
+    font-size: 14.5px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--accent); color: var(--ghe-white); }
+  .btn-primary:hover { opacity: .9; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--fg);
+    border: 1px solid var(--line);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-secondary {
+    font-size: 13.5px;
+    color: var(--fg-dim);
+    margin: 0;
+  }
+  .hero-photo {
+    margin: 40px 0 0;
+    min-width: 0;
+  }
+  .hero-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+  }
+  .hero-photo figcaption {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--fg-dim);
+  }
+
+  @media (max-width: 880px) {
+    .hero { padding-top: 40px; }
+  }
+</style>

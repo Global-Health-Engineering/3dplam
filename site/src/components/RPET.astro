@@ -1,0 +1,104 @@
+---
+import site from '../data/site.json';
+
+const stages = [
+  { n: '1', label: 'Bottle', detail: 'A clean, used PET drinking-water bottle.' },
+  { n: '2', label: 'Filament', detail: 'Cut into a single continuous strand and re-formed at filament gauge on a Petamentor2 rebuild, ~185 °C, spool turning ~1 rpm.' },
+  { n: '3', label: 'Part', detail: 'Printed from the shrinkage-compensated hardware/rpet/ geometry — not the standard STLs.' },
+];
+---
+<section id="rpet">
+  <div class="eyebrow">rPET</div>
+  <h2>Bottles into filament — an optional, sustainable route.</h2>
+  <p class="lead">
+    rPET, recycled from used drinking-water bottles, is one of five
+    materials the manifold was tested in, and the funnel and filter support
+    can be printed in it directly.
+  </p>
+
+  <ol class="stages">
+    {stages.map((s) => (
+      <li>
+        <span class="stage-n">{s.n}</span>
+        <div>
+          <div class="stage-label">{s.label}</div>
+          <p class="stage-detail">{s.detail}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+
+  <h3>Credit</h3>
+  <p>
+    The filament-making machine used is a rebuild of
+    <strong>Petamentor2</strong>, an open-source PET-bottle-to-filament
+    machine designed by <strong>Ondřej Šraitr</strong>:
+    <a href="https://petamentor2.com/" rel="noopener">petamentor2.com</a>.
+    The author of this project built a Petamentor2 himself — he did not
+    design the machine. Its design files are Šraitr's work and are
+    deliberately not redistributed in this repository; build your own from
+    the upstream project.
+  </p>
+
+  <h3>Use the compensated geometry</h3>
+  <p>
+    rPET shrinks differently during cooling than ABS or PLA, so
+    <code>hardware/rpet/</code> is dimensionally compensated for that
+    shrinkage — printing the standard STLs in rPET will not fit. There is
+    no separate rPET base: the base needs no compensation, so the same
+    <code>hardware/stl/base.stl</code> is correct in every material,
+    including rPET. rPET's print settings also differ enough from the ABS
+    gas-tight profile that they don't carry over directly — see
+    <a href={`${site.repo}/blob/main/docs/rpet.md`}>docs/rpet.md</a> for the
+    settings source and the full bottle-to-filament procedure.
+  </p>
+</section>
+
+<style>
+  #rpet h2 { max-width: 20ch; }
+  #rpet h3 { font-size: 20px; margin: 36px 0 12px; }
+
+  .stages {
+    list-style: none;
+    margin: 32px 0 40px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .stages li {
+    display: flex;
+    gap: 14px;
+    padding: 20px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .stage-n {
+    font-family: var(--serif);
+    font-size: 28px;
+    color: var(--accent-2);
+    line-height: 1;
+  }
+  .stage-label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--fg);
+  }
+  .stage-detail {
+    font-size: 13.5px;
+    margin: 0;
+    line-height: 1.5;
+  }
+  code {
+    background: var(--bg-2);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: .92em;
+    overflow-wrap: break-word;
+  }
+
+  @media (max-width: 780px) {
+    .stages { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,79 @@
+---
+import site from '../data/site.json';
+
+const glam2Label = `$${site.glam2_cost_usd.toFixed(2)}`;
+const costLabel = `$${site.cost_usd.toFixed(2)}`;
+const millipore = site.millipore_cost_usd.toLocaleString('en-US');
+---
+<section id="why">
+  <div class="eyebrow">Why</div>
+  <h2>The measurement is solved. Producing the instrument isn't.</h2>
+  <p class="lead">
+    <em>E. coli</em> membrane filtration is the measurement WHO and UNICEF
+    use in household drinking-water quality surveys. The instrument that
+    performs it is not the open problem.
+  </p>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="num">{site.context.population_without_safe_water_bn} bn</div>
+      <div class="label">people without safely managed drinking water</div>
+    </div>
+    <div class="stat">
+      <div class="num">{site.context.population_without_water_quality_data_pct}%</div>
+      <div class="label">of the global population lacks any water-quality data at all</div>
+    </div>
+  </div>
+
+  <p>
+    Testing this many sites needs many instruments, not one better one. The
+    steel Millipore EZ-Fit™ manifold — the reference instrument this device
+    is validated against — retails around <strong>${millipore.toString()}</strong>,
+    is centrally manufactured, and is a closed design: it cannot be produced
+    locally, only bought.
+  </p>
+  <p>
+    UNICEF's own second-generation lightweight affordable manifold
+    (<strong>2GLAM</strong>) already solved the cost problem, bringing the
+    per-unit price to about {glam2Label}. What it does not solve is
+    <strong>availability</strong> — it too is centrally produced from a
+    proprietary design. 3DPLAM's contribution is not a cheaper manifold
+    (at about {costLabel} it happens to also be cheaper); it is an
+    <strong>open, locally 3D-printable</strong> one — a design anyone with
+    an FDM printer can produce, repair and modify themselves, without
+    waiting on a supply chain.
+  </p>
+</section>
+
+<style>
+  #why h2 { max-width: 20ch; margin-bottom: 18px; }
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin: 32px 0 36px;
+  }
+  .stat {
+    padding: 22px 24px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .stat .num {
+    font-family: var(--serif);
+    font-size: 40px;
+    line-height: 1;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .stat .label {
+    font-size: 14px;
+    color: var(--fg-dim);
+    line-height: 1.45;
+    max-width: none;
+  }
+
+  @media (max-width: 560px) {
+    .stat-row { grid-template-columns: 1fr; }
+  }
+</style>

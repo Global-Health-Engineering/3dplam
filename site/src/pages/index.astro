@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+
+import Hero from '../components/Hero.astro';
+import Why from '../components/Why.astro';
+import Device from '../components/Device.astro';
+import Print from '../components/Print.astro';
+import Use from '../components/Use.astro';
+import Performance from '../components/Performance.astro';
+import RPET from '../components/RPET.astro';
+import Limits from '../components/Limits.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base title={`${site.name} — open hardware for E. coli water testing`} description={site.tagline}>
+  <Hero />
+  <Why />
+  <Device />
+  <Print />
+  <Use />
+  <Performance />
+  <RPET />
+  <Limits />
+  <Footer />
+</Base>
