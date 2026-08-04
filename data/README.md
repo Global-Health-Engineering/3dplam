@@ -39,27 +39,32 @@ which one is meant. See `ecoli-summary.csv` (`matches_reference` = the
 | # | Site | Google Maps |
 |---|---|---|
 | 1 | Limmat, Platzspitz | **Conflicting sources — see caveat below** |
-| 2 | Sihl, Treppen bei der Sihl | not available in the source material carried into this release |
-| 3 | Lake of Zurich, Rentenwiese | not available in the source material carried into this release |
-| 4 | Lake of Zurich, Aussichtspunkt Riesbach | not available in the source material carried into this release |
-| 5 | Irchel Campus, Ircheltuempel | not available in the source material carried into this release |
-| 6 | Zurichberg, Resi-Weiher | not available in the source material carried into this release |
-| 7 | ETH Zurich CLD, tap water + fecal suspension | positive control, not a field site — see caveat below |
-| 8 | ETH Zurich CLA, tap water | lab tap, not a field site |
+| 2 | Sihl, "Treppen bei der Sihl" | https://maps.app.goo.gl/t2w6ZBqyXtTheTvU8 |
+| 3 | Lake of Zürich, Rentenwiese | https://maps.app.goo.gl/Xsy4nUzgeniSF7QS6 |
+| 4 | Lake of Zürich, "Aussichtspunkt Riesbach" | https://maps.app.goo.gl/RfrFR1WqzwqbAtgdA |
+| 5 | Irchel Campus, "Ircheltümpel" | https://maps.app.goo.gl/xAfFDwxMpErPbqV17 |
+| 6 | Zürichberg, "Resi-Weiher" | https://maps.app.goo.gl/KXh66xjuwYgjUPYf7 |
+| 7 | ETH Zürich, CLD Building — tap water + 25 mL faecal suspension | https://maps.app.goo.gl/v8skA6kZncdn9hSt8 |
+| 8 | ETH Zürich, CLA Building — tap water | https://maps.app.goo.gl/57Mg5KN6icj9zju26 |
 
-Sites 2-6 are outdoor sampling locations in and around Zurich; no Google
-Maps link for them was carried forward into this release's source
-material. If precise coordinates are needed, confirm with the thesis
-author rather than guessing from the site name.
+For sites 2–8, the handover README and thesis Table 1 give **identical**
+links — no discrepancy. Only site 1 differs between the two sources; see
+the caveat below. Sites 7 and 8 are lab controls at ETH Zurich, not
+outdoor field sites (see caveats 2 and 3 below for what they represent).
 
 ## Known data caveats
 
-1. **Sample 1 map link is disputed.** The handover README gives
-   `https://maps.app.goo.gl/R5HYHXrchyp9zU4e9`; the thesis Table 1 gives
-   `https://maps.app.goo.gl/P6ut9wVUvfRmA4wv7`. Both are labelled "Limmat,
-   Platzspitz". This has not been resolved — **pending confirmation from
-   the author** — and neither link has been silently preferred over the
-   other.
+1. **Sample 1's map link is disputed — and only sample 1's.** For sites
+   2–8, the handover README and thesis Table 1 give byte-identical Google
+   Maps links (reproduced in the table above), which is why only site 1
+   is called out here rather than every site individually. For site 1
+   specifically, the two sources disagree:
+   - handover README: `https://maps.app.goo.gl/R5HYHXrchyp9zU4e9`
+   - thesis Table 1: `https://maps.app.goo.gl/P6ut9wVUvfRmA4wv7`
+
+   Both are labelled "Limmat, Platzspitz". This has not been resolved —
+   **pending confirmation from the author** — and neither link has been
+   silently preferred over the other.
 
 2. **Sample 5 was not fully drawn through the filter membrane.**
    Filtration stalled at roughly the 20 mL mark of the 100 mL sample, so
@@ -85,10 +90,12 @@ author rather than guessing from the site name.
    figure was evidently rounded from slightly different intermediate
    precision). No risk category and neither of the headline counts above
    is affected either way. **The shipped CSVs carry the recomputed
-   values** (103.16, 90.41); `codebook.csv`'s stated range for
-   `geometric_mean` (`0.5-103.17`) mirrors the brief's original worked
-   example and cites the older, published upper bound — the actual
-   maximum present in the shipped data is 103.16.
+   values** (103.16, 90.41), and so does `codebook.csv`'s stated range for
+   `geometric_mean` (`0.5-103.16`) — it describes the data that is
+   actually in the file, not the source spreadsheet's originally
+   published 103.17. The 103.17 and 90.42 figures above are the source
+   spreadsheet's values, kept here only to explain the discrepancy; they
+   do not appear anywhere in the shipped CSVs or in the codebook.
 
 5. **`watertightness.csv`'s `Uniform Filter Membrane Coloration` column
    contains a typo: `unifrom`** (transposed letters, meant to read

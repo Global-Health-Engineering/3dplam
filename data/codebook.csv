@@ -6,7 +6,7 @@ ecoli-quantification.csv,sample_no,categorical,1-8,Water sample site number,NA
 ecoli-quantification.csv,sample_site,categorical,see data/README.md,Human-readable collection site,NA
 ecoli-quantification.csv,replicate,categorical,"a, b, c",Which of three filtrations of this sample through this manifold,NA
 ecoli-quantification.csv,cfu_per_100ml,"numeric, continuous",0.5-121,Colony-forming units counted on the Compact Dry ECO plate; 0.5 recorded when no colonies were visible,CFU/100 mL
-ecoli-summary.csv,geometric_mean,"numeric, continuous",0.5-103.17,Geometric mean of the three replicates,CFU/100 mL
+ecoli-summary.csv,geometric_mean,"numeric, continuous",0.5-103.16,Geometric mean of the three replicates,CFU/100 mL
 ecoli-summary.csv,risk_category,categorical,"low risk, intermediate risk, high risk, very high risk",WHO (2024) drinking-water risk band,NA
 ecoli-summary.csv,is_reference,categorical,"yes, no",Whether this is the Millipore reference manifold,NA
 ecoli-summary.csv,matches_reference,categorical,"yes, no, (blank)",Whether the risk band equals the Millipore band with no tolerance,NA
