@@ -1,0 +1,57 @@
+file_name,variable_name,variable_type,variable_values,description,unit
+ecoli-quantification.csv,manifold_id,categorical,"ft1, ft2, ft3",Identifier of the filtration manifold used,NA
+ecoli-quantification.csv,manifold_name,categorical,"3DPLAM_V1.2_rPET, 3DPLAM_V1.2, Millipore Microfil Manifold",Name of the manifold as recorded during testing,NA
+ecoli-quantification.csv,material,categorical,"rPET, ABS, Steel",Material of the manifold base,NA
+ecoli-quantification.csv,sample_no,categorical,1-8,Water sample site number,NA
+ecoli-quantification.csv,sample_site,categorical,see data/README.md,Human-readable collection site,NA
+ecoli-quantification.csv,replicate,categorical,"a, b, c",Which of three filtrations of this sample through this manifold,NA
+ecoli-quantification.csv,cfu_per_100ml,"numeric, continuous",0.5-121,Colony-forming units counted on the Compact Dry ECO plate; 0.5 recorded when no colonies were visible,CFU/100 mL
+ecoli-summary.csv,geometric_mean,"numeric, continuous",0.5-103.17,Geometric mean of the three replicates,CFU/100 mL
+ecoli-summary.csv,risk_category,categorical,"low risk, intermediate risk, high risk, very high risk",WHO (2024) drinking-water risk band,NA
+ecoli-summary.csv,is_reference,categorical,"yes, no",Whether this is the Millipore reference manifold,NA
+ecoli-summary.csv,matches_reference,categorical,"yes, no, (blank)",Whether the risk band equals the Millipore band with no tolerance,NA
+ecoli-summary.csv,acceptable_within_5pct,categorical,"yes, no, (blank)",Whether the band is acceptable under the 5% boundary rule,NA
+ecoli-summary.csv,manifold_id,categorical,"ft1, ft2, ft3",Identifier of the filtration manifold used,NA
+ecoli-summary.csv,material,categorical,"rPET, ABS, Steel",Material of the manifold base,NA
+ecoli-summary.csv,sample_no,categorical,1-8,Water sample site number,NA
+ecoli-summary.csv,sample_site,categorical,see data/README.md,Human-readable collection site,NA
+watertightness.csv,Name,categorical,"2GLAM, 3DPLAM_V1.2, 3DPLAM_V1.2_rPET",Name of the manifold prototype tested,NA
+watertightness.csv,id,categorical,"wt1, wt2, wt3",Identifier of the watertightness test run,NA
+watertightness.csv,Material,categorical,"ABS, rPET",Material of the manifold tested,NA
+watertightness.csv,Leakage,categorical,"no, yes",Whether the prototype leaked during the test,NA
+watertightness.csv,Location of Leakage,categorical,"-, Funnel-Base-Connection",Where leakage occurred; '-' recorded when no leakage occurred,NA
+watertightness.csv,Time at Leakage [min],"numeric, continuous","-, 5",Elapsed time at which leakage was first observed; '-' recorded when no leakage occurred,min
+watertightness.csv,Uniform Filter Membrane Coloration,categorical,unifrom,"Whether the filter membrane showed uniform coloration after the test; recorded verbatim from the source data including the 'unifrom' spelling (transposed letters, all 3 rows) - see data/README.md",NA
+watertightness.csv,Description,text,free text,Free-text notes on the test outcome recorded by the student,NA
+heat-resistance.csv,Name,categorical,"3DPLAM_Base_V4, 3DPLAM_Funnel_V4, 3DPLAM_Filter Support_V4, Funnel Bottom Brim, Base Top Connection, Base Water Tunnel",Name of the manifold part tested for heat resistance,NA
+heat-resistance.csv,id,categorical,"30 distinct, e.g. hr1.1",Identifier of the heat resistance test specimen (format hr<batch>.<part number>),NA
+heat-resistance.csv,Material,categorical,"ABS, ASA, PETG, PLA, rPET",Material of the part tested,NA
+heat-resistance.csv,Critical Structural Damage (2h),categorical,"no, yes","Whether critical structural damage (warping, shrinkage, loss of fit) was observed after 2 hours of heat exposure",NA
+heat-resistance.csv,Description,text,free text,Free-text notes on dimensional changes and fit observed after heat exposure,NA
+uv-resistance.csv,Name,categorical,3DPLAM_V4,Name of the manifold prototype exposed to UV radiation,NA
+uv-resistance.csv,id,categorical,"uv1, uv2, uv3, uv4, uv5",Identifier of the UV resistance test specimen,NA
+uv-resistance.csv,Material,categorical,"ABS, ASA, PETG, PLA, rPET",Material of the specimen tested,NA
+uv-resistance.csv,Structural Damage (48h),categorical,no,Whether structural damage was observed after 48 hours of UV exposure,NA
+uv-resistance.csv,Discolouration,categorical,"no, yes, N.D.",Whether discoloration was observed after UV exposure; N.D. = not determined,NA
+uv-resistance.csv,Description,text,free text,Free-text notes on the degree and appearance of UV-induced discoloration,NA
+environmental-exposure.csv,Name,categorical,3DPLAM_V4,Name of the manifold prototype exposed to outdoor weathering,NA
+environmental-exposure.csv,id,categorical,"env1, env2, env3, env4, env5",Identifier of the environmental exposure test specimen,NA
+environmental-exposure.csv,Material,categorical,"ABS, ASA, PETG, PLA, rPET",Material of the specimen tested,NA
+environmental-exposure.csv,Critical Structural Damage (14 days),categorical,no,Whether critical structural damage was observed after 14 days of outdoor exposure,NA
+environmental-exposure.csv,UV Discoloration (14 days),categorical,no,Whether UV-induced discoloration was observed after 14 days of outdoor exposure,NA
+environmental-exposure.csv,Description,text,free text,"Free-text notes on brim shape, discoloration and debris buildup observed after outdoor exposure",NA
+environmental-weather.csv,date,date,2026-05-02 to 2026-05-15,Calendar date of the daily weather observation during the outdoor exposure test,NA
+environmental-weather.csv,weather_condition,categorical,"11 distinct, e.g. 'mostly sunny, some clouds'",Human-readable summary of that day's weather,NA
+environmental-weather.csv,temp_max_c,"numeric, continuous",12-24,Maximum air temperature recorded that day,degC
+environmental-weather.csv,temp_min_c,"numeric, continuous",4-12,Minimum air temperature recorded that day,degC
+environmental-weather.csv,sunshine_h_per_day,"numeric, continuous",0.9-12.8,Hours of sunshine recorded that day,h
+environmental-weather.csv,solar_irradiance_w_m2,"numeric, continuous",107-313,Solar irradiance recorded that day,W/m2
+environmental-weather.csv,rainfall_duration_h,"numeric, continuous",0-19,Duration of rainfall recorded that day,h
+environmental-weather.csv,rainfall_mm,"numeric, continuous",0-11.6,Amount of rainfall recorded that day,mm
+environmental-weather.csv,humidity_pct,"numeric, continuous",58.9-87.6,Relative humidity recorded that day,%
+mechanical-fatigue.csv,Name,categorical,"3DPLAM_Funnel_V4, 100ml PVC Syringe",Name of the part or component tested for mechanical fatigue,NA
+mechanical-fatigue.csv,id,categorical,"mf1, mf2, mf3, mf4, mf5, mf6",Identifier of the mechanical fatigue test specimen,NA
+mechanical-fatigue.csv,Material,categorical,"ABS, ASA, PETG, PLA, PVC, rPET",Material of the specimen tested,NA
+mechanical-fatigue.csv,Structural Damage/Leakage,categorical,no,Whether structural damage or leakage occurred during cyclic loading,NA
+mechanical-fatigue.csv,Cycles to Failure,categorical,-,Number of loading cycles at failure; '-' recorded because no specimen failed within the test,NA
+mechanical-fatigue.csv,Description,text,No critical damage,Free-text notes on the outcome of the fatigue test,NA
