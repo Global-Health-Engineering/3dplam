@@ -20,8 +20,13 @@ not, and a metre-scale STL imports into any slicer 1000x too small.
 
 | Format | Setting |
 |---|---|
-| STL | Binary · **Units: Millimeter** · Resolution: Fine (or Custom, chord tolerance 0.01 mm) |
+| STL | Binary · **Units: Millimeter** · Resolution: Fine |
 | STEP | AP242 (AP214 for older tools) · **Units: Millimeter** |
+
+When exporting the assembly, make sure only **one** filter support is
+visible. Both designs occupy the same slot, so exporting with both shown
+produces an assembly containing two interpenetrating supports. The shipped
+assembly uses the strand mesh.
 
 Do not export 3MF from Onshape — `hardware/3mf/` files are generated in
 Bambu Studio so they carry the print profile. See `hardware/print-profiles/`.
