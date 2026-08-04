@@ -29,12 +29,12 @@ const consumables = [
 ];
 ---
 <section id="use">
-  <div class="eyebrow">Use</div>
-  <h2>Filtration, start to finish.</h2>
+  <div class="eyebrow">Operation</div>
+  <h2>Operating procedure</h2>
   <p class="lead">
-    The full <em>E. coli</em> membrane-filtration protocol, transcribed
-    verbatim from the author's own lab documentation. It is a laboratory
-    protocol — follow it as written, not paraphrased.
+    The following is the complete <em>E. coli</em> membrane-filtration
+    protocol, transcribed verbatim from the author's laboratory
+    documentation.
   </p>
 
   <div class="use-grid">
@@ -64,24 +64,23 @@ const consumables = [
   </div>
 
   <p>
-    Incubate the inoculated plate for 24 h at 37 °C, then count colonies —
-    how those counts become a WHO risk classification is covered in
-    <a href="#performance">Performance</a>. Full protocol notes, including
-    two samples that needed non-standard handling, are in
+    The inoculated plate incubates for 24 h at 37 °C, after which colonies
+    are counted; how those counts become a WHO risk classification is
+    covered in <a href="#validation">Validation</a>. Full protocol notes,
+    including two samples that needed non-standard handling, are in
     <a href={`${site.repo}/blob/main/docs/operation.md`}>docs/operation.md</a>;
-    assembling the manifold itself is covered in
+    manifold assembly is covered in
     <a href={`${site.repo}/blob/main/docs/assembly.md`}>docs/assembly.md</a>.
   </p>
 </section>
 
 <style>
-  #use h2 { max-width: 16ch; }
   .use-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
     gap: 40px;
     align-items: start;
-    margin: 32px 0 40px;
+    margin: 24px 0 32px;
   }
   .steps {
     margin: 0;
@@ -112,7 +111,7 @@ const consumables = [
     font-size: 13px;
     color: var(--fg-dim);
   }
-  #use h3 { font-size: 20px; margin: 0 0 12px; }
+  #use h3 { margin: 0 0 10px; }
 
   @media (max-width: 780px) {
     .use-grid { grid-template-columns: 1fr; }

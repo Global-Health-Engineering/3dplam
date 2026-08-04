@@ -10,22 +10,23 @@ const costLabel = `$${site.cost_usd.toFixed(2)}`;
 <section id="hero" class="hero">
   <div class="hero-copy">
     <div class="eyebrow">CERN-OHL-S v2 · CC BY 4.0</div>
-    <h1>{site.tagline}.</h1>
+    <h1>{site.tagline}</h1>
     <p class="hero-meta">
-      open hardware · any FDM printer · ~{site.print_minutes} min · no supports
+      open hardware · any FDM printer · ~{site.print_minutes} min print time · no supports
     </p>
     <p class="lead">
-      Three printed parts — base, funnel, filter support — plus a syringe
-      and a membrane filter. Validated against a Millipore EZ-Fit
-      stainless-steel manifold as the reference instrument for household
-      drinking-water testing.
+      The manifold consists of three printed parts — base, funnel and
+      filter support — plus a 100 mL syringe and a 0.45 µm membrane
+      filter. It is validated against a Millipore EZ-Fit stainless-steel
+      manifold as the reference instrument for household drinking-water
+      testing.
     </p>
     <div class="hero-ctas">
       <a class="btn btn-primary" href={site.repo}>Get the files on GitHub →</a>
-      <a class="btn btn-ghost" href="#why">Why it exists</a>
+      <a class="btn btn-ghost" href="#background">Background</a>
     </div>
     <p class="hero-secondary">
-      About {costLabel} in materials per set, printed in ABS.
+      Materials cost approximately {costLabel} per set, printed in ABS.
     </p>
   </div>
   <figure class="hero-photo">
@@ -42,10 +43,10 @@ const costLabel = `$${site.cost_usd.toFixed(2)}`;
 
 <style>
   .hero {
-    padding-top: 64px;
+    padding-top: 40px;
   }
   .hero-copy { min-width: 0; max-width: 640px; }
-  .hero h1 { margin: 18px 0 14px; max-width: 17ch; }
+  .hero h1 { margin: 14px 0 12px; max-width: 22ch; }
   .hero-meta {
     font-family: var(--mono);
     font-size: 14px;
@@ -84,7 +85,13 @@ const costLabel = `$${site.cost_usd.toFixed(2)}`;
     margin: 0;
   }
   .hero-photo {
-    margin: 40px 0 0;
+    /* The one image that earns more room than the 560-700px figure cap
+       used elsewhere on the page, because it is the single frame that
+       shows the whole device concept — assembled, loaded, mid-filtration.
+       Still capped well short of the section's full width, so it reads as
+       an illustration next to the copy above it, not a full-bleed hero. */
+    margin: 28px 0 0;
+    max-width: 720px;
     min-width: 0;
   }
   .hero-photo img {
@@ -95,12 +102,8 @@ const costLabel = `$${site.cost_usd.toFixed(2)}`;
     border: 1px solid var(--line);
   }
   .hero-photo figcaption {
-    margin-top: 10px;
+    margin-top: 8px;
     font-size: 13px;
     color: var(--fg-dim);
-  }
-
-  @media (max-width: 880px) {
-    .hero { padding-top: 40px; }
   }
 </style>

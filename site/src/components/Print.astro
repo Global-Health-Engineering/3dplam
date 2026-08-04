@@ -36,13 +36,13 @@ const profiles = [
 ];
 ---
 <section id="print">
-  <div class="eyebrow">Print</div>
-  <h2>The print settings are not optional.</h2>
+  <div class="eyebrow">Print settings</div>
+  <h2>Print settings</h2>
   <p class="lead">
-    A manifold sliced at default settings is porous: the syringe pulls air
-    through the plastic instead of pulling water through the membrane, and
-    filtration fails outright. This is the single most important fact in
-    this repository — get this table right before printing anything.
+    Below {pp.wall_loops} wall loops the printed wall is porous: the
+    syringe draws air through the material instead of water through the
+    membrane, and filtration fails. The table below lists every setting
+    that must be changed from a slicer's stock defaults.
   </p>
 
   <div class="scroll-x">
@@ -101,14 +101,14 @@ const profiles = [
   </div>
   <p class="table-note">
     Full heat, UV, outdoor-weathering and sterilisation results per material
-    are in <a href="#performance">Performance</a> and
+    are in <a href="#validation">Validation</a> and
     <a href={`${site.repo}/blob/main/docs/printing.md`}>docs/printing.md</a>.
   </p>
 
   <h3>Profiles</h3>
   <p>
-    Importable Bambu Studio process profiles for the printers used to
-    validate this design:
+    Bambu Studio process profiles for the printers used to validate this
+    design, importable directly:
   </p>
   <ul class="profile-list">
     {profiles.map((p) => (
@@ -120,31 +120,25 @@ const profiles = [
     ))}
   </ul>
 
-  <h3>Watch it print</h3>
+  <h3>Print timelapse</h3>
   <p>
-    A timelapse of the base printing, on the profile above, no supports.
+    The clip below shows the base printing on the profile above, without
+    support structures.
   </p>
-  <video
+  <!-- Author-supplied GIF (720x720, 86 frames, 8.6 s, 10 fps); loops on its own with no interaction needed. -->
+  <img
     class="timelapse"
-    src={`${base}/video/base-printing-timelapse.mp4`}
-    muted
-    loop
-    playsinline
-    preload="metadata"
-    controls
-    width="1168"
+    src={`${base}/video/base-printing-timelapse.gif`}
+    alt="Timelapse of the base printing on the profile above: repeating loop, no support structures, printed in ABS."
+    width="720"
     height="720"
-  >
-    Your browser does not support embedded video. The file is in
-    <code>site/public/video/</code>.
-  </video>
+    loading="lazy"
+  />
 </section>
 
 <style>
-  #print h2 { max-width: 20ch; }
   #print h3 {
-    font-size: 20px;
-    margin: 44px 0 12px;
+    margin: 32px 0 10px;
   }
   .settings-table .value {
     font-family: var(--mono);
@@ -187,11 +181,14 @@ const profiles = [
   .timelapse {
     display: block;
     width: 100%;
-    max-width: 560px;
+    /* Square source (720x720), unlike the rectangular photographs
+       elsewhere on the page — sized down from that native width so it
+       reads as a modest inline figure rather than dominating the
+       section, consistent with the 560-700px cap used for photos. */
+    max-width: 420px;
     height: auto;
     border-radius: var(--radius);
     border: 1px solid var(--line);
-    background: #000;
     margin-top: 8px;
   }
 </style>

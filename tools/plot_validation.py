@@ -69,7 +69,7 @@ ORDER = ["ft1", "ft2", "ft3"]
 # and a near-black page background — this figure ships with a transparent
 # background (see main()) for a site that renders in both light and dark
 # themes, so no colour here can be tuned for one background only.
-INK = "#6b7480"           # axis text, ticks, spines, titles, legend, footnote
+INK = "#3d444d"           # axis text, ticks, spines, titles, legend, footnote
 GRID = "#9aa3ad"          # WHO threshold lines
 BAND_FILL = "#8f97a3"     # risk-band shading (opacity increases with risk)
 BAND_ALPHAS = [0.05, 0.10, 0.16, 0.22]

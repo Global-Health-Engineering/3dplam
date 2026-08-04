@@ -19,12 +19,12 @@ const renders = [
 ---
 <section id="device">
   <div class="eyebrow">Device</div>
-  <h2>Three printed parts. No supports.</h2>
+  <h2>Device</h2>
   <p class="lead">
-    A base, a funnel and a filter support print separately, without support
-    structures, and lock together with no glue except at the syringe joint.
-    A 100 mL PVC syringe and a 0.45 µm membrane filter complete the
-    manifold.
+    The manifold is three printed parts — a base, a funnel and a filter
+    support — each printed separately without support structures. They
+    lock together without adhesive except at the syringe joint. A 100 mL
+    PVC syringe and a 0.45 µm membrane filter complete the assembly.
   </p>
 
   <figure class="device-photo">
@@ -84,9 +84,9 @@ const renders = [
 </section>
 
 <style>
-  #device h2 { max-width: 18ch; }
   .device-photo {
-    margin: 32px 0;
+    margin: 24px 0;
+    max-width: 640px;
   }
   .device-photo img {
     display: block;
@@ -116,7 +116,7 @@ const renders = [
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
-    margin-top: 48px;
+    margin-top: 32px;
   }
   .render {
     margin: 0;
@@ -138,7 +138,7 @@ const renders = [
     line-height: 1.45;
   }
 
-  .device-photo-pair { max-width: 480px; margin: 40px auto 0; }
+  .device-photo-pair { max-width: 480px; margin: 28px auto 0; }
 
   @media (max-width: 700px) {
     .render-grid { grid-template-columns: 1fr; }
