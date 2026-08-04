@@ -7,7 +7,7 @@ Quantification_README.txt` in the project handover; reproduced in the
 thesis, Appendix B). It assumes the manifold is already built — see
 [`assembly.md`](assembly.md) first.
 
-It is a laboratory protocol: follow it as written, not paraphrased.
+The steps below reproduce the protocol exactly; they are not paraphrased.
 
 ## Consumables
 

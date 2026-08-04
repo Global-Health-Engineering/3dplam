@@ -2,7 +2,7 @@
 
 Licensed **CERN-OHL-S v2** (see `../LICENSE-CERN-OHL-S-2.0.md`).
 
-## What to print
+## Printable parts
 
 Three parts make one manifold. All print **without support structures**.
 
@@ -15,24 +15,24 @@ Three parts make one manifold. All print **without support structures**.
 In ABS at the recommended settings the set costs about **$0.80**, weighs
 about **32 g**, and prints in about **100 minutes**.
 
-**Print settings are not optional.** The manifold must be gas-tight or the
-syringe cannot pull a vacuum — a part sliced at defaults looks correct and
-still fails. The essential requirement is **6 wall loops, 6 bottom shell
-layers, and 1.3 mm top and bottom shell thickness at 0.2 mm layer height**.
-Importable Bambu Studio profiles for the X1 Carbon and P2S are in
+A part sliced at default settings looks correct but is not gas-tight: the
+syringe cannot pull a vacuum through it, and filtration fails. The required
+settings are **6 wall loops, 6 bottom shell layers, and 1.3 mm top and
+bottom shell thickness at 0.2 mm layer height**. Importable Bambu Studio
+profiles for the X1 Carbon and P2S are in
 [`print-profiles/`](print-profiles/), along with the full requirement and
 cross-slicer equivalents.
 
-## Choosing a filter support
+## Filter support variants
 
-Two designs, both current. They are alternatives, not revisions.
+Two designs are current; they are alternatives, not revisions.
 
 | File | Use it when |
 |---|---|
 | `filter-support-strand-mesh.stl` | **Default.** Parallel in-air printed strands, each layer rotated 120°. Uses 35% less material, and gave uniform filtration in testing. This is the design used for the *E. coli* validation |
 | `filter-support-hex-hole.stl` | Hexagonal hole pattern. More forgiving to print — no in-air bridging. Use if the strand mesh prints poorly on your machine |
 
-## Choosing a funnel
+## Funnel variants
 
 | File | Use it when |
 |---|---|
@@ -41,12 +41,12 @@ Two designs, both current. They are alternatives, not revisions.
 
 ## Printing in recycled PET
 
-Use **everything in `rpet/`** — that geometry is shrinkage-compensated and
-is not interchangeable with `stl/`.
+Recycled-PET parts are printed from `rpet/` in full; the geometry there is
+shrinkage-compensated and is not interchangeable with `stl/`.
 
 There is no rPET base: the base needs no compensation, so `stl/base.stl` is
-correct for every material. Take the base from `stl/` and the funnel and
-filter support from `rpet/`.
+correct for every material. The base is taken from `stl/`, and the funnel
+and filter support from `rpet/`.
 
 See [`../docs/rpet.md`](../docs/rpet.md) for producing filament from PET
 bottles.

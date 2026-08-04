@@ -1,11 +1,10 @@
 # Print profiles
 
-**These settings are not optional.** At stock wall and shell counts the
-printed manifold is porous: the syringe pulls air through the material
-instead of pulling water through the membrane, and filtration fails
-outright. This was the single hardest problem in the project.
+At stock wall and shell counts the printed manifold is porous: the syringe
+draws air through the material instead of pulling water through the
+membrane, and filtration fails.
 
-## The requirement
+## Required settings
 
 These values are transcribed directly from the author's Bambu Studio
 screenshot of the profile used for the validated prints (a file named
@@ -30,7 +29,7 @@ what was actually printed and tested — not a paraphrase.
 | Supports | off | no |
 | Brim | 5 mm auto-brim | no |
 
-### Why both a layer count *and* a thickness are listed
+### Layer count and thickness
 
 Bambu Studio treats shell **layer count** (`top_shell_layers` /
 `bottom_shell_layers`) and shell **thickness**
@@ -67,8 +66,8 @@ least 1.3 mm of solid shell.
 
 ## Printers used
 
-Both machines produced working parts, which is the point — the design is
-not tied to one printer.
+Both machines produced working parts: the design is not tied to a single
+printer.
 
 | Printer | Where | Notes |
 |---|---|---|

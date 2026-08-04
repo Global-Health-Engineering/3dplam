@@ -14,22 +14,22 @@ support and funnel variant to print see
    membrane gridded-side up on the filter support.
 3. **Lock the funnel onto the base.** The funnel's lower rim seats over the
    base's top connection and locks down over the membrane.
-4. **The seal.** The base's top brim carries two raised ridges — the
-   "hills." Locking the funnel down clamps the membrane between these
+4. **Seal the membrane.** The base's top brim carries two raised ridges —
+   the "hills." Locking the funnel down clamps the membrane between these
    ridges and the funnel's inner slope, forming the seal that lets the
    syringe pull a vacuum through the membrane rather than around it. The
    outer of the two ridges also gives the forceps something to catch when
    picking the membrane up off the support in step 2.
-5. **The syringe joint.** The 100 mL PVC syringe connects to the base's
+5. **Connect the syringe.** The 100 mL PVC syringe connects to the base's
    water tunnel. This joint is glued — **UHU Hartkunststoff
    Spezialkleber** — rather than a friction or thread fit, because the
    syringe stroke needs an airtight connection to pull a vacuum at all.
-   Glue it once during assembly; it is not meant to be disconnected between
-   uses.
+   The joint is made once during assembly and is not meant to be
+   disconnected between uses.
 
-A cross-section render of the membrane clamp — base, membrane and funnel in
-distinct colours — is planned for the project site once the render pipeline
-runs; it is not part of this repository yet.
+A cross-section render of the membrane clamp, showing the base, membrane
+and funnel in distinct colours, is on the project site
+(`site/public/renders/membrane-clamp.png`).
 
 ## Taking it apart
 

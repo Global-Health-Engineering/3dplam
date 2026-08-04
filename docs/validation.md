@@ -5,7 +5,7 @@ same measurement the Millipore EZ-Fit™ manifold performs — it is not a
 replacement for it. The Millipore served as the **reference instrument**
 the 3DPLAM was validated against.
 
-## What was tested
+## Test scope
 
 Water was collected from 8 sample sites (listed in
 [`../data/README.md`](../data/README.md)) and filtered through 3 manifolds
@@ -137,9 +137,9 @@ damage or leakage
   read lowest instead — and that is also the sole classification mismatch
   above. At site 8 all three manifolds recorded the 0.5 CFU/100 mL floor
   value, a three-way tie.
-- **Single operator, single season.** All 72 filtrations were run by one
-  person across one testing period; neither operator variability nor
-  seasonal variation in source water is captured.
+- **A single operator ran all 72 filtrations, in a single testing period.**
+  Neither operator variability nor seasonal variation in source water is
+  captured.
 - **Filtration order was not randomised across manifolds.** The Millipore
   reference was filtered last at each site, so any sedimentation of the
   sample while earlier manifolds were run could inflate its counts

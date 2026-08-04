@@ -54,11 +54,11 @@ outdoor field sites (see caveats 2 and 3 below for what they represent).
 
 ## Known data caveats
 
-1. **Sample 1's map link is disputed — and only sample 1's.** For sites
-   2–8, the handover README and thesis Table 1 give byte-identical Google
-   Maps links (reproduced in the table above), which is why only site 1
-   is called out here rather than every site individually. For site 1
-   specifically, the two sources disagree:
+1. **The map link for sample 1 is disputed; no other site's link is.** For
+   sites 2–8, the handover README and thesis Table 1 give byte-identical
+   Google Maps links (reproduced in the table above), which is why only
+   site 1 is called out here rather than every site individually. For
+   site 1 specifically, the two sources disagree:
    - handover README: `https://maps.app.goo.gl/R5HYHXrchyp9zU4e9`
    - thesis Table 1: `https://maps.app.goo.gl/P6ut9wVUvfRmA4wv7`
 
@@ -75,8 +75,8 @@ outdoor field sites (see caveats 2 and 3 below for what they represent).
 3. **Sample 7 is a positive control, not a field sample.** It is 1,250 mL
    of ETH Zurich CLD tap water spiked with 25 mL of horse faecal
    suspension, used to confirm the assay could detect a heavily
-   contaminated sample. Treat it differently from the other seven,
-   genuinely environmental, sites.
+   contaminated sample. It should be treated differently from the other
+   seven, genuinely environmental, sites.
 
 4. **Two geometric means differ from the source spreadsheet's own
    published values in the last decimal**, for the steel reference

@@ -8,10 +8,9 @@ materials compare under testing.
 
 ## Print settings
 
-**The print settings are not optional** — a manifold sliced at defaults is
-porous, and the syringe pulls air through the plastic instead of pulling
-water through the membrane. This is the single most important fact in this
-repository.
+A manifold sliced at default settings is porous: the syringe pulls air
+through the plastic instead of pulling water through the membrane, and
+filtration fails.
 
 The authoritative settings, importable Bambu Studio profiles, and
 cross-slicer equivalents live in
@@ -54,5 +53,5 @@ The mechanical-fatigue result is not limited to the printed funnel: the
 filtrations (see [`validation.md`](validation.md)) without structural
 damage or leakage.
 
-A timelapse of the base being printed exists and is planned for the
-project site; it is not part of this repository yet.
+A timelapse of the base being printed is on the project site
+(`site/public/video/base-printing-timelapse.mp4`).

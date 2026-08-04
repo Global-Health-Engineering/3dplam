@@ -1,10 +1,9 @@
 # Design history
 
-The files in [`../hardware/`](../hardware/) carry no version numbers —
-they are simply the current release, and git records their history from
-here on. This page records the version history that predates this
-repository: what the shipped parts were called during development, and
-what changed.
+The files in [`../hardware/`](../hardware/) carry no version numbers: they
+are the current release, and git records their history from here on. This
+page records the version history that predates this repository: what the
+shipped parts were called during development, and what changed.
 
 ## Shipped revisions
 
@@ -20,7 +19,7 @@ reached their shipped form by V1.1 and have been byte-identical in every
 release since. Source Onshape documents for each labelled version are
 linked from [`../hardware/onshape.md`](../hardware/onshape.md).
 
-## The base: V1.2 → V1.3, and why validation still holds
+## Base revision V1.2 to V1.3
 
 The *E. coli* validation reported in [`validation.md`](validation.md) was
 performed with **base V1.2**, its funnel joint sealed with electrical tape

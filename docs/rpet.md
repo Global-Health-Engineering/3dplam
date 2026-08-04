@@ -41,12 +41,12 @@ does not directly carry over. Print settings for rPET come from
 that page as the source for slicer settings when printing in rPET, rather
 than the ABS profile shipped here.
 
-## Use the rPET geometry, not the standard STLs
+## rPET geometry
 
-**rPET parts must be printed from [`../hardware/rpet/`](../hardware/rpet/),
-not [`../hardware/stl/`](../hardware/stl/).** rPET shrinks differently
-during cooling than ABS or PLA, so the funnel and filter support geometry
-in `rpet/` is dimensionally compensated for that shrinkage — printing the
-standard STL in rPET will not fit. There is no separate rPET base: the base
+rPET parts are printed from [`../hardware/rpet/`](../hardware/rpet/), not
+[`../hardware/stl/`](../hardware/stl/). rPET shrinks differently during
+cooling than ABS or PLA, so the funnel and filter support geometry in
+`rpet/` is dimensionally compensated for that shrinkage; the standard STL
+printed in rPET will not fit. There is no separate rPET base: the base
 needs no compensation, so the same [`base.stl`](../hardware/stl/base.stl)
 is correct in every material, including rPET.

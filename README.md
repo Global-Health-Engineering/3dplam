@@ -33,14 +33,14 @@ where the reference instrument can only be bought.
 | Headline result | **15 of 16** classifications accepted within the 5% WHO boundary-tolerance rule; **12 of 16** match exactly with no tolerance applied |
 | Sustainable route | Funnel and filter support printable in rPET from recycled bottles |
 
-## Print one
+## Quick start
 
 1. Read [`hardware/README.md`](hardware/README.md) for the parts table,
    envelopes, and the choice between the two filter-support and two funnel
    variants.
-2. **The print settings are not optional** — a manifold sliced at defaults
-   is porous and the syringe cannot pull a vacuum through it. Import the
-   profile for your printer from
+2. A manifold sliced at default settings is porous: the syringe draws air
+   through the walls instead of pulling water through the membrane, and
+   filtration fails. Import the profile for your printer from
    [`hardware/print-profiles/`](hardware/print-profiles/) and read
    [`hardware/print-profiles/README.md`](hardware/print-profiles/README.md)
    for the any-slicer equivalents.
@@ -51,7 +51,7 @@ where the reference instrument can only be bought.
    [`docs/assembly.md`](docs/assembly.md) and
    [`docs/operation.md`](docs/operation.md).
 
-Printing in recycled PET instead of ABS? Use the geometry in
+When printing in recycled PET instead of ABS, use the geometry in
 [`hardware/rpet/`](hardware/rpet/), not `hardware/stl/` — see
 [`docs/rpet.md`](docs/rpet.md).
 
