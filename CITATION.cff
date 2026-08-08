@@ -20,6 +20,7 @@ keywords:
 authors:
   - family-names: Gabriel
     given-names: Moreno
+    orcid: "https://orcid.com/0009-0008-8260-2625"
     affiliation: "ETH Zurich, Global Health Engineering"
   - family-names: Tkaczuk
     given-names: Jakub
@@ -32,4 +33,9 @@ authors:
   - family-names: Tilley
     given-names: Elizabeth
     orcid: "https://orcid.org/0000-0002-2095-9724"
+    affiliation: "ETH Zurich, Global Health Engineering"
+contact:
+  - family-names: Tkaczuk
+    given-names: Jakub
+    orcid: "https://orcid.org/0000-0001-7997-9423"
     affiliation: "ETH Zurich, Global Health Engineering"
