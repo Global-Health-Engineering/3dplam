@@ -31,7 +31,7 @@ const navLinks = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="color-scheme" content="light" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
@@ -39,30 +39,6 @@ const navLinks = [
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta name="generator" content={Astro.generator} />
-
-    <!--
-      Theme bootstrap — must run synchronously, before first paint, so a
-      previously-saved explicit preference never flashes the wrong theme.
-      `is:inline` stops Astro from deferring or bundling this as a module
-      script (module scripts run after the HTML has started rendering,
-      which is exactly the flash this exists to prevent). When nothing is
-      stored, no attribute is set at all and the `@media
-      (prefers-color-scheme)` rules in global.css take over — still no
-      flash, because that's a synchronous CSS decision, not a JS one.
-    -->
-    <script is:inline>
-      (function () {
-        try {
-          var stored = localStorage.getItem('theme');
-          if (stored === 'dark' || stored === 'light') {
-            document.documentElement.setAttribute('data-theme', stored);
-          }
-        } catch (e) {
-          /* localStorage unavailable (private mode, disabled) — fall back
-             to the media query, no crash. */
-        }
-      })();
-    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -79,12 +55,6 @@ const navLinks = [
           ))}
         </ul>
       </nav>
-      <div class="nav-actions">
-        <a class="repo-link" href={site.repo}>GitHub</a>
-        <button id="theme-toggle" type="button" aria-label="Toggle light and dark theme">
-          <span id="theme-toggle-icon" aria-hidden="true">&#9789;</span>
-        </button>
-      </div>
     </header>
 
     <main id="main">
@@ -99,51 +69,6 @@ const navLinks = [
         <li><a href={`mailto:ghe@mavt.ethz.ch?subject=${site.name}`}>ghe@mavt.ethz.ch</a></li>
       </ul>
     </footer>
-
-    <!--
-      Toggle interaction — deliberately a second, separate inline script
-      from the bootstrap above. This one touches the DOM (the button) and
-      so must run after it exists; the bootstrap script must NOT wait,
-      since waiting is what causes the flash. Keeping them apart keeps
-      that ordering constraint obvious instead of accidentally coupling
-      them later.
-    -->
-    <script is:inline>
-      (function () {
-        var root = document.documentElement;
-        var btn = document.getElementById('theme-toggle');
-        var icon = document.getElementById('theme-toggle-icon');
-        if (!btn) return;
-
-        function effectiveTheme() {
-          var explicit = root.getAttribute('data-theme');
-          if (explicit === 'dark' || explicit === 'light') return explicit;
-          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
-
-        function render() {
-          var current = effectiveTheme();
-          var next = current === 'dark' ? 'light' : 'dark';
-          btn.setAttribute('aria-label', 'Switch to ' + next + ' theme');
-          btn.setAttribute('aria-pressed', String(current === 'dark'));
-          // Sun for "switch to light" affordance in dark mode, moon otherwise.
-          icon.innerHTML = current === 'dark' ? '&#9788;' : '&#9789;';
-        }
-
-        btn.addEventListener('click', function () {
-          var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
-          root.setAttribute('data-theme', next);
-          try {
-            localStorage.setItem('theme', next);
-          } catch (e) {
-            /* persistence best-effort only */
-          }
-          render();
-        });
-
-        render();
-      })();
-    </script>
 
     <!--
       Active-section highlighting — progressive enhancement only. Anchor
@@ -240,17 +165,25 @@ const navLinks = [
   .brand-logo {
     display: block;
     border-radius: 3px;
-    /* height is fixed via the HTML attribute (18px — small and balanced
-       against the wordmark rather than the previous 28px, which read as
-       oversized next to a 14px nav); without an explicit width cap the
-       SVG's own intrinsic 499x78 box can win out over the height-derived
-       aspect ratio once this flex item is squeezed (observed at <= 375px),
-       so width is bounded here and object-fit keeps the mark undistorted
-       at any resulting box size. */
+    /* Sized by HEIGHT, not width. The `height="18"` HTML attribute cannot
+       do this on its own: the global `img { height: auto }` rule in
+       global.css outranks a presentational attribute, so the attribute was
+       being ignored and the only thing sizing the mark was a `max-width:
+       30vw` cap — which made it grow with the viewport (~72px tall at
+       1600px, dwarfing the 13.5px nav links) and collapse on mobile
+       (~17px at 375px, where the three-line "GLOBAL HEALTH ENGINEERING"
+       lockup is unreadable).
+
+       clamp() pins both ends: 55px on a wide screen, never below 30px,
+       tracking the viewport only in between. Width follows from the SVG's
+       499x78 aspect ratio. flex-shrink is left on so a very narrow header
+       squeezes this box rather than overflowing the page; object-fit then
+       scales the mark down inside it instead of distorting it. */
     flex-shrink: 1;
     min-width: 0;
+    height: clamp(30px, 3.2vw, 55px);
     width: auto;
-    max-width: 30vw;
+    max-width: 100%;
     object-fit: contain;
   }
   .brand-name {
@@ -264,11 +197,10 @@ const navLinks = [
     flex: 1;
     overflow-x: auto;
     /* `flex: 1` alone gives this element only left-over space (its
-       flex-basis is 0%): if .brand and .nav-actions together already
-       consume the full row — which happens well before mobile widths,
-       once the wordmark and the GitHub link/toggle are accounted for —
-       there is no "left over" space and nav silently collapses to 0
-       width, hiding every link with no visual trace. The min-width
+       flex-basis is 0%): if .brand alone already consumes the full row —
+       which the logo lockup plus the wordmark can do well before mobile
+       widths — there is no "left over" space and nav silently collapses
+       to 0 width, hiding every link with no visual trace. The min-width
        forces the flex algorithm to take that space from .brand instead
        (see the .brand-name mobile rule below, which removes the
        wordmark entirely below 600px so there is room to give). */
@@ -297,37 +229,6 @@ const navLinks = [
     color: var(--accent);
     font-weight: 600;
     border-bottom-color: var(--accent);
-  }
-  .nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-shrink: 0;
-  }
-  .repo-link {
-    font-size: 14px;
-    text-decoration: none;
-    color: var(--fg-dim);
-  }
-  .repo-link:hover {
-    color: var(--accent);
-  }
-  #theme-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 1px solid var(--line);
-    background: var(--bg-2);
-    color: var(--fg);
-    cursor: pointer;
-    font-size: 16px;
-    line-height: 1;
-  }
-  #theme-toggle:hover {
-    border-color: var(--accent);
   }
 
   main {
@@ -360,11 +261,11 @@ const navLinks = [
     color: var(--accent);
   }
 
-  /* Below 600px the wordmark next to the logo and the fixed-width GitHub
-     link + theme toggle leave no room for the section nav at all (see the
-     comment on .site-nav nav above), so the wordmark drops and spacing
-     tightens to give the horizontally-scrolling nav real width to work
-     with — required for it to be usable, not just cosmetic. */
+  /* Below 600px the wordmark next to the logo lockup leaves no room for
+     the section nav at all (see the comment on .site-nav nav above), so
+     the wordmark drops and spacing tightens to give the
+     horizontally-scrolling nav real width to work with — required for it
+     to be usable, not just cosmetic. */
   @media (max-width: 600px) {
     .site-nav {
       gap: 12px;
@@ -372,9 +273,6 @@ const navLinks = [
     }
     .brand-name {
       display: none;
-    }
-    .nav-actions {
-      gap: 10px;
     }
   }
 </style>

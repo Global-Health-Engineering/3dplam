@@ -1,9 +1,8 @@
-/* Design tokens — GHE brand palette. Light is the default and the primary
-   design target regardless of OS preference: a first-time visitor always
-   gets the white theme. Dark mode is available only via the explicit
-   `data-theme="dark"` toggle (see Base.astro for the no-flash bootstrap
-   and the persisted-preference toggle) — there is deliberately no
-   `@media (prefers-color-scheme: dark)` rule here to auto-select it. */
+/* Design tokens — GHE brand palette. The page is light-only by deliberate
+   choice: the figures and renders are authored for a white background, so
+   there is no dark theme, no OS-preference rule and no toggle. Do not add
+   a `@media (prefers-color-scheme: dark)` block or a `data-theme` variant
+   here without re-authoring site/public/figures/*.svg to match. */
 :root {
   --ghe-magenta: #873671;
   --ghe-blue: #457ec1;
@@ -34,33 +33,11 @@
   --content-width: 800px;
 }
 
-/* Explicit attribute is the only thing that switches to dark. */
-:root[data-theme="dark"] {
-  --bg: #0d1014;
-  --bg-2: #141920;
-  --line: #232a33;
-  --fg: #e8ebee;
-  --fg-dim: #98a1ab;
-  --accent: #c76fae;
-  --accent-2: #7aa9dd;
-}
-:root[data-theme="light"] {
-  --bg: #ffffff;
-  --bg-2: #f6f7f9;
-  --line: #e3e6ea;
-  --fg: #1a1d21;
-  --fg-dim: #52585f;
-  --accent: var(--ghe-magenta);
-  --accent-2: #3f6ba0;
-}
-
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-/* Light is the only default UI colour scheme — it must not follow the OS
-   preference. Only the explicit dark toggle switches this. */
+/* Light is the only colour scheme — form controls, scrollbars and the
+   canvas must not follow the OS preference. */
 html { color-scheme: light; }
-:root[data-theme="dark"] { color-scheme: dark; }
-:root[data-theme="light"] { color-scheme: light; }
 
 body {
   background: var(--bg);
@@ -69,7 +46,6 @@ body {
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  transition: background-color .15s ease, color .15s ease;
 }
 
 /* Section padding and heading scale are tuned for information density —
