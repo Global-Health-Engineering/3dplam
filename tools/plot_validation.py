@@ -17,6 +17,7 @@ Usage:  python3 tools/plot_validation.py [out.svg]
 """
 import csv
 import os
+import re
 import sys
 import textwrap
 
@@ -52,6 +53,52 @@ DEFAULT_OUT = "site/public/figures/validation.svg"
 QUANTIFICATION_CSV = "data/ecoli-quantification.csv"
 SUMMARY_CSV = "data/ecoli-summary.csv"
 
+# Character-for-character the `--sans` stack in site/src/styles/global.css,
+# so the figure's labels are set in the same face as the page's body copy
+# instead of matplotlib's DejaVu Sans. Every entry is a system font or a
+# generic: the page embeds this SVG with <img src=…>, and an <img>-embedded
+# SVG is an independent document that cannot reach the parent page's CSS or
+# load a webfont, so a stack that depended on one would silently fall back.
+# Keep this in sync with global.css if that stack ever changes.
+SITE_FONT_STACK = (
+    "ui-sans-serif, system-ui, -apple-system, 'Inter', 'Segoe UI', sans-serif"
+)
+
+# matplotlib's SVG backend emits shorthand `font: <size>px <family list>`
+# inside a style attribute; nothing else in the file matches this shape.
+_FONT_SHORTHAND = re.compile(r"(font: [\d.]+px )[^;\"]+")
+
+
+def retarget_font_family(path):
+    """Rewrite every font declaration in `path` to SITE_FONT_STACK.
+
+    Deliberately a post-processing pass rather than an rcParams change:
+    matplotlib measures text with a font it can actually load, and those
+    measurements drive tight_layout's margins, the legend box and the
+    wrapped footnote. Naming the site stack in rcParams would not give it
+    those fonts to measure with — `system-ui` is a CSS generic, not a font
+    file — so it would fall back to DejaVu for metrics anyway, and on a
+    machine that happened to have "Inter" installed it would silently
+    measure with a *different* font than on one that did not, making the
+    committed SVG depend on the author's font book.
+
+    Leaving the metrics on DejaVu Sans keeps the file reproducible on any
+    machine, and errs in the safe direction: DejaVu is wider than the UI
+    sans fonts this stack resolves to, so the rendered text comes out
+    slightly narrower than the space reserved for it, never wider.
+    """
+    with open(path, encoding="utf-8") as f:
+        svg = f.read()
+    svg, n = _FONT_SHORTHAND.subn(rf"\g<1>{SITE_FONT_STACK}", svg)
+    if not n:
+        raise SystemExit(
+            f"{path}: no font declarations found to retarget — matplotlib's "
+            "SVG output format has changed, so the figure would silently ship "
+            "in DejaVu Sans. Update _FONT_SHORTHAND.")
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(svg)
+    return n
+
 # Three stops from matplotlib's viridis colormap — perceptually uniform
 # and colour-blind safe, which suits a scientific figure better than an
 # arbitrary brand palette. Stops are taken from the dark half of the
@@ -72,13 +119,32 @@ LABELS = {
 }
 ORDER = ["ft1", "ft2", "ft3"]
 
-# Ink colour optimized for white background (light mode primary design target).
-# In dark theme, the figure sits on a white card via CSS, keeping text legible.
+# Ink colour optimized for the white background the site always uses (the
+# page is light-only; there is no dark theme to also satisfy).
 INK = "#3d444d"           # axis text, ticks, spines, titles, legend, footnote
 GRID = "#9aa3ad"          # WHO threshold lines
 BAND_FILL = "#8f97a3"     # risk-band shading (opacity increases with risk)
 BAND_ALPHAS = [0.05, 0.10, 0.16, 0.22]
 MISMATCH = "#d68a1d"      # the one classification that does not agree
+MARKER_EDGE = "#000000"   # outline on every plotted marker
+
+# Type sizes, in points, against the FIG_W × FIG_H figure below. Only the
+# ratio to FIG_W matters on screen: the site displays this SVG scaled to
+# fit its 800 px content column, so a 10.5 in figure is shown at ~760 px
+# and every point here renders at ~0.75 CSS px × 96/72 ≈ 1 px. Sizes are
+# chosen against the page's 16 px body copy — tick labels land near 13 px
+# and the footnote near 11 px, where before they were 8 px and 7 px and
+# were the smallest type on the page by a wide margin.
+FS_SUPTITLE = 18
+FS_PANEL_TITLE = 15.5
+FS_AXIS_LABEL = 15
+FS_TICK = 13.5
+FS_XTICK = 11.5
+FS_LEGEND = 14
+FS_BAND = 11.5
+FS_FOOTNOTE = 11
+
+FIG_W, FIG_H = 10.5, 9.0
 
 # Sample 5's filtration stalled partway through and sample 7 is a spiked
 # positive control, not a field sample — both need a flag on the figure
@@ -93,7 +159,12 @@ FOOTNOTE = (
     "reference even with the 5% boundary-tolerance rule applied."
 )
 
-YMIN, YMAX = 0.3, 1500
+# YMAX is headroom, not data range: the highest count in the dataset is
+# ~120 CFU/100 mL. The extra decade above it is what the in-axes legend
+# occupies — at the larger FS_LEGEND its three rows need about a third of
+# the panel height, and at the old 1500 ceiling the bottom row grazed the
+# sample-5 markers.
+YMIN, YMAX = 0.3, 2500
 
 # Display-label translations for the figure only — a presentation-layer
 # mapping, not a change to the underlying data. Descriptive German words
@@ -123,20 +194,27 @@ def short_site(site):
     same wrap still works ("tap water ..."); NOTES/FOOTNOTE already carry
     the spiked/partial-filtration caveats so this label does not repeat
     them.
+
+    The wrap width and the line cap are tied to FS_XTICK: eight labels
+    share the panel width, so a line longer than ~12 characters at that
+    type size runs into its neighbour. The cap is 3 lines rather than 2
+    because the narrower wrap pushes the longest labels ("tap water +
+    fecal suspension") onto a third line — a lower cap would silently
+    truncate them.
     """
     tail = site.split(",")[-1].strip()
     tail = SITE_LABEL_TRANSLATIONS.get(tail, tail)
-    return "\n".join(textwrap.wrap(tail, width=18, break_long_words=False)[:2])
+    return "\n".join(textwrap.wrap(tail, width=12, break_long_words=False)[:3])
 
 
 def style_axis(ax):
     ax.set_yscale("log")
     ax.set_ylim(YMIN, YMAX)
-    ax.set_ylabel("CFU / 100 mL", color=INK, fontsize=9.5)
+    ax.set_ylabel("CFU / 100 mL", color=INK, fontsize=FS_AXIS_LABEL)
     ax.spines[["top", "right"]].set_visible(False)
     ax.spines["left"].set_color(INK)
     ax.spines["bottom"].set_color(INK)
-    ax.tick_params(colors=INK, labelsize=8.5)
+    ax.tick_params(colors=INK, labelsize=FS_TICK)
 
 
 def shade_bands(ax, label=False):
@@ -160,8 +238,8 @@ def shade_bands(ax, label=False):
         lo = YMIN if lo <= 0 else lo
         hi = YMAX if i == n - 1 else hi
         y = (lo * hi) ** 0.5  # geometric centre of the band, log-scale-correct
-        ax.text(1.012, y, name, transform=trans, va="center", fontsize=7.2,
-                color=INK, alpha=0.85)
+        ax.text(1.012, y, name, transform=trans, va="center",
+                fontsize=FS_BAND, color=INK, alpha=0.85)
 
 
 def main(out_path=DEFAULT_OUT):
@@ -180,7 +258,7 @@ def main(out_path=DEFAULT_OUT):
     }
 
     fig, (top, bot) = plt.subplots(
-        2, 1, figsize=(11, 8.6), dpi=150, sharex=True,
+        2, 1, figsize=(FIG_W, FIG_H), dpi=150, sharex=True,
         gridspec_kw={"height_ratios": [1.15, 1]})
     fig.patch.set_alpha(0.0)
 
@@ -200,15 +278,22 @@ def main(out_path=DEFAULT_OUT):
             for ri, m in enumerate(reps):
                 # A small deterministic spread across the 3 replicates
                 # (not random jitter) keeps the figure byte-identical
-                # across regenerations of the same data.
-                xs.append(si + offset + (ri - 1) * 0.045)
+                # across regenerations of the same data. The spread is
+                # sized against the marker: at s=64 a point is ~8 pt
+                # across and 0.06 data units is ~5 pt here, so replicates
+                # read as a tight triplet that still stays clear of the
+                # neighbouring manifold's group 0.24 units away.
+                xs.append(si + offset + (ri - 1) * 0.06)
                 ys.append(float(m["cfu_per_100ml"]))
-        top.scatter(xs, ys, s=24, color=COLOURS[mid], label=LABELS[mid],
-                    alpha=0.9, edgecolors="none", zorder=3)
-    top.legend(frameon=False, ncol=1, loc="upper left", fontsize=12,
+        # Black outline keeps each point readable where the three viridis
+        # stops overlap, and against the shaded risk bands behind them.
+        top.scatter(xs, ys, s=64, color=COLOURS[mid], label=LABELS[mid],
+                    alpha=0.9, edgecolors=MARKER_EDGE, linewidths=0.7,
+                    zorder=3)
+    top.legend(frameon=False, ncol=1, loc="upper left", fontsize=FS_LEGEND,
                labelcolor=INK, handletextpad=0.5, borderaxespad=0.3)
     top.set_title("Individual plate counts (3 replicates × manifold × site)",
-                  loc="left", fontsize=10.5, color=INK)
+                  loc="left", fontsize=FS_PANEL_TITLE, color=INK)
 
     # --- bottom panel: geometric means as grouped bars -------------------
     width = 0.27
@@ -221,10 +306,11 @@ def main(out_path=DEFAULT_OUT):
                 label=LABELS[mid], zorder=3)
         for xi, s, v in zip(xs, samples, vals):
             if (mid, s) in hard_mismatches:
-                bot.plot(xi, v * 1.35, marker="^", color=MISMATCH,
-                         markersize=7, zorder=4)
-    bot.set_title("Geometric mean per manifold", loc="left", fontsize=10.5,
-                  color=INK)
+                bot.plot(xi, v * 1.4, marker="^", color=MISMATCH,
+                         markersize=12, markeredgecolor=MARKER_EDGE,
+                         markeredgewidth=0.9, zorder=4)
+    bot.set_title("Geometric mean per manifold", loc="left",
+                  fontsize=FS_PANEL_TITLE, color=INK)
 
     labels = []
     for s in samples:
@@ -232,23 +318,38 @@ def main(out_path=DEFAULT_OUT):
         mark = NOTES.get(s, "")
         labels.append(f"{s}{mark}\n{short_site(site)}")
     bot.set_xticks(x)
-    bot.set_xticklabels(labels, rotation=0, ha="center", fontsize=8, color=INK)
+    bot.set_xticklabels(labels, rotation=0, ha="center", fontsize=FS_XTICK,
+                        color=INK)
     bot.tick_params(axis="x", length=0)
 
+    # Two lines, not one: at FS_SUPTITLE the single-line version overran
+    # the figure width and was clipped by the SVG canvas.
     fig.suptitle(
-        "E. coli validation — 3DPLAM (rPET, ABS) vs Millipore EZ-Fit "
-        "reference, 8 sites × 3 manifolds × 3 replicates",
-        fontsize=12, color=INK, x=0.01, ha="left", y=0.995)
-    fig.text(0.01, 0.012, FOOTNOTE, fontsize=7.3, color=INK, ha="left",
-             va="bottom", wrap=True)
+        "E. coli validation — 3DPLAM (rPET, ABS) vs Millipore EZ-Fit reference\n"
+        "8 sites × 3 manifolds × 3 replicates",
+        fontsize=FS_SUPTITLE, color=INK, x=0.01, ha="left", y=0.995,
+        va="top")
+    fig.text(0.01, 0.012, FOOTNOTE, fontsize=FS_FOOTNOTE, color=INK,
+             ha="left", va="bottom", wrap=True)
 
-    fig.tight_layout(rect=(0, 0.045, 1, 0.965))
+    # Only the bottom margin is reserved by hand, for the wrapped footnote
+    # (a free-floating fig.text that tight_layout does not measure). The
+    # top stays at 1.0 because tight_layout already subtracts the
+    # suptitle's own height; reserving for it here too left a visible band
+    # of empty space between the title and the first panel.
+    fig.tight_layout(rect=(0, 0.085, 1, 1.0))
     dirname = os.path.dirname(out_path)
     if dirname:
         os.makedirs(dirname, exist_ok=True)
     fig.savefig(out_path, transparent=True, metadata={"Date": None})
     plt.close(fig)
-    print(f"wrote {out_path}")
+    if out_path.lower().endswith(".svg"):
+        n = retarget_font_family(out_path)
+        print(f"wrote {out_path} ({n} font declarations set to the site stack)")
+    else:
+        # A raster preview bakes in whatever font matplotlib measured with,
+        # so it cannot carry the site stack — only the shipped SVG can.
+        print(f"wrote {out_path} (raster: font is matplotlib's, not the site's)")
     return 0
 
 
