@@ -6,7 +6,7 @@ Licensed **CERN-OHL-S v2** (see `../LICENSE-CERN-OHL-S-2.0.md`).
 
 Three parts make one manifold. All print **without support structures**.
 
-| Part           | File                                 | Envelope                    | Material       |
+| Part           | File                                 | Envelope                    | Solid volume   |
 | -------------- | ------------------------------------ | --------------------------- | -------------- |
 | Base           | `stl/base.stl`                       | 77.0 mm x 77.0 mm × 38.7 mm | 39.7 cm³ solid |
 | Funnel         | `stl/funnel.stl`                     | 71.8 mm × 71.8 mm × 55.5 mm | 16.0 cm³ solid |

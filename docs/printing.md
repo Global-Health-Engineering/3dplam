@@ -54,4 +54,4 @@ filtrations (see [`validation.md`](validation.md)) without structural
 damage or leakage.
 
 A timelapse of the base being printed is on the project site
-(`site/public/video/base-printing-timelapse.mp4`).
+(`site/public/video/base-printing-timelapse.gif`).

@@ -12,12 +12,12 @@
 
 # 3DPLAM
 
-- **Moreno Gabriel** [![ORCID](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png) 0009-0008-8260-2625](https://orcid.org/0009-0008-8260-2625) - ETH Zürich, Global Health Engineering — *design, construction, testing, writing*
+- **Moreno Gabriel** [![ORCID](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png) 0009-0008-8260-2625](https://orcid.org/0009-0008-8260-2625) — ETH Zürich, Global Health Engineering — *design, construction, testing, writing*
 - **Jakub Tkaczuk** [![ORCID](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png) 0000-0001-7997-9423](https://orcid.org/0000-0001-7997-9423) — ETH Zürich, Global Health Engineering — *supervision, page development & maintenance*
 - **Caetano Dorea** [![ORCID](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png) 0000-0001-9367-0668](https://orcid.org/0000-0001-9367-0668) — University of Victoria — *supervision*
 - **Elizabeth Tilley** [![ORCID](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png) 0000-0002-2095-9724](https://orcid.org/0000-0002-2095-9724) — ETH Zürich, Global Health Engineering — *supervision*
 
-**Open-source, 3D-printable membrane-filtration manifold for *Escherichia coli* quantification in drinking water.** Three printed parts: base, funnel, filter support, printable without support structures on any FDM printer allow for testing drinking water with a syringe and a membrane filter. Validated against a Millipore EZ-Fit™ stainless-steel manifold as the **reference instrument** for the household drinking-water testing used in WHO/UNICEF water-quality surveys. 3DPLAM does not replace Millipore EZ-Fit™; its contribution is that the design is open and can be printed locally at low cost, whereas the reference instrument can only be bought for comparatively high price.
+**Open-source, 3D-printable membrane-filtration manifold for *Escherichia coli* quantification in drinking water.** Three printed parts — base, funnel and filter support, all printable without support structures on any FDM printer — test drinking water with a syringe and a membrane filter. Validated against a Millipore EZ-Fit™ stainless-steel manifold as the **reference instrument** for the household drinking-water testing used in WHO/UNICEF water-quality surveys. 3DPLAM does not replace the Millipore EZ-Fit™; its contribution is that the design is open and can be printed locally at low cost, whereas the reference instrument can only be bought, at a comparatively high price.
 
 **Full site, with photos, renders and the print-settings requirement are available [here](https://global-health-engineering.github.io/3dplam/).**
 
@@ -46,28 +46,28 @@ When printing in recycled PET instead of ABS, use the geometry in [`hardware/rpe
 ## Repository layout
 
 ```
-hardware/           CERN-OHL-S v2 — the parts to print
-├── README.md       Parts table, envelopes, variant choices
-├── stl/            Printable meshes (millimetres)
-├── step/           Editable B-rep — modify the design here
-├── rpet/           Shrinkage-compensated geometry for recycled PET
-├── assembly/       Reference assembly (not a printable part)
-├── print-profiles/ Slicer settings for a gas-tight print
-└── onshape.md       Source CAD, by version
+hardware/              CERN-OHL-S v2 — the parts to print
+├── README.md          Parts table, envelopes, variant choices
+├── stl/               Printable meshes (millimetres)
+├── step/              Editable B-rep — modify the design here
+├── rpet/              Shrinkage-compensated geometry for recycled PET
+├── assembly/          Reference assembly (not a printable part)
+├── print-profiles/    Slicer settings for a gas-tight print
+└── onshape.md         Source CAD, by version
 
-docs/               CC BY 4.0 — how to print, build, run and interpret it
-├── printing.md      Print settings, orientation, materials matrix
-├── assembly.md       Putting the three parts together
-├── operation.md      The E. coli filtration protocol, verbatim
+docs/                  CC BY 4.0 — how to print, build, run and interpret it
+├── printing.md        Print settings, orientation, materials matrix
+├── assembly.md        Putting the three parts together
+├── operation.md       The E. coli filtration protocol, verbatim
 ├── validation.md      What was tested and the headline result
 ├── rpet.md            Bottle-to-filament, with upstream credit
 ├── design-history.md  Version history predating this repository
 └── thesis.pdf         The BSc thesis this release is drawn from
 
-data/               CC BY 4.0 — the tidied functional and material test data
-tools/              Scripts that regenerate every figure and gate CI
-site/               This repository's GitHub Pages site (Astro)
-CITATION.cff        Machine-readable citation metadata
+data/                  CC BY 4.0 — the tidied functional and material test data
+tools/                 Scripts that regenerate every figure and gate CI
+site/                  This repository's GitHub Pages site (Astro)
+CITATION.cff           Machine-readable citation metadata
 ```
 
 ## Citation

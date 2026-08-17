@@ -11,5 +11,11 @@ site/.astro/
 # staging for supplied assets — never published
 incoming/
 
+# local Quarto/pandoc previews of the markdown files — build output of a
+# README, not repository content (README_files/ matches at any depth, so
+# this covers hardware/README_files/ too)
+README.html
+README_files/
+
 # SDD planning content for this release project — process, not product
 .superpowers/
