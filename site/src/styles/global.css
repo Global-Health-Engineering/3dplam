@@ -48,8 +48,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Section padding and heading scale are tuned for information density, 
-   an engineering reference, not a landing page, while keeping body copy
+/* Section padding and heading scale are tuned for information density
+   (an engineering reference, not a landing page), while keeping body copy
    at a comfortable reading size (16px / 1.6) and line length (60-75ch). */
 section {
   max-width: var(--content-width);

@@ -25,8 +25,8 @@ spool turning at roughly **1 rpm**.
 **Splicing strands together is unreliable in practice.** Joining the end
 of one bottle's strand to the next tends to produce a weak point that
 snaps under tension later, mid-print. The practical approach: feed a
-single strand from a single bottle, and let the print stop, the printer's
-filament runout sensor will pause it, rather than trying to splice a
+single strand from a single bottle, and let the print stop (the printer's
+filament runout sensor will pause it) rather than trying to splice a
 second strand in to continue. Restart with the next bottle's strand once
 the previous spool runs out.
 

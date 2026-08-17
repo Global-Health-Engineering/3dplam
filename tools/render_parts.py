@@ -14,8 +14,8 @@ an exploded stack and two cutaways (the sealing interface, and the
 filter-support strand mesh).
 
 Camera framing, the section cut plane, and the membrane's position are all
-computed from the imported geometry's bounding boxes at render time, none
-of it is a hardcoded coordinate, so the script keeps working if the CAD is
+computed from the imported geometry's bounding boxes at render time (none
+of it is a hardcoded coordinate), so the script keeps working if the CAD is
 revised.
 
 Requires Blender 5.2 LTS. Two API notes for anyone touching this file:
@@ -145,8 +145,8 @@ def lighting(center, fill_dir=None, fill_radius=None, fill_strength=3.0):
     A boolean cut leaves a flat face oriented straight at the camera; the
     generic three-point rig above (all placed metres away, effectively
     directional) barely grazes it, so a cut render reads as a dark band.
-    Pass `fill_dir`/`fill_radius`, the camera's direction and the
-    scene's own geometric radius, to add a light from near the viewer's
+    Pass `fill_dir`/`fill_radius` (the camera's direction and the
+    scene's own geometric radius) to add a light from near the viewer's
     position, close enough to actually illuminate that face.
 
     Its energy is *not* copied from the key light: at a much shorter
@@ -435,8 +435,8 @@ def decimate_for_web(obj, max_tris):
 def export_glb(name, objs, max_tris=60000):
     """Write `objs` to site/public/models/<name>.glb.
 
-    Only the named objects are exported, no camera, no lights, no shadow
-    catcher, because the viewer supplies its own. Materials come along,
+    Only the named objects are exported (no camera, no lights, no shadow
+    catcher) because the viewer supplies its own. Materials come along,
     which is what keeps the 3D colours identical to the render's without
     a second palette defined in JavaScript.
     """
@@ -471,8 +471,8 @@ def render_assembly_exploded():
     for obj in (base_obj, filter_obj, funnel_obj):
         set_material(obj, matte_material(f"plastic-{obj.name}", PART_COLORS[obj.name]))
 
-    # Pull the middle and top parts apart along Z so the stacking order, 
-    # base, then filter support seated in it, then funnel on top, reads
+    # Pull the middle and top parts apart along Z so the stacking order
+    # (base, then filter support seated in it, then funnel on top) reads
     # clearly. Gaps are chosen empirically for legibility, not to scale.
     gap_base_to_filter = mm(26)
     gap_filter_to_funnel = mm(34)
@@ -504,8 +504,8 @@ def render_membrane_clamp():
     # previous version focused on the membrane's own bbox centre, which
     # is the central axis, and so framed the flat middle of the assembly
     # rather than the joint. Base is used (not the combined bbox) because
-    # its footprint alone is already centred on the true device axis, 
-    # verified against the combined bbox, the two agree to sub-mm, and
+    # its footprint alone is already centred on the true device axis
+    # (verified against the combined bbox, the two agree to sub-mm), and
     # it is available before any boolean cut touches the other bodies.
     base_lo, base_hi = world_bbox(base_obj)
     funnel_lo, funnel_hi = world_bbox(funnel_obj)
@@ -547,7 +547,7 @@ def render_membrane_clamp():
     cut_half(membrane, axis, axis=1, keep_positive=True)
     set_material(membrane, matte_material("membrane-mat", COLOR_MEMBRANE, roughness=0.55))
 
-    # Tight crop on the interface itself, the raised sealing edge, the
+    # Tight crop on the interface itself: the raised sealing edge, the
     # membrane crossing it, and the funnel's slope pressing down, all
     # large in frame.
     view_dir = Vector((0.0, -1.0, 0.15))

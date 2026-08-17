@@ -33,7 +33,7 @@ matplotlib.rcParams["svg.fonttype"] = "none"
 # matplotlib salts every clip-path/gid it emits with uuid.uuid4() by
 # default, so two runs over identical data produce byte-different SVGs.
 # svg.hashsalt swaps that per-run randomness for a fixed string, so
-# "regenerate the figure" with unchanged data is actually a no-op diff, 
+# "regenerate the figure" with unchanged data is actually a no-op diff,
 # see the metadata={"Date": None} in main() for the other source of
 # run-to-run bytes (an embedded generation timestamp).
 matplotlib.rcParams["svg.hashsalt"] = "3dplam-validation-figure"
@@ -76,8 +76,8 @@ def retarget_font_family(path):
     matplotlib measures text with a font it can actually load, and those
     measurements drive tight_layout's margins, the legend box and the
     wrapped footnote. Naming the site stack in rcParams would not give it
-    those fonts to measure with, `system-ui` is a CSS generic, not a font
-    file, so it would fall back to DejaVu for metrics anyway, and on a
+    those fonts to measure with (`system-ui` is a CSS generic, not a font
+    file), so it would fall back to DejaVu for metrics anyway, and on a
     machine that happened to have "Inter" installed it would silently
     measure with a *different* font than on one that did not, making the
     committed SVG depend on the author's font book.

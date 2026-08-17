@@ -30,8 +30,8 @@ HANDOVER = "../2026-bsc-thesis-mgabri/data/raw_data/tables (csv)"
 #
 # These are given in English. The handover names four sites with German
 # descriptive words; those are translated here, at the one point where the
-# published CSVs are generated, so that every artifact downstream, the
-# CSVs, data/README.md, the codebook and the validation figure, carries
+# published CSVs are generated, so that every artifact downstream
+# (the CSVs, data/README.md, the codebook and the validation figure) carries
 # one name per site and no translation layer of its own. The figure used
 # to hold a second, private mapping to do this at plot time; it does not
 # any more.
@@ -168,12 +168,12 @@ def read_handover_csv(path):
 def tidy_ecoli(path):
     """Return (measurements, summary) for the E. coli dataset.
 
-    measurements: one row per (manifold, sample site, replicate), 
+    measurements: one row per (manifold, sample site, replicate),
     72 rows = 3 manifolds x 8 sites x 3 replicates.
     summary: one row per (manifold, sample site) with the geometric mean
     of the 3 replicates, its WHO risk category, and, for the two
     3D-printed manifolds, whether that category matches the Millipore
-    reference outright or is acceptable within the 5 % boundary rule, 
+    reference outright or is acceptable within the 5 % boundary rule,
     24 rows = 3 manifolds x 8 sites.
 
     The source file's own "Wrongly assigned per sample" row is derived

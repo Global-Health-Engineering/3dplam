@@ -1,7 +1,7 @@
 # Printing
 
 Which files to print, and how to choose a filter support, funnel variant or
-material, are owned by [`../hardware/README.md`](../hardware/README.md), 
+material, are owned by [`../hardware/README.md`](../hardware/README.md),
 start there for the parts table and envelopes. This page covers the print
 settings requirement, orientation guidance, and how the five printable
 materials compare under testing.

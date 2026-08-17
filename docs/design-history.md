@@ -29,8 +29,8 @@ clamped-membrane seal described in [`assembly.md`](assembly.md).
 
 The published base is **V1.3**. It replaces the taped joint with the
 clamped-membrane seal, and adds a bottom brim, three legs, and four
-mounting holes. This revision targets **leak-tightness and rigidity**, 
-how the base seals to the funnel and sits on a surface, not the
+mounting holes. This revision targets **leak-tightness and rigidity**
+(how the base seals to the funnel and sits on a surface), not the
 filtration path itself. The funnel and filter support are unchanged
 between the validated and published configurations. The validation carries
 to the published device as a matter of what actually changed, not as a
@@ -64,6 +64,6 @@ The funnel-to-base joint's tolerance was converged empirically: a series of
 test rings was printed in **0.01 mm increments**, sweeping inner diameter
 from **48.75 to 48.85 mm** and outer diameter from **52.6 to 52.925 mm**,
 to find the clearance that seals without binding. Those test-ring files are
-not shipped in this repository; they are prototyping artifacts, not part
-of the product, but the method is recorded here so it can be repeated if
+not shipped in this repository (they are prototyping artifacts, not part
+of the product), but the method is recorded here so it can be repeated if
 the fit ever needs re-tuning for a different printer or material.

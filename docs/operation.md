@@ -47,9 +47,9 @@ inoculum out of the funnel.
 ## Incubation and reading
 
 Incubate the inoculated Compact Dry™ ECO plate for **24 h at 37 °C**, then
-count colonies. How those counts become a WHO risk classification, the 0.5
+count colonies. How those counts become a WHO risk classification (the 0.5
 CFU/100 mL convention for "no colonies," the risk bands, and the 5 %
-boundary-tolerance rule, is covered in [`validation.md`](validation.md),
+boundary-tolerance rule) is covered in [`validation.md`](validation.md),
 not repeated here.
 
 ## Notes from the source protocol
@@ -57,5 +57,5 @@ not repeated here.
 Two of the eight validation samples needed special handling, carried
 through unchanged into [`data/README.md`](../data/README.md)'s caveats:
 sample 5 stalled at roughly the 20 mL mark of step 8 (~80 mL actually
-pulled through), and sample 7 is a positive control, 1,250 mL of tap water
-spiked with 25 mL of a faecal suspension, rather than a field sample.
+pulled through), and sample 7 is a positive control (1,250 mL of tap water
+spiked with 25 mL of a faecal suspension) rather than a field sample.

@@ -21,7 +21,7 @@ const millipore = site.millipore_cost_usd.toLocaleString('en-US');
       <div class="label">people without safely managed drinking water</div>
     </div>
     <div class="stat">
-      <div class="num">{site.context.population_without_water_quality_data_pct}%</div>
+      <div class="num">{site.context.population_without_water_quality_data_pct} %</div>
       <div class="label">of the global population lacks any water-quality data at all</div>
     </div>
   </div>
@@ -29,7 +29,7 @@ const millipore = site.millipore_cost_usd.toLocaleString('en-US');
   <p>
     Surveying water quality at many sites requires many instruments rather
     than a single higher-performing one. The steel Millipore EZ-Fit
-    manifold, the reference instrument this device is validated against, 
+    manifold, the reference instrument this device is validated against,
     costs approximately <strong>${millipore.toString()}</strong> per unit,
     is manufactured centrally, and is a closed design: it can be purchased
     but not produced locally.
@@ -39,8 +39,8 @@ const millipore = site.millipore_cost_usd.toLocaleString('en-US');
     (<strong>2GLAM</strong>) reduces the per-unit price to approximately
     {glam2Label} but remains centrally produced from a proprietary design,
     so availability stays tied to the same supply chain. 3DPLAM's
-    distinguishing feature is not primarily cost, at approximately
-    {costLabel} per set it is lower, but only modestly so, but that the
+    distinguishing feature is not primarily cost (at approximately
+    {costLabel} per set it is lower, but only modestly so) but that the
     design is <strong>open and locally 3D-printable</strong>: anyone with
     an FDM printer can produce, repair and modify it without depending on
     a supply chain.

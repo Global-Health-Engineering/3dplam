@@ -9,8 +9,8 @@ the 3DPLAM was validated against.
 
 Water was collected from 8 sample sites (listed in
 [`../data/README.md`](../data/README.md)) and filtered through 3 manifolds
-, a 3DPLAM printed in rPET, a 3DPLAM printed in ABS, and the steel
-Millipore reference, 3 times each. That is **8 sites × 3 manifolds × 3
+(a 3DPLAM printed in rPET, a 3DPLAM printed in ABS, and the steel
+Millipore reference) 3 times each. That is **8 sites × 3 manifolds × 3
 filtrations = 72 filtrations**, recorded in
 [`../data/ecoli-quantification.csv`](../data/ecoli-quantification.csv) and
 summarised per manifold/site in

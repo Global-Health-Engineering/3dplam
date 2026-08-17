@@ -48,4 +48,4 @@ with no change to the silhouette, because the removed edges lay inside
 flat regions); collapse decimation covers the rest.
 
 These are fetched only when a reader clicks a render, never on page
-load, so their weight does not affect how fast the page opens.
+load, and so do not affect how fast the page opens.

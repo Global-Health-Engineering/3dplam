@@ -197,9 +197,9 @@ const navLinks = [
     flex: 1;
     overflow-x: auto;
     /* `flex: 1` alone gives this element only left-over space (its
-       flex-basis is 0%): if .brand alone already consumes the full row, 
-       which the logo lockup plus the wordmark can do well before mobile
-       widths: there is no "left over" space and nav silently collapses
+       flex-basis is 0%): if .brand alone already consumes the full row
+       (which the logo lockup plus the wordmark can do well before mobile
+       widths), there is no "left over" space and nav silently collapses
        to 0 width, hiding every link with no visual trace. The min-width
        forces the flex algorithm to take that space from .brand instead
        (see the .brand-name mobile rule below, which removes the
