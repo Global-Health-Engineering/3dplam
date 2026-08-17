@@ -33,6 +33,10 @@ from mathutils import Vector
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "site", "public", "renders")
+# Web-ready glTF of the same geometry, for the site's click-to-open 3D
+# viewer. Exported from the identical scene each render is made from, so a
+# part is the same colour and the same shape in both.
+MODELS_OUT = os.path.join(ROOT, "site", "public", "models")
 RES = 2000
 MM = 0.001
 SAMPLES = 256
@@ -43,20 +47,36 @@ FILTER_SUPPORT_STL = os.path.join(
     ROOT, "hardware", "stl", "filter-support-strand-mesh.stl")
 ASSEMBLY_STL = os.path.join(ROOT, "hardware", "assembly", "assembly.stl")
 
-# Matte mid-grey plastic, used for every part except where the
-# membrane-clamp figure needs the three elements colour-coded. The site
-# places these renders on a near-white page background, so the base
-# colour must sit well below white in lightness or the part loses its
-# silhouette; 0.82 (the original value) read as a pale blur, hence the
-# drop to ~0.4.
-COLOR_PLASTIC = (0.42, 0.42, 0.39, 1.0)
-# The three elements of the membrane-clamp figure, colour-coded in the
-# manner of the source thesis figure (base cyan-teal, membrane red,
-# funnel yellow — see docs/thesis.pdf Figure 10) but desaturated into a
-# restrained, technical palette rather than the thesis's saturated hues.
-COLOR_BASE_ACCENT = (0.28, 0.38, 0.40, 1.0)     # cool slate-teal — the base
-COLOR_FUNNEL_ACCENT = (0.56, 0.43, 0.16, 1.0)   # muted ochre — the funnel
+# One colour per part, applied in EVERY render — a reader who learns
+# "yellow is the funnel" in the exploded view carries that into the
+# section views without re-reading a caption. Do not give a part a
+# different colour in one figure for local contrast; that is exactly the
+# inconsistency this palette replaced (the base used to be slate-teal in
+# the membrane-clamp figure and grey everywhere else).
+#
+# Values are scene-linear Principled BSDF base colours, and the scene
+# renders with the Standard view transform, so displayed sRGB is roughly
+# linear^(1/2.2) — 0.42 linear reads as mid-to-dark grey on screen, 0.62
+# as light grey. The site places these renders on a near-white card
+# (--bg-2, #f6f7f9), so nothing may sit too close to white or the part
+# loses its silhouette; 0.82 was tried originally and read as a pale
+# blur, which is why the light-grey part stops at 0.62.
+COLOR_BASE = (0.42, 0.42, 0.39, 1.0)            # dark grey — the base
+COLOR_FILTER_SUPPORT = (0.62, 0.62, 0.60, 1.0)  # light grey — the filter support
+COLOR_FUNNEL = (0.56, 0.43, 0.16, 1.0)          # yellow ochre — the funnel
+# The membrane has no CAD file and is not a printed part; it keeps the
+# thesis figure's red (desaturated to terracotta) so it reads as the
+# consumable passing through the joint, distinct from all three prints.
 COLOR_MEMBRANE = (0.60, 0.18, 0.13, 1.0)        # muted terracotta — the membrane
+
+# Part name (as set by load_assembly_bodies) -> colour, so a multi-body
+# scene can be coloured by lookup rather than by remembering which
+# variable goes with which body.
+PART_COLORS = {
+    "base": COLOR_BASE,
+    "filter-support": COLOR_FILTER_SUPPORT,
+    "funnel": COLOR_FUNNEL,
+}
 
 
 def mm(x):
@@ -372,6 +392,76 @@ def render(scene, name):
     print(f"  rendered {name}.png")
 
 
+def tri_count(obj):
+    return sum(len(p.vertices) - 2 for p in obj.data.polygons)
+
+
+def decimate_for_web(obj, max_tris):
+    """Reduce `obj` to roughly `max_tris` triangles for browser delivery.
+
+    Two passes, cheapest first. Planar dissolve merges faces that are
+    coplanar within a small angle — on meshes tessellated out of CAD it
+    removes a large share of the triangles while changing the silhouette
+    by nothing at all, because the removed edges were interior to flat
+    regions. Only if that alone misses the budget does collapse
+    decimation run, which does move vertices and so is kept as the
+    fallback rather than the first move.
+
+    Call this AFTER rendering: the render must use the full-resolution
+    mesh, and both modifiers are applied destructively.
+    """
+    before = tri_count(obj)
+    if before <= max_tris:
+        print(f"    {obj.name}: {before:,} tris, under budget — untouched")
+        return
+
+    bpy.context.view_layer.objects.active = obj
+    mod = obj.modifiers.new("planar", "DECIMATE")
+    mod.decimate_type = "DISSOLVE"
+    mod.angle_limit = math.radians(3.0)
+    bpy.ops.object.modifier_apply(modifier="planar")
+    after_planar = tri_count(obj)
+
+    if after_planar > max_tris:
+        mod = obj.modifiers.new("collapse", "DECIMATE")
+        mod.decimate_type = "COLLAPSE"
+        mod.ratio = max_tris / after_planar
+        bpy.ops.object.modifier_apply(modifier="collapse")
+    after = tri_count(obj)
+    print(f"    {obj.name}: {before:,} -> {after_planar:,} (planar) -> "
+          f"{after:,} tris (budget {max_tris:,})")
+
+
+def export_glb(name, objs, max_tris=60000):
+    """Write `objs` to site/public/models/<name>.glb.
+
+    Only the named objects are exported — no camera, no lights, no shadow
+    catcher — because the viewer supplies its own. Materials come along,
+    which is what keeps the 3D colours identical to the render's without
+    a second palette defined in JavaScript.
+    """
+    os.makedirs(MODELS_OUT, exist_ok=True)
+    for obj in objs:
+        decimate_for_web(obj, max_tris)
+
+    bpy.ops.object.select_all(action="DESELECT")
+    for obj in objs:
+        obj.select_set(True)
+    bpy.context.view_layer.objects.active = objs[0]
+
+    path = os.path.join(MODELS_OUT, f"{name}.glb")
+    bpy.ops.export_scene.gltf(
+        filepath=path,
+        export_format="GLB",
+        use_selection=True,
+        export_apply=True,
+        # glTF is Y-up; Blender is Z-up. Without this the model arrives in
+        # three.js lying on its side.
+        export_yup=True,
+    )
+    print(f"  exported {name}.glb ({os.path.getsize(path) / 1e6:.2f} MB)")
+
+
 ISO = Vector((1.0, -1.0, 0.8))
 
 
@@ -379,7 +469,7 @@ def render_assembly_exploded():
     scene = reset()
     base_obj, filter_obj, funnel_obj = load_assembly_bodies()
     for obj in (base_obj, filter_obj, funnel_obj):
-        set_material(obj, matte_material(f"plastic-{obj.name}", COLOR_PLASTIC))
+        set_material(obj, matte_material(f"plastic-{obj.name}", PART_COLORS[obj.name]))
 
     # Pull the middle and top parts apart along Z so the stacking order —
     # base, then filter support seated in it, then funnel on top — reads
@@ -400,6 +490,7 @@ def render_assembly_exploded():
     # edge, and the stack is tall relative to its footprint.
     frame_camera(center, radius, ISO, margin=1.3)
     render(scene, "assembly-exploded")
+    export_glb("assembly-exploded", [base_obj, filter_obj, funnel_obj])
 
 
 def render_membrane_clamp():
@@ -449,10 +540,10 @@ def render_membrane_clamp():
 
     for obj in (base_obj, filter_obj):
         cut_half(obj, axis, axis=1, keep_positive=True)
-    set_material(base_obj, matte_material("base-mat", COLOR_BASE_ACCENT))
-    set_material(filter_obj, matte_material("filter-mat", COLOR_PLASTIC))
+    set_material(base_obj, matte_material("base-mat", COLOR_BASE))
+    set_material(filter_obj, matte_material("filter-mat", COLOR_FILTER_SUPPORT))
     cut_half(funnel_obj, axis, axis=1, keep_positive=True)
-    set_material(funnel_obj, matte_material("funnel-mat", COLOR_FUNNEL_ACCENT))
+    set_material(funnel_obj, matte_material("funnel-mat", COLOR_FUNNEL))
     cut_half(membrane, axis, axis=1, keep_positive=True)
     set_material(membrane, matte_material("membrane-mat", COLOR_MEMBRANE, roughness=0.55))
 
@@ -463,12 +554,16 @@ def render_membrane_clamp():
     frame_camera(focus, zoom_radius, view_dir, lens=100, margin=1.15)
     lighting(focus, fill_dir=view_dir, fill_radius=zoom_radius)
     render(scene, "membrane-clamp")
+    # The render is a tight crop on the seal; the model is the whole cut
+    # assembly, so a reader can scroll-zoom into that same joint and then
+    # orbit around it — which is the point of making it interactive.
+    export_glb("membrane-clamp", [base_obj, filter_obj, funnel_obj, membrane])
 
 
 def render_filter_support_section():
     scene = reset()
     obj = import_and_prepare(FILTER_SUPPORT_STL)
-    set_material(obj, matte_material("plastic-filter-support", COLOR_PLASTIC))
+    set_material(obj, matte_material("plastic-filter-support", COLOR_FILTER_SUPPORT))
 
     lo, hi = world_bbox(obj)
     center = bbox_center(lo, hi)
@@ -487,6 +582,7 @@ def render_filter_support_section():
     lighting(center)
     frame_camera(center, radius, Vector((0.35, -1.0, 0.55)), lens=100, margin=1.0)
     render(scene, "filter-support-section")
+    export_glb("filter-support-section", [obj])
 
 
 JOBS = {

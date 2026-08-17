@@ -15,6 +15,7 @@
   "author": "ETH Zurich, Global Health Engineering",
   "license": "CC-BY-4.0",
   "dependencies": {
-    "astro": "^5.18.2"
+    "astro": "^5.18.2",
+    "three": "^0.180.0"
   }
 }
