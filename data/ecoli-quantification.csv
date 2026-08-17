@@ -2,21 +2,21 @@ manifold_id,manifold_name,material,sample_no,sample_site,replicate,cfu_per_100ml
 ft1,3DPLAM_V1.2_rPET,rPET,1,"Limmat, Platzspitz",a,25
 ft1,3DPLAM_V1.2_rPET,rPET,1,"Limmat, Platzspitz",b,27
 ft1,3DPLAM_V1.2_rPET,rPET,1,"Limmat, Platzspitz",c,31
-ft1,3DPLAM_V1.2_rPET,rPET,2,"Sihl, Treppen bei der Sihl",a,48
-ft1,3DPLAM_V1.2_rPET,rPET,2,"Sihl, Treppen bei der Sihl",b,56
-ft1,3DPLAM_V1.2_rPET,rPET,2,"Sihl, Treppen bei der Sihl",c,50
+ft1,3DPLAM_V1.2_rPET,rPET,2,Sihl riverside steps,a,48
+ft1,3DPLAM_V1.2_rPET,rPET,2,Sihl riverside steps,b,56
+ft1,3DPLAM_V1.2_rPET,rPET,2,Sihl riverside steps,c,50
 ft1,3DPLAM_V1.2_rPET,rPET,3,"Lake of Zurich, Rentenwiese",a,13
 ft1,3DPLAM_V1.2_rPET,rPET,3,"Lake of Zurich, Rentenwiese",b,14
 ft1,3DPLAM_V1.2_rPET,rPET,3,"Lake of Zurich, Rentenwiese",c,10
-ft1,3DPLAM_V1.2_rPET,rPET,4,"Lake of Zurich, Aussichtspunkt Riesbach",a,15
-ft1,3DPLAM_V1.2_rPET,rPET,4,"Lake of Zurich, Aussichtspunkt Riesbach",b,13
-ft1,3DPLAM_V1.2_rPET,rPET,4,"Lake of Zurich, Aussichtspunkt Riesbach",c,9
-ft1,3DPLAM_V1.2_rPET,rPET,5,"Irchel Campus, Ircheltuempel",a,61
-ft1,3DPLAM_V1.2_rPET,rPET,5,"Irchel Campus, Ircheltuempel",b,56
-ft1,3DPLAM_V1.2_rPET,rPET,5,"Irchel Campus, Ircheltuempel",c,70
-ft1,3DPLAM_V1.2_rPET,rPET,6,"Zurichberg, Resi-Weiher",a,2
-ft1,3DPLAM_V1.2_rPET,rPET,6,"Zurichberg, Resi-Weiher",b,5
-ft1,3DPLAM_V1.2_rPET,rPET,6,"Zurichberg, Resi-Weiher",c,4
+ft1,3DPLAM_V1.2_rPET,rPET,4,"Lake of Zurich, Riesbach viewpoint",a,15
+ft1,3DPLAM_V1.2_rPET,rPET,4,"Lake of Zurich, Riesbach viewpoint",b,13
+ft1,3DPLAM_V1.2_rPET,rPET,4,"Lake of Zurich, Riesbach viewpoint",c,9
+ft1,3DPLAM_V1.2_rPET,rPET,5,"Irchel Campus, Irchel pond",a,61
+ft1,3DPLAM_V1.2_rPET,rPET,5,"Irchel Campus, Irchel pond",b,56
+ft1,3DPLAM_V1.2_rPET,rPET,5,"Irchel Campus, Irchel pond",c,70
+ft1,3DPLAM_V1.2_rPET,rPET,6,"Zurichberg, Resi pond",a,2
+ft1,3DPLAM_V1.2_rPET,rPET,6,"Zurichberg, Resi pond",b,5
+ft1,3DPLAM_V1.2_rPET,rPET,6,"Zurichberg, Resi pond",c,4
 ft1,3DPLAM_V1.2_rPET,rPET,7,"ETH Zurich CLD, tap water + fecal suspension",a,14
 ft1,3DPLAM_V1.2_rPET,rPET,7,"ETH Zurich CLD, tap water + fecal suspension",b,7
 ft1,3DPLAM_V1.2_rPET,rPET,7,"ETH Zurich CLD, tap water + fecal suspension",c,0.5
@@ -26,21 +26,21 @@ ft1,3DPLAM_V1.2_rPET,rPET,8,"ETH Zurich CLA, tap water",c,0.5
 ft2,3DPLAM_V1.2,ABS,1,"Limmat, Platzspitz",a,24
 ft2,3DPLAM_V1.2,ABS,1,"Limmat, Platzspitz",b,18
 ft2,3DPLAM_V1.2,ABS,1,"Limmat, Platzspitz",c,27
-ft2,3DPLAM_V1.2,ABS,2,"Sihl, Treppen bei der Sihl",a,40
-ft2,3DPLAM_V1.2,ABS,2,"Sihl, Treppen bei der Sihl",b,32
-ft2,3DPLAM_V1.2,ABS,2,"Sihl, Treppen bei der Sihl",c,46
+ft2,3DPLAM_V1.2,ABS,2,Sihl riverside steps,a,40
+ft2,3DPLAM_V1.2,ABS,2,Sihl riverside steps,b,32
+ft2,3DPLAM_V1.2,ABS,2,Sihl riverside steps,c,46
 ft2,3DPLAM_V1.2,ABS,3,"Lake of Zurich, Rentenwiese",a,7
 ft2,3DPLAM_V1.2,ABS,3,"Lake of Zurich, Rentenwiese",b,15
 ft2,3DPLAM_V1.2,ABS,3,"Lake of Zurich, Rentenwiese",c,11
-ft2,3DPLAM_V1.2,ABS,4,"Lake of Zurich, Aussichtspunkt Riesbach",a,10
-ft2,3DPLAM_V1.2,ABS,4,"Lake of Zurich, Aussichtspunkt Riesbach",b,11
-ft2,3DPLAM_V1.2,ABS,4,"Lake of Zurich, Aussichtspunkt Riesbach",c,9
-ft2,3DPLAM_V1.2,ABS,5,"Irchel Campus, Ircheltuempel",a,32
-ft2,3DPLAM_V1.2,ABS,5,"Irchel Campus, Ircheltuempel",b,44
-ft2,3DPLAM_V1.2,ABS,5,"Irchel Campus, Ircheltuempel",c,93
-ft2,3DPLAM_V1.2,ABS,6,"Zurichberg, Resi-Weiher",a,1
-ft2,3DPLAM_V1.2,ABS,6,"Zurichberg, Resi-Weiher",b,3
-ft2,3DPLAM_V1.2,ABS,6,"Zurichberg, Resi-Weiher",c,2
+ft2,3DPLAM_V1.2,ABS,4,"Lake of Zurich, Riesbach viewpoint",a,10
+ft2,3DPLAM_V1.2,ABS,4,"Lake of Zurich, Riesbach viewpoint",b,11
+ft2,3DPLAM_V1.2,ABS,4,"Lake of Zurich, Riesbach viewpoint",c,9
+ft2,3DPLAM_V1.2,ABS,5,"Irchel Campus, Irchel pond",a,32
+ft2,3DPLAM_V1.2,ABS,5,"Irchel Campus, Irchel pond",b,44
+ft2,3DPLAM_V1.2,ABS,5,"Irchel Campus, Irchel pond",c,93
+ft2,3DPLAM_V1.2,ABS,6,"Zurichberg, Resi pond",a,1
+ft2,3DPLAM_V1.2,ABS,6,"Zurichberg, Resi pond",b,3
+ft2,3DPLAM_V1.2,ABS,6,"Zurichberg, Resi pond",c,2
 ft2,3DPLAM_V1.2,ABS,7,"ETH Zurich CLD, tap water + fecal suspension",a,43
 ft2,3DPLAM_V1.2,ABS,7,"ETH Zurich CLD, tap water + fecal suspension",b,30
 ft2,3DPLAM_V1.2,ABS,7,"ETH Zurich CLD, tap water + fecal suspension",c,10
@@ -50,21 +50,21 @@ ft2,3DPLAM_V1.2,ABS,8,"ETH Zurich CLA, tap water",c,0.5
 ft3,Millipore Microfil Manifold,Steel,1,"Limmat, Platzspitz",a,26
 ft3,Millipore Microfil Manifold,Steel,1,"Limmat, Platzspitz",b,32
 ft3,Millipore Microfil Manifold,Steel,1,"Limmat, Platzspitz",c,31
-ft3,Millipore Microfil Manifold,Steel,2,"Sihl, Treppen bei der Sihl",a,41
-ft3,Millipore Microfil Manifold,Steel,2,"Sihl, Treppen bei der Sihl",b,57
-ft3,Millipore Microfil Manifold,Steel,2,"Sihl, Treppen bei der Sihl",c,75
+ft3,Millipore Microfil Manifold,Steel,2,Sihl riverside steps,a,41
+ft3,Millipore Microfil Manifold,Steel,2,Sihl riverside steps,b,57
+ft3,Millipore Microfil Manifold,Steel,2,Sihl riverside steps,c,75
 ft3,Millipore Microfil Manifold,Steel,3,"Lake of Zurich, Rentenwiese",a,53
 ft3,Millipore Microfil Manifold,Steel,3,"Lake of Zurich, Rentenwiese",b,8
 ft3,Millipore Microfil Manifold,Steel,3,"Lake of Zurich, Rentenwiese",c,10
-ft3,Millipore Microfil Manifold,Steel,4,"Lake of Zurich, Aussichtspunkt Riesbach",a,15
-ft3,Millipore Microfil Manifold,Steel,4,"Lake of Zurich, Aussichtspunkt Riesbach",b,10
-ft3,Millipore Microfil Manifold,Steel,4,"Lake of Zurich, Aussichtspunkt Riesbach",c,9
-ft3,Millipore Microfil Manifold,Steel,5,"Irchel Campus, Ircheltuempel",a,84
-ft3,Millipore Microfil Manifold,Steel,5,"Irchel Campus, Ircheltuempel",b,108
-ft3,Millipore Microfil Manifold,Steel,5,"Irchel Campus, Ircheltuempel",c,121
-ft3,Millipore Microfil Manifold,Steel,6,"Zurichberg, Resi-Weiher",a,6
-ft3,Millipore Microfil Manifold,Steel,6,"Zurichberg, Resi-Weiher",b,4
-ft3,Millipore Microfil Manifold,Steel,6,"Zurichberg, Resi-Weiher",c,6
+ft3,Millipore Microfil Manifold,Steel,4,"Lake of Zurich, Riesbach viewpoint",a,15
+ft3,Millipore Microfil Manifold,Steel,4,"Lake of Zurich, Riesbach viewpoint",b,10
+ft3,Millipore Microfil Manifold,Steel,4,"Lake of Zurich, Riesbach viewpoint",c,9
+ft3,Millipore Microfil Manifold,Steel,5,"Irchel Campus, Irchel pond",a,84
+ft3,Millipore Microfil Manifold,Steel,5,"Irchel Campus, Irchel pond",b,108
+ft3,Millipore Microfil Manifold,Steel,5,"Irchel Campus, Irchel pond",c,121
+ft3,Millipore Microfil Manifold,Steel,6,"Zurichberg, Resi pond",a,6
+ft3,Millipore Microfil Manifold,Steel,6,"Zurichberg, Resi pond",b,4
+ft3,Millipore Microfil Manifold,Steel,6,"Zurichberg, Resi pond",c,6
 ft3,Millipore Microfil Manifold,Steel,7,"ETH Zurich CLD, tap water + fecal suspension",a,103
 ft3,Millipore Microfil Manifold,Steel,7,"ETH Zurich CLD, tap water + fecal suspension",b,104
 ft3,Millipore Microfil Manifold,Steel,7,"ETH Zurich CLD, tap water + fecal suspension",c,69

@@ -3,7 +3,7 @@ ecoli-quantification.csv,manifold_id,categorical,"ft1, ft2, ft3",Identifier of t
 ecoli-quantification.csv,manifold_name,categorical,"3DPLAM_V1.2_rPET, 3DPLAM_V1.2, Millipore Microfil Manifold",Name of the manifold as recorded during testing,NA
 ecoli-quantification.csv,material,categorical,"rPET, ABS, Steel",Material of the manifold base,NA
 ecoli-quantification.csv,sample_no,categorical,1-8,Water sample site number,NA
-ecoli-quantification.csv,sample_site,categorical,see data/README.md,Human-readable collection site,NA
+ecoli-quantification.csv,sample_site,categorical,"Limmat, Platzspitz | Sihl riverside steps | Lake of Zurich, Rentenwiese | Lake of Zurich, Riesbach viewpoint | Irchel Campus, Irchel pond | Zurichberg, Resi pond | ETH Zurich CLD, tap water + fecal suspension | ETH Zurich CLA, tap water","Human-readable collection site, in English; four names translated from the German handover record (originals in data/README.md)",NA
 ecoli-quantification.csv,replicate,categorical,"a, b, c",Which of three filtrations of this sample through this manifold,NA
 ecoli-quantification.csv,cfu_per_100ml,"numeric, continuous",0.5-121,Colony-forming units counted on the Compact Dry ECO plate; 0.5 recorded when no colonies were visible,CFU/100 mL
 ecoli-summary.csv,geometric_mean,"numeric, continuous",0.5-103.16,Geometric mean of the three replicates,CFU/100 mL
@@ -14,7 +14,7 @@ ecoli-summary.csv,acceptable_within_5pct,categorical,"yes, no, (blank)",Whether 
 ecoli-summary.csv,manifold_id,categorical,"ft1, ft2, ft3",Identifier of the filtration manifold used,NA
 ecoli-summary.csv,material,categorical,"rPET, ABS, Steel",Material of the manifold base,NA
 ecoli-summary.csv,sample_no,categorical,1-8,Water sample site number,NA
-ecoli-summary.csv,sample_site,categorical,see data/README.md,Human-readable collection site,NA
+ecoli-summary.csv,sample_site,categorical,"Limmat, Platzspitz | Sihl riverside steps | Lake of Zurich, Rentenwiese | Lake of Zurich, Riesbach viewpoint | Irchel Campus, Irchel pond | Zurichberg, Resi pond | ETH Zurich CLD, tap water + fecal suspension | ETH Zurich CLA, tap water","Human-readable collection site, in English; four names translated from the German handover record (originals in data/README.md)",NA
 watertightness.csv,Name,categorical,"2GLAM, 3DPLAM_V1.2, 3DPLAM_V1.2_rPET",Name of the manifold prototype tested,NA
 watertightness.csv,id,categorical,"wt1, wt2, wt3",Identifier of the watertightness test run,NA
 watertightness.csv,Material,categorical,"ABS, rPET",Material of the manifold tested,NA

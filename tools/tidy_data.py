@@ -26,13 +26,37 @@ HANDOVER = "../2026-bsc-thesis-mgabri/data/raw_data/tables (csv)"
 # (data/raw_data/tables (csv)/Functional Testing/
 # E. coli Quantification_README.txt). Keys are the sample numbers used as
 # column-name prefixes in the source spreadsheet (e.g. "1_Platzspitz_a").
+#
+# These are given in English. The handover names four sites with German
+# descriptive words; those are translated here, at the one point where the
+# published CSVs are generated, so that every artifact downstream — the
+# CSVs, data/README.md, the codebook and the validation figure — carries
+# one name per site and no translation layer of its own. The figure used
+# to hold a second, private mapping to do this at plot time; it does not
+# any more.
+#
+# Only descriptive words are translated. Genuine proper place names are
+# left exactly as collected, because they are names rather than words:
+# Platzspitz and Rentenwiese stay, and "Resi-Weiher" keeps Resi while
+# -Weiher (pond) is translated. The German original of each translated
+# name is recorded here so the published value can always be traced back
+# to the handover:
+#
+#     2  Treppen bei der Sihl      -> Sihl riverside steps
+#     4  Aussichtspunkt Riesbach   -> Riesbach viewpoint
+#     5  Ircheltuempel             -> Irchel pond
+#     6  Resi-Weiher               -> Resi pond
+#
+# Site 2 is deliberately a single-part name: the German was "Sihl,
+# Treppen bei der Sihl", which names the river twice, and "Sihl, Sihl
+# riverside steps" would carry that redundancy into English for no gain.
 SITES = {
     "1": "Limmat, Platzspitz",
-    "2": "Sihl, Treppen bei der Sihl",
+    "2": "Sihl riverside steps",
     "3": "Lake of Zurich, Rentenwiese",
-    "4": "Lake of Zurich, Aussichtspunkt Riesbach",
-    "5": "Irchel Campus, Ircheltuempel",
-    "6": "Zurichberg, Resi-Weiher",
+    "4": "Lake of Zurich, Riesbach viewpoint",
+    "5": "Irchel Campus, Irchel pond",
+    "6": "Zurichberg, Resi pond",
     "7": "ETH Zurich CLD, tap water + fecal suspension",
     "8": "ETH Zurich CLA, tap water",
 }

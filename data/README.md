@@ -28,16 +28,41 @@ These are two different counts for two different rules — always state which on
 
 ## Sample sites
 
-| #     | Site                                                         | Location                                                       |
-| ----- | ------------------------------------------------------------ | -------------------------------------------------------------- |
-| 1     | Limmat, Platzspitz                                           | [47°22'54.2"N 8°32'23.3"E](https://maps.app.goo.gl/R5HYHXrchyp9zU4e9) |
-| 2     | Sihl riverside steps                                         | [47°22'39.9"N 8°32'11.2"E](https://maps.app.goo.gl/t2w6ZBqyXtTheTvU8) |
-| 3     | Lake of Zürich, Rentenwiese                                  | [47°21'48.2"N 8°32'13.6"E](https://maps.app.goo.gl/Xsy4nUzgeniSF7QS6) |
-| 4     | Lake of Zürich, Reisbach viewpoint                           | [47°21'28.5"N 8°32'49.7"E](https://maps.app.goo.gl/RfrFR1WqzwqbAtgdA) |
-| 5[^1] | Irchel Park pond                                             | [47°23'52.4"N 8°32'38.5"E](https://maps.app.goo.gl/xAfFDwxMpErPbqV17) |
-| 6     | Zürichberg Resi Pond                                         | [47°23'31.9"N 8°33'10.4"E](https://maps.app.goo.gl/KXh66xjuwYgjUPYf7) |
-| 7     | ETH Zürich, CLD Building, tap water + 25 mL fecal suspension | [47°22'43.6"N 8°32'45.2"E](https://maps.app.goo.gl/v8skA6kZncdn9hSt8) |
-| 8     | ETH Zürich, CLA Building, tap water                          | [47°22'38.4"N 8°32'49.6"E](https://maps.app.goo.gl/57Mg5KN6icj9zju26) |
+Site names are in English, and are the exact `sample_site` values in
+`ecoli-quantification.csv` and `ecoli-summary.csv` — the same strings the
+validation figure labels its axis with. Four were translated from the
+German of the handover record; see the note below the table.
+
+| #     | `sample_site`                                | Location                                                       |
+| ----- | -------------------------------------------- | -------------------------------------------------------------- |
+| 1     | Limmat, Platzspitz                           | [47°22'54.2"N 8°32'23.3"E](https://maps.app.goo.gl/R5HYHXrchyp9zU4e9) |
+| 2     | Sihl riverside steps                         | [47°22'39.9"N 8°32'11.2"E](https://maps.app.goo.gl/t2w6ZBqyXtTheTvU8) |
+| 3     | Lake of Zurich, Rentenwiese                  | [47°21'48.2"N 8°32'13.6"E](https://maps.app.goo.gl/Xsy4nUzgeniSF7QS6) |
+| 4     | Lake of Zurich, Riesbach viewpoint           | [47°21'28.5"N 8°32'49.7"E](https://maps.app.goo.gl/RfrFR1WqzwqbAtgdA) |
+| 5[^1] | Irchel Campus, Irchel pond                   | [47°23'52.4"N 8°32'38.5"E](https://maps.app.goo.gl/xAfFDwxMpErPbqV17) |
+| 6     | Zurichberg, Resi pond                        | [47°23'31.9"N 8°33'10.4"E](https://maps.app.goo.gl/KXh66xjuwYgjUPYf7) |
+| 7[^2] | ETH Zurich CLD, tap water + fecal suspension | [47°22'43.6"N 8°32'45.2"E](https://maps.app.goo.gl/v8skA6kZncdn9hSt8) |
+| 8     | ETH Zurich CLA, tap water                    | [47°22'38.4"N 8°32'49.6"E](https://maps.app.goo.gl/57Mg5KN6icj9zju26) |
+
+**Translated from the handover record.** The original German descriptions
+are kept here so any published value can be traced back to what was
+written down in the field:
+
+| # | As collected              | As published            |
+| - | ------------------------- | ----------------------- |
+| 2 | Sihl, Treppen bei der Sihl | Sihl riverside steps    |
+| 4 | Aussichtspunkt Riesbach   | Riesbach viewpoint      |
+| 5 | Ircheltuempel             | Irchel pond             |
+| 6 | Resi-Weiher               | Resi pond               |
+
+Only descriptive words were translated. Proper place names were not:
+Platzspitz and Rentenwiese are names, not words, and Resi-Weiher keeps
+Resi while *-Weiher* (pond) is translated. Site 2 loses its "Sihl, "
+prefix because the German named the river twice. The translation lives in
+`SITES` in [`../tools/tidy_data.py`](../tools/tidy_data.py), the one
+place these CSVs are generated.
 
 [^1]: Sample not fully drawn through the filter membrane. Filtration stalled at roughly the 20 mL mark of the 100 mL sample, so about 80 mL was actually filtered. The recorded CFU counts for sample 5 (`ecoli-quantification.csv`, `ecoli-summary.csv`) reflect this partial volume, not the full 100 mL.
+
+[^2]: Tap water spiked with 25 mL of horse fecal suspension as a positive control, not a field sample.
 

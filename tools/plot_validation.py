@@ -166,21 +166,6 @@ FOOTNOTE = (
 # sample-5 markers.
 YMIN, YMAX = 0.3, 2500
 
-# Display-label translations for the figure only — a presentation-layer
-# mapping, not a change to the underlying data. Descriptive German words
-# are translated to English for this English-language figure; genuine
-# proper place names (Platzspitz, Rentenwiese) are left exactly as
-# collected because they are not descriptive words to translate. Keyed on
-# the tail string short_site() extracts (the part after the last comma
-# in each CSV sample_site value), so data/*.csv itself is never touched.
-SITE_LABEL_TRANSLATIONS = {
-    "Treppen bei der Sihl": "Sihl riverside steps",
-    "Aussichtspunkt Riesbach": "Riesbach viewpoint",
-    "Ircheltuempel": "Irchel pond",
-    "Resi-Weiher": "Resi pond",
-}
-
-
 def load(path):
     with open(path, encoding="utf-8", newline="") as f:
         return list(csv.DictReader(f))
@@ -189,11 +174,16 @@ def load(path):
 def short_site(site):
     """The distinguishing part of a sample-site description, word-wrapped.
 
-    Sites 1-6 are "River/lake, specific spot" — the text after the comma
+    Most sites are "River/lake, specific spot" — the text after the comma
     is what tells them apart. Sites 7-8 are ETH lab controls where the
     same wrap still works ("tap water ..."); NOTES/FOOTNOTE already carry
     the spiked/partial-filtration caveats so this label does not repeat
-    them.
+    them. A value with no comma (site 2) is used whole.
+
+    The names arrive already in English. This function used to also hold
+    a German-to-English lookup, which is gone: the translation now happens
+    once, in tools/tidy_data.py, so the CSVs, the codebook, data/README.md
+    and this figure all read the same name for a site.
 
     The wrap width and the line cap are tied to FS_XTICK: eight labels
     share the panel width, so a line longer than ~12 characters at that
@@ -203,7 +193,6 @@ def short_site(site):
     truncate them.
     """
     tail = site.split(",")[-1].strip()
-    tail = SITE_LABEL_TRANSLATIONS.get(tail, tail)
     return "\n".join(textwrap.wrap(tail, width=12, break_long_words=False)[:3])
 
 
