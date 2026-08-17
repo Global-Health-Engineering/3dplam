@@ -3,7 +3,7 @@
 Bands follow WHO (2024), Guidelines for drinking-water quality: small water
 supplies. Samples with no visible colonies are recorded as 0.5 CFU/100 mL.
 
-The 5% rule: a geometric mean lying within 5% of a band boundary may be
+The 5 % rule: a geometric mean lying within 5 % of a band boundary may be
 classified into either adjacent band. Applied when comparing a 3D-printed
 manifold against the Millipore reference, it turns 12/16 raw category
 matches into the published 15/16.
@@ -72,7 +72,7 @@ def is_acceptable(test_cfu, reference_cfu, tolerance=DEFAULT_TOLERANCE):
 
     The boundary must be the separating one. Checking proximity to any
     threshold would accept pairs straddling a boundary neither value is
-    near — e.g. 1.03 (intermediate, near the 1.0 boundary) against 50.0
+    near, e.g. 1.03 (intermediate, near the 1.0 boundary) against 50.0
     (high), whose separating boundary is 10.0 and which nothing is near.
     """
     test_band, ref_band = classify(test_cfu), classify(reference_cfu)

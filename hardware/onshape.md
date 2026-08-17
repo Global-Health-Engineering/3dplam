@@ -4,7 +4,7 @@ The 3DPLAM was designed in Onshape. The final release is **Version 1.3**.
 
 | Release | Onshape document |
 |---|---|
-| **V1.3 — final** | https://cad.onshape.com/documents/9c3be81daa349a1904cb00f1/w/5660800de7ba8d6695e60895/e/a83cd824ff588ff52e4f649e |
+| **V1.3, final** | https://cad.onshape.com/documents/9c3be81daa349a1904cb00f1/w/5660800de7ba8d6695e60895/e/a83cd824ff588ff52e4f649e |
 | V1.2 | https://cad.onshape.com/documents/cc20d4ec22f9088750210c42/w/0e880b61cc5e7c90556c6865/e/dbc668c40067b012e6ab6d83 |
 | V1.1 | https://cad.onshape.com/documents/f801fbb0321c453f9c16f913/w/61b23730d0b0da70c58e73fb/e/2103c2cb395ca177d83f17ff |
 | V1 | https://cad.onshape.com/documents/11c201fe990ce71963c1da1f/w/9d105bc18fde2b3904227e07/e/3f871e498b6d1c555ab20b40 |
@@ -28,7 +28,7 @@ visible. Both designs occupy the same slot, so exporting with both shown
 produces an assembly containing two interpenetrating supports. The shipped
 assembly uses the strand mesh.
 
-Do not export 3MF from Onshape — `hardware/3mf/` files are generated in
+Do not export 3MF from Onshape, `hardware/3mf/` files are generated in
 Bambu Studio so they carry the print profile. See `hardware/print-profiles/`.
 
 After any re-export, run:

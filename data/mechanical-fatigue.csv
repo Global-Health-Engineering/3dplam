@@ -4,4 +4,4 @@ Name,id,Material,Structural Damage/Leakage,Cycles to Failure,Description
 3DPLAM_Funnel_V4,mf3,rPET,no,-,No critical damage
 3DPLAM_Funnel_V4,mf4,ABS,no,-,No critical damage
 3DPLAM_Funnel_V4,mf5,ASA,no,-,No critical damage
-100ml PVC Syringe,mf6,PVC,no,-,No critical damage
+100 ml PVC Syringe,mf6,PVC,no,-,No critical damage

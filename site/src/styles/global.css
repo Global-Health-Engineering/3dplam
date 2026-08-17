@@ -1,4 +1,4 @@
-/* Design tokens — GHE brand palette. The page is light-only by deliberate
+/* Design tokens, GHE brand palette. The page is light-only by deliberate
    choice: the figures and renders are authored for a white background, so
    there is no dark theme, no OS-preference rule and no toggle. Do not add
    a `@media (prefers-color-scheme: dark)` block or a `data-theme` variant
@@ -24,7 +24,7 @@
   --serif: ui-serif, "Source Serif Pro", Georgia, serif;
   --mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace;
 
-  /* The one content width for the whole page — every block (section,
+  /* The one content width for the whole page, every block (section,
      paragraph, heading, table, figure, image grid, stat card, footer
      block) shares this box width so the left/right edge never shifts as
      the reader scrolls. Do not add a second max-width for "wide"
@@ -35,7 +35,7 @@
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-/* Light is the only colour scheme — form controls, scrollbars and the
+/* Light is the only colour scheme, form controls, scrollbars and the
    canvas must not follow the OS preference. */
 html { color-scheme: light; }
 
@@ -48,8 +48,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Section padding and heading scale are tuned for information density —
-   an engineering reference, not a landing page — while keeping body copy
+/* Section padding and heading scale are tuned for information density, 
+   an engineering reference, not a landing page, while keeping body copy
    at a comfortable reading size (16px / 1.6) and line length (60-75ch). */
 section {
   max-width: var(--content-width);
@@ -71,7 +71,7 @@ h3 { font-size: 18px; }
 
 /* No character-count cap here: a narrower measure than the section's own
    content box is exactly the "narrow, then wide, then narrow again" edge
-   drift this page had before — every block, prose included, now shares
+   drift this page had before, every block, prose included, now shares
    --content-width instead. */
 p { color: var(--fg-dim); margin: 0 0 14px; }
 

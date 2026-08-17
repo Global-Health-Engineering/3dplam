@@ -23,13 +23,13 @@ Comparing the two 3D-printed manifolds (rPET, ABS) against the steel Millipore r
 - **12 of 16** classifications match the reference's WHO risk category exactly, with **no tolerance** applied.
 - **15 of 16** are acceptable once the **5 % boundary-tolerance rule** is applied (a geometric mean within 5 % of a WHO band boundary may be classified into either adjacent band).
 
-These are two different counts for two different rules — always state which one is meant. See `ecoli-summary.csv` (`matches_reference` = the
+These are two different counts for two different rules; always state which one is meant. See `ecoli-summary.csv` (`matches_reference` = the
 12/16 figure, `acceptable_within_5pct` = the 15/16 figure) and `tools/risk.py` for the classification logic.
 
 ## Sample sites
 
 Site names are in English, and are the exact `sample_site` values in
-`ecoli-quantification.csv` and `ecoli-summary.csv` — the same strings the
+`ecoli-quantification.csv` and `ecoli-summary.csv`, the same strings the
 validation figure labels its axis with. Four were translated from the
 German of the handover record; see the note below the table.
 

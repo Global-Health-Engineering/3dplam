@@ -23,8 +23,8 @@ Two designs are current; they are alternatives, not revisions.
 
 | File                             | Use it when |
 | -------------------------------- | ----------- |
-| `filter-support-strand-mesh.stl` | **Default.** Parallel in-air printed strands, each layer rotated 120°. Uses 35% less material, and gave uniform filtration in testing. This is the design used for the *E. coli* validation |
-| `filter-support-hex-hole.stl`    | Hexagonal hole pattern. More forgiving to print — no in-air bridging. Use if the strand mesh prints poorly on your machine |
+| `filter-support-strand-mesh.stl` | **Default.** Parallel in-air printed strands, each layer rotated 120°. Uses 35 % less material, and gave uniform filtration in testing. This is the design used for the *E. coli* validation |
+| `filter-support-hex-hole.stl`    | Hexagonal hole pattern. More forgiving to print: no in-air bridging. Use if the strand mesh prints poorly on your machine |
 
 ## Funnel variants
 
@@ -50,14 +50,14 @@ The base's top connection also accepts **commercial Millipore Microfil funnels**
 | Directory         | Contents                                                     |
 | ----------------- | ------------------------------------------------------------ |
 | `stl/`            | Printable meshes, millimetres                                |
-| `step/`           | Editable B-rep — modify the design here                      |
+| `step/`           | Editable B-rep: modify the design here                      |
 | `rpet/`           | Shrinkage-compensated variants for recycled PET (STL + STEP) |
-| `assembly/`       | Reference assembly — **not** a printable part                |
+| `assembly/`       | Reference assembly: **not** a printable part                |
 | `print-profiles/` | Slicer settings for a gas-tight print                        |
 
 ## Versions
 
-Filenames carry no version numbers: these files are the current release, and git records their history. The shipped revisions are base V1.3, funnel V6.1, and filter supports V5 (strand mesh) and V1.2 (hex hole) — recorded in [`../docs/design-history.md`](../docs/design-history.md) along with what changed between them.
+Filenames carry no version numbers: these files are the current release, and git records their history. The shipped revisions are base V1.3, funnel V6.1, and filter supports V5 (strand mesh) and V1.2 (hex hole), recorded in [`../docs/design-history.md`](../docs/design-history.md) along with what changed between them.
 
 Source CAD lives in Onshape; see [`onshape.md`](onshape.md).
 

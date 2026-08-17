@@ -38,7 +38,7 @@ jobs:
         run: |
           # Measures tracked files only (git ls-files), not the whole
           # working tree. `du -sm .` would also count node_modules/ and
-          # site/dist/ once the site build below has run — both are
+          # site/dist/ once the site build below has run, both are
           # git-ignored build output, not repository content, and
           # node_modules/ alone is ~150 MB, which would make this gate
           # fail for a reason that has nothing to do with what ships.
@@ -52,14 +52,14 @@ jobs:
           if [ "$size_mb" -ge 100 ]; then
             echo
             echo "ERROR: tracked files total ${size_mb} MB, at or over the 100 MB budget."
-            echo "The largest tracked paths are listed above — trim, re-encode, or Git LFS one of those before merging."
+            echo "The largest tracked paths are listed above, trim, re-encode, or Git LFS one of those before merging."
             exit 1
           fi
 
       # The copy gate above only sees README.md, docs/**/*.md and the Astro
       # *source* (site/src/**). The published page is the built HTML in
       # site/dist/, which could in principle differ from any single source
-      # file — so build the site for real and scan what it actually emits.
+      # file, so build the site for real and scan what it actually emits.
 
       - uses: actions/setup-node@v4
         with:

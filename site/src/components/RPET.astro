@@ -4,7 +4,7 @@ import site from '../data/site.json';
 const stages = [
   { n: '1', label: 'Bottle', detail: 'A clean, used PET drinking-water bottle.' },
   { n: '2', label: 'Filament', detail: 'Cut into a single continuous strand and re-formed at filament gauge on a Petamentor2 rebuild, ~185 °C, spool turning ~1 rpm.' },
-  { n: '3', label: 'Part', detail: 'Printed from the shrinkage-compensated hardware/rpet/ geometry — not the standard STLs.' },
+  { n: '3', label: 'Part', detail: 'Printed from the shrinkage-compensated hardware/rpet/ geometry, not the standard STLs.' },
 ];
 ---
 <section id="rpet">
@@ -34,7 +34,7 @@ const stages = [
     <strong>Petamentor2</strong>, an open-source PET-bottle-to-filament
     machine designed by <strong>Ondřej Šraitr</strong>:
     <a href="https://petamentor2.com/" rel="noopener">petamentor2.com</a>.
-    The author of this project built a Petamentor2 himself — he did not
+    The author of this project built a Petamentor2 himself; he did not
     design the machine. Its design files are Šraitr's work and are
     deliberately not redistributed in this repository; build your own from
     the upstream project.
@@ -44,11 +44,11 @@ const stages = [
   <p>
     rPET shrinks differently during cooling than ABS or PLA, so
     <code>hardware/rpet/</code> is dimensionally compensated for that
-    shrinkage — printing the standard STLs in rPET will not fit. There is
+    shrinkage, printing the standard STLs in rPET will not fit. There is
     no separate rPET base: the base needs no compensation, so the same
     <code>hardware/stl/base.stl</code> is correct in every material,
     including rPET. rPET's print settings also differ enough from the ABS
-    gas-tight profile that they don't carry over directly — see
+    gas-tight profile that they don't carry over directly; see
     <a href={`${site.repo}/blob/main/docs/rpet.md`}>docs/rpet.md</a> for the
     settings source and the full bottle-to-filament procedure.
   </p>

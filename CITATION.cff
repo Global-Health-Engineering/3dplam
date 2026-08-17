@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this hardware, please cite it as below."
-title: "3DPLAM — 3D-Printed Lightweight Affordable Manifold for Microbial Water Quality Testing"
+title: "3DPLAM, 3D-Printed Lightweight Affordable Manifold for Microbial Water Quality Testing"
 abstract: >-
   An open-source, 3D-printable membrane-filtration manifold for Escherichia coli
   quantification in drinking water, validated against the Millipore EZ-Fit

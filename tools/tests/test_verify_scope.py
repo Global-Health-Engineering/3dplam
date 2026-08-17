@@ -60,14 +60,14 @@ def test_ordinary_release_files_are_accepted(path):
 
 def test_the_one_documented_video_exception_is_accepted():
     # This exact, already-reviewed asset is a processed deliverable, not
-    # raw footage — see the comment above ALLOWED_EXTENSION_EXCEPTIONS in
+    # raw footage; see the comment above ALLOWED_EXTENSION_EXCEPTIONS in
     # tools/verify_scope.py for the full justification.
     assert offending_reason("site/public/video/base-printing-timelapse.mp4") is None
 
 
 def test_a_second_video_file_is_still_rejected():
     # The exception is for one exact path, not for the extension in
-    # general — proves it doesn't quietly reopen the whole video ban.
+    # general, proves it doesn't quietly reopen the whole video ban.
     assert offending_reason("site/public/video/another-clip.mp4") is not None
 
 

@@ -4,7 +4,7 @@ This is the *E. coli* membrane-filtration protocol used for the validation
 reported in [`validation.md`](validation.md), transcribed verbatim from the
 author's own lab documentation (`Functional Testing/E. coli
 Quantification_README.txt` in the project handover; reproduced in the
-thesis, Appendix B). It assumes the manifold is already built — see
+thesis, Appendix B). It assumes the manifold is already built; see
 [`assembly.md`](assembly.md) first.
 
 The steps below reproduce the protocol exactly; they are not paraphrased.
@@ -17,17 +17,17 @@ The steps below reproduce the protocol exactly; they are not paraphrased.
 | Culture plate | Compact Dry™ ECO, Shimadzu Diagnostics |
 | Sample-pull syringe | 100 mL PVC |
 | Forceps | for membrane handling |
-| Disinfecting wipes | 70% isopropyl alcohol, 60 × 30 mm |
-| Disinfectant | 70% ethanol (hands, forceps) |
+| Disinfecting wipes | 70 % isopropyl alcohol, 60 × 30 mm |
+| Disinfectant | 70 % ethanol (hands, forceps) |
 
 A sterile 1 mL disposable syringe is also used, in step 7, to draw the plate
 inoculum out of the funnel.
 
 ## Filtration workflow
 
-1. Disinfect hands using 70% ethanol.
+1. Disinfect hands using 70 % ethanol.
 2. Sterilize the upper surface of the filter support and the inner surface
-   of the funnel using a 70% isopropyl alcohol wipe (60 mm x 30 mm).
+   of the funnel using a 70 % isopropyl alcohol wipe (60 mm x 30 mm).
 3. Disinfect the forceps using pure ethanol and a flame.
 4. Place the filter membrane, gridded side up, on top of the filter support
    using the forceps.
@@ -47,9 +47,9 @@ inoculum out of the funnel.
 ## Incubation and reading
 
 Incubate the inoculated Compact Dry™ ECO plate for **24 h at 37 °C**, then
-count colonies. How those counts become a WHO risk classification — the 0.5
-CFU/100 mL convention for "no colonies," the risk bands, and the 5%
-boundary-tolerance rule — is covered in [`validation.md`](validation.md),
+count colonies. How those counts become a WHO risk classification, the 0.5
+CFU/100 mL convention for "no colonies," the risk bands, and the 5 %
+boundary-tolerance rule, is covered in [`validation.md`](validation.md),
 not repeated here.
 
 ## Notes from the source protocol
@@ -57,5 +57,5 @@ not repeated here.
 Two of the eight validation samples needed special handling, carried
 through unchanged into [`data/README.md`](../data/README.md)'s caveats:
 sample 5 stalled at roughly the 20 mL mark of step 8 (~80 mL actually
-pulled through), and sample 7 is a positive control — 1,250 mL of tap water
-spiked with 25 mL of a faecal suspension — rather than a field sample.
+pulled through), and sample 7 is a positive control, 1,250 mL of tap water
+spiked with 25 mL of a faecal suspension, rather than a field sample.

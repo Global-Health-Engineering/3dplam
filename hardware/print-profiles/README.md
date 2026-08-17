@@ -12,15 +12,15 @@ this directory implement them exactly.
 
 | Setting | Value | Changed from stock? |
 |---|---|---|
-| Base profile | `0.16mm Optimal @BBL X1C` / `@BBL P2S` | — |
-| Filament | ABS | — |
+| Base profile | `0.16mm Optimal @BBL X1C` / `@BBL P2S` |, |
+| Filament | ABS |, |
 | Layer height | 0.16 mm | no |
 | Wall loops | **6** | yes (stock 2) |
 | Top shell layers | **6** | yes (stock 5) |
 | Bottom shell layers | **6** | yes (stock 3) |
-| Top / bottom surface pattern | Monotonic | — |
-| Top / bottom surface density | 100% | — |
-| Sparse infill | 15% grid | no |
+| Top / bottom surface pattern | Monotonic |, |
+| Top / bottom surface density | 100 % |, |
+| Sparse infill | 15 % grid | no |
 | Nozzle | 0.4 mm | no |
 | Supports | off | no |
 | Brim | 5 mm auto-brim | no |
@@ -45,7 +45,7 @@ printer.
 
 | Printer | Where | Notes |
 |---|---|---|
-| Bambu Lab X1 Carbon | ETH GHE lab | Enclosed — required for ABS and ASA. Used for the validated prints |
+| Bambu Lab X1 Carbon | ETH GHE lab | Enclosed, required for ABS and ASA. Used for the validated prints |
 | Bambu Lab P2S | Author's own | Enclosed |
 
 ## Materials
@@ -55,7 +55,7 @@ printer.
 | **ABS** | Yes | Recommended. Best heat and mechanical performance |
 | ASA | Yes | Equivalent to ABS; less widely available |
 | PETG | No | Viable below ~80 °C. Widely available |
-| rPET | No | Sustainable route — see [`../../docs/rpet.md`](../../docs/rpet.md). **Use the `rpet/` geometry** |
+| rPET | No | Sustainable route; see [`../../docs/rpet.md`](../../docs/rpet.md). **Use the `rpet/` geometry** |
 | PLA | No | Not recommended: 60 °C glass transition, and it absorbs water |
 
 ## Files
@@ -67,7 +67,7 @@ printer.
 
 Import a `.json` with *Preset → Process → Import*. See
 [Generating ready-to-slice 3MF projects](#generating-ready-to-slice-3mf-projects)
-below for a bundled alternative — not yet shipped.
+below for a bundled alternative, not yet shipped.
 
 ## Generating ready-to-slice 3MF projects
 
@@ -77,7 +77,7 @@ Not yet shipped. To add them:
 2. For each part in `../stl/`: open it, apply the **3DPLAM gas-tight**
    process preset, confirm the object measures in tens of millimetres, then
    *File → Export → Export Project* to `../3mf/<same-name>.3mf`
-3. Verify each export carries its settings — geometry-only exports are the
+3. Verify each export carries its settings, geometry-only exports are the
    defect this repository exists to avoid:
 
 ```bash

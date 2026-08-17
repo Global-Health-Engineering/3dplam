@@ -6,18 +6,18 @@ const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
 const v = site.validation;
 
 const mismatches = [
-  { sample: 4, manifold: 'ABS', gm: '9.97', band: 'intermediate', ref: '11.05', refBand: 'high', outcome: 'Accepted — within 5% of the 10 boundary' },
-  { sample: 5, manifold: 'rPET', gm: '62.07', band: 'high', ref: '103.16', refBand: 'very high', outcome: 'Accepted — reference is within 5% of the 100 boundary' },
-  { sample: 5, manifold: 'ABS', gm: '50.78', band: 'high', ref: '103.16', refBand: 'very high', outcome: 'Accepted — same boundary' },
-  { sample: 7, manifold: 'rPET', gm: '3.66', band: 'intermediate', ref: '90.41', refBand: 'high', outcome: 'Mismatch — neither value is within 5% of the 10 boundary' },
+  { sample: 4, manifold: 'ABS', gm: '9.97', band: 'intermediate', ref: '11.05', refBand: 'high', outcome: 'Accepted: within 5 % of the 10 boundary' },
+  { sample: 5, manifold: 'rPET', gm: '62.07', band: 'high', ref: '103.16', refBand: 'very high', outcome: 'Accepted: reference is within 5 % of the 100 boundary' },
+  { sample: 5, manifold: 'ABS', gm: '50.78', band: 'high', ref: '103.16', refBand: 'very high', outcome: 'Accepted: same boundary' },
+  { sample: 7, manifold: 'rPET', gm: '3.66', band: 'intermediate', ref: '90.41', refBand: 'high', outcome: 'Mismatch: neither value is within 5 % of the 10 boundary' },
 ];
 
 const materials = [
-  { material: 'ABS', result: 'No critical damage under heat, UV or outdoor exposure — recommended' },
+  { material: 'ABS', result: 'No critical damage under heat, UV or outdoor exposure; recommended' },
   { material: 'ASA', result: 'No critical damage under heat, UV or outdoor exposure' },
   { material: 'PETG', result: 'Critical dimensional damage at 80 °C; fine under UV and outdoors' },
   { material: 'rPET', result: 'Critical dimensional damage at 80 °C; fine under UV and outdoors' },
-  { material: 'PLA', result: 'Critical damage at 80 °C — parts no longer fit together' },
+  { material: 'PLA', result: 'Critical damage at 80 °C; parts no longer fit together' },
 ];
 
 const scope = [
@@ -33,8 +33,8 @@ const scope = [
   <h2>Validation</h2>
   <p class="lead">
     The design was validated at {v.sites} sample sites using
-    {v.manifolds} manifolds — an ABS 3DPLAM, an rPET 3DPLAM, and a steel
-    Millipore EZ-Fit as the <strong>reference instrument</strong> — with
+    {v.manifolds} manifolds, an ABS 3DPLAM, an rPET 3DPLAM, and a steel
+    Millipore EZ-Fit as the <strong>reference instrument</strong>, with
     {v.replicates} replicates per manifold per site.
   </p>
 
@@ -61,7 +61,7 @@ const scope = [
       <div class="num">{v.accepted_within_tolerance} of {v.accepted_within_tolerance_of}</div>
       <div class="label">
         classifications <strong>accepted</strong>, once a geometric mean
-        within {v.boundary_tolerance_pct}% of a WHO band boundary is allowed
+        within {v.boundary_tolerance_pct} % of a WHO band boundary is allowed
         into either adjacent band
       </div>
     </div>
@@ -79,7 +79,7 @@ const scope = [
     two are not interchangeable. Four raw mismatches sit at a WHO band
     boundary, where a small measurement difference changes the classified
     band without indicating a real disagreement about water quality; the
-    {v.boundary_tolerance_pct}% rule resolves three of the four:
+    {v.boundary_tolerance_pct} % rule resolves three of the four:
   </p>
 
   <div class="scroll-x">
@@ -104,7 +104,7 @@ const scope = [
   </div>
   <p class="table-note">
     The sole comparison that fails even with the tolerance applied is
-    sample 7, rPET — the same sample that is a spiked positive control, not
+    sample 7, rPET, the same sample that is a spiked positive control, not
     a field sample. Both headline counts can be reproduced directly from
     the shipped data:
   </p>

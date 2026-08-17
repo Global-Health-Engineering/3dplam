@@ -18,7 +18,7 @@ def write_stl(path, triangles):
 
 @pytest.fixture
 def cube_metres(tmp_path):
-    """A 0.077 m cube — the defect: correct object, wrong unit."""
+    """A 0.077 m cube, the defect: correct object, wrong unit."""
     p = tmp_path / "metres.stl"
     tri = np.array([[[0, 0, 0], [0.077, 0, 0], [0, 0.077, 0]],
                     [[0, 0, 0.077], [0.077, 0, 0.077], [0, 0.077, 0.077]]])

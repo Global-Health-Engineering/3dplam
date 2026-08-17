@@ -7,15 +7,15 @@ metres, so a 77 mm base arrives 77 m wide; every imported object is scaled
 by 0.001 and the scale applied immediately, after which all coordinates in
 this script are genuine metres (i.e. millimetres / 1000).
 
-Only three renders are produced here — real photographs of the printed
+Only three renders are produced here, real photographs of the printed
 device cover the hero shot, the per-part views, and the filter-support
 comparison, so this script is limited to the views a camera cannot take:
 an exploded stack and two cutaways (the sealing interface, and the
 filter-support strand mesh).
 
 Camera framing, the section cut plane, and the membrane's position are all
-computed from the imported geometry's bounding boxes at render time — none
-of it is a hardcoded coordinate — so the script keeps working if the CAD is
+computed from the imported geometry's bounding boxes at render time, none
+of it is a hardcoded coordinate, so the script keeps working if the CAD is
 revised.
 
 Requires Blender 5.2 LTS. Two API notes for anyone touching this file:
@@ -47,7 +47,7 @@ FILTER_SUPPORT_STL = os.path.join(
     ROOT, "hardware", "stl", "filter-support-strand-mesh.stl")
 ASSEMBLY_STL = os.path.join(ROOT, "hardware", "assembly", "assembly.stl")
 
-# One colour per part, applied in EVERY render — a reader who learns
+# One colour per part, applied in EVERY render, a reader who learns
 # "yellow is the funnel" in the exploded view carries that into the
 # section views without re-reading a caption. Do not give a part a
 # different colour in one figure for local contrast; that is exactly the
@@ -56,18 +56,18 @@ ASSEMBLY_STL = os.path.join(ROOT, "hardware", "assembly", "assembly.stl")
 #
 # Values are scene-linear Principled BSDF base colours, and the scene
 # renders with the Standard view transform, so displayed sRGB is roughly
-# linear^(1/2.2) — 0.42 linear reads as mid-to-dark grey on screen, 0.62
+# linear^(1/2.2), 0.42 linear reads as mid-to-dark grey on screen, 0.62
 # as light grey. The site places these renders on a near-white card
 # (--bg-2, #f6f7f9), so nothing may sit too close to white or the part
 # loses its silhouette; 0.82 was tried originally and read as a pale
 # blur, which is why the light-grey part stops at 0.62.
-COLOR_BASE = (0.42, 0.42, 0.39, 1.0)            # dark grey — the base
-COLOR_FILTER_SUPPORT = (0.62, 0.62, 0.60, 1.0)  # light grey — the filter support
-COLOR_FUNNEL = (0.56, 0.43, 0.16, 1.0)          # yellow ochre — the funnel
+COLOR_BASE = (0.42, 0.42, 0.39, 1.0)            # the base (dark grey)
+COLOR_FILTER_SUPPORT = (0.62, 0.62, 0.60, 1.0)  # the filter support (light grey)
+COLOR_FUNNEL = (0.56, 0.43, 0.16, 1.0)          # the funnel (yellow ochre)
 # The membrane has no CAD file and is not a printed part; it keeps the
 # thesis figure's red (desaturated to terracotta) so it reads as the
 # consumable passing through the joint, distinct from all three prints.
-COLOR_MEMBRANE = (0.60, 0.18, 0.13, 1.0)        # muted terracotta — the membrane
+COLOR_MEMBRANE = (0.60, 0.18, 0.13, 1.0)        # the membrane (muted terracotta)
 
 # Part name (as set by load_assembly_bodies) -> colour, so a multi-body
 # scene can be coloured by lookup rather than by remembering which
@@ -97,7 +97,7 @@ def reset():
     scene.render.image_settings.file_format = "PNG"
     scene.render.image_settings.color_mode = "RGBA"
     # Blender 5.2 defaults to the AgX view transform, which rolls off
-    # highlights and desaturates strongly — it turned the intended muted
+    # highlights and desaturates strongly, it turned the intended muted
     # teal/ochre/terracotta of the membrane-clamp figure into washed-out
     # pastels, and likely made the original near-white plastic look even
     # paler than its base colour alone would. Standard renders the
@@ -134,7 +134,7 @@ def set_material(obj, mat):
 
 
 KEY_ENERGY = 30
-KEY_DIST = 3.2  # metres — matches the "key" entry below
+KEY_DIST = 3.2  # metres, matches the "key" entry below
 
 
 def lighting(center, fill_dir=None, fill_radius=None, fill_strength=3.0):
@@ -145,20 +145,20 @@ def lighting(center, fill_dir=None, fill_radius=None, fill_strength=3.0):
     A boolean cut leaves a flat face oriented straight at the camera; the
     generic three-point rig above (all placed metres away, effectively
     directional) barely grazes it, so a cut render reads as a dark band.
-    Pass `fill_dir`/`fill_radius` — the camera's direction and the
-    scene's own geometric radius — to add a light from near the viewer's
+    Pass `fill_dir`/`fill_radius`, the camera's direction and the
+    scene's own geometric radius, to add a light from near the viewer's
     position, close enough to actually illuminate that face.
 
     Its energy is *not* copied from the key light: at a much shorter
     distance, the same wattage massively overexposes the shot (this
-    happened on the first attempt — irradiance falls off with the square
+    happened on the first attempt, irradiance falls off with the square
     of distance, so reusing a far light's power up close floods it).
     Instead it is derived from the key light's own irradiance at its
     distance, scaled to the new distance, times `fill_strength`.
 
     The world's ambient strength and the fill/rim energies are kept low
     relative to the key (roughly 4:1 key-to-fill) so that form is carried
-    by shading gradients rather than washed flat — with the original
+    by shading gradients rather than washed flat, with the original
     near-white plastic and a strong flat ambient, mid-tones and shadow
     fell in too narrow a range to read as depth."""
     world = bpy.data.worlds.new("studio")
@@ -198,7 +198,7 @@ def lighting(center, fill_dir=None, fill_radius=None, fill_strength=3.0):
 
 def import_and_prepare(path):
     """Import an STL, fix its units, shade it, return the bare object
-    (no material — callers assign one so multi-body scenes can colour
+    (no material, callers assign one so multi-body scenes can colour
     parts differently)."""
     before = set(bpy.data.objects)
     bpy.ops.wm.stl_import(filepath=os.path.abspath(path))
@@ -221,7 +221,7 @@ def world_bbox(obj):
 
 def radial_extent(obj, axis_xy, z_lo, z_hi):
     """Maximum XY distance from `axis_xy` among `obj`'s vertices whose
-    world Z falls in [z_lo, z_hi] — the true local radius at a given
+    world Z falls in [z_lo, z_hi], the true local radius at a given
     height band. The overall bounding box is no substitute here: the
     base's widest point is its bottom brim/legs, not its top connection,
     so `bbox_radius` would place the membrane-clamp crop in empty air."""
@@ -257,7 +257,7 @@ def bbox_radius(lo, hi):
 
 def load_assembly_bodies():
     """Import the reference assembly and split it into its three loose
-    bodies, returning (base, filter_support, funnel) — real objects at
+    bodies, returning (base, filter_support, funnel): real objects at
     their true assembled positions, identified by stacking order (base is
     lowest, filter support nests just above it inside the base, funnel
     spans highest) and cross-checked by triangle count so a mislabel
@@ -334,11 +334,11 @@ SENSOR_WIDTH = 36.0  # mm, Blender's default camera sensor width
 def frame_camera(center, radius, direction, lens=85, margin=1.15):
     """Place a tracked camera looking at `center` from `direction` (need
     not be normalized), at the closest distance that keeps a sphere of
-    `radius` entirely inside the lens's field of view — computed from the
+    `radius` entirely inside the lens's field of view, computed from the
     lens's actual angle, not a guessed multiplier, so nothing at the
     frame edges gets clipped. TRACK_TO keeps `center` exactly in the
     middle of the frame regardless of `direction`, so a tilted or 3/4
-    `direction` never throws the composition off-centre — only `radius`
+    `direction` never throws the composition off-centre, only `radius`
     and `margin` control how much is visible. Returns the camera
     distance, for callers that want to place a light relative to it."""
     half_fov = math.atan((SENSOR_WIDTH / 2) / lens)
@@ -369,7 +369,7 @@ def frame_camera(center, radius, direction, lens=85, margin=1.15):
 def add_shadow_catcher(lo, hi, margin_factor=8.0):
     """A large plane at the lowest point of the scene (`lo.z`), marked as
     a Cycles shadow catcher so it renders *only* the soft contact shadow
-    the geometry casts on it — the plane itself stays invisible. Combined
+    the geometry casts on it; the plane itself stays invisible. Combined
     with `film_transparent`, the shadowed pixels get partial alpha rather
     than none, so the shadow survives into the PNG and composites onto
     whatever background the page puts under it. Without this, a
@@ -400,7 +400,7 @@ def decimate_for_web(obj, max_tris):
     """Reduce `obj` to roughly `max_tris` triangles for browser delivery.
 
     Two passes, cheapest first. Planar dissolve merges faces that are
-    coplanar within a small angle — on meshes tessellated out of CAD it
+    coplanar within a small angle, on meshes tessellated out of CAD it
     removes a large share of the triangles while changing the silhouette
     by nothing at all, because the removed edges were interior to flat
     regions. Only if that alone misses the budget does collapse
@@ -412,7 +412,7 @@ def decimate_for_web(obj, max_tris):
     """
     before = tri_count(obj)
     if before <= max_tris:
-        print(f"    {obj.name}: {before:,} tris, under budget — untouched")
+        print(f"    {obj.name}: {before:,} tris, under budget, untouched")
         return
 
     bpy.context.view_layer.objects.active = obj
@@ -435,8 +435,8 @@ def decimate_for_web(obj, max_tris):
 def export_glb(name, objs, max_tris=60000):
     """Write `objs` to site/public/models/<name>.glb.
 
-    Only the named objects are exported — no camera, no lights, no shadow
-    catcher — because the viewer supplies its own. Materials come along,
+    Only the named objects are exported, no camera, no lights, no shadow
+    catcher, because the viewer supplies its own. Materials come along,
     which is what keeps the 3D colours identical to the render's without
     a second palette defined in JavaScript.
     """
@@ -471,8 +471,8 @@ def render_assembly_exploded():
     for obj in (base_obj, filter_obj, funnel_obj):
         set_material(obj, matte_material(f"plastic-{obj.name}", PART_COLORS[obj.name]))
 
-    # Pull the middle and top parts apart along Z so the stacking order —
-    # base, then filter support seated in it, then funnel on top — reads
+    # Pull the middle and top parts apart along Z so the stacking order, 
+    # base, then filter support seated in it, then funnel on top, reads
     # clearly. Gaps are chosen empirically for legibility, not to scale.
     gap_base_to_filter = mm(26)
     gap_filter_to_funnel = mm(34)
@@ -500,12 +500,12 @@ def render_membrane_clamp():
 
     # The device is axisymmetric and the cut below exposes a diametral
     # cross-section, so the sealing ring appears at the outer edges of
-    # the cut face (X = axis ± seal_radius), not at the centre — the
+    # the cut face (X = axis ± seal_radius), not at the centre, the
     # previous version focused on the membrane's own bbox centre, which
     # is the central axis, and so framed the flat middle of the assembly
     # rather than the joint. Base is used (not the combined bbox) because
-    # its footprint alone is already centred on the true device axis —
-    # verified against the combined bbox, the two agree to sub-mm — and
+    # its footprint alone is already centred on the true device axis, 
+    # verified against the combined bbox, the two agree to sub-mm, and
     # it is available before any boolean cut touches the other bodies.
     base_lo, base_hi = world_bbox(base_obj)
     funnel_lo, funnel_hi = world_bbox(funnel_obj)
@@ -517,15 +517,15 @@ def render_membrane_clamp():
     overlap_hi_z = min(base_hi.z, funnel_hi.z)
 
     # The base's *local* radius at the mating band, not its overall bbox
-    # radius — the widest point of the whole part is its bottom brim/legs,
+    # radius, the widest point of the whole part is its bottom brim/legs,
     # well below this band, so using the bbox radius here would put the
     # crop centre in empty air.
     seal_radius = radial_extent(base_obj, axis, overlap_lo_z, overlap_hi_z)
 
-    # Frame the *span* of the interface — from the membrane's own outer
+    # Frame the *span* of the interface, from the membrane's own outer
     # edge (its inner boundary, where it starts crossing the ridge) out
     # past the ridge into the funnel wall (its outer boundary, for
-    # context) — centred on the midpoint of that span, not offset from
+    # context), centred on the midpoint of that span, not offset from
     # just one edge of it. An earlier version anchored the crop to the
     # ridge alone, which put the membrane's edge right at the frame's
     # left border with the funnel's open wall filling the rest.
@@ -547,8 +547,8 @@ def render_membrane_clamp():
     cut_half(membrane, axis, axis=1, keep_positive=True)
     set_material(membrane, matte_material("membrane-mat", COLOR_MEMBRANE, roughness=0.55))
 
-    # Tight crop on the interface itself — the raised sealing edge, the
-    # membrane crossing it, and the funnel's slope pressing down — all
+    # Tight crop on the interface itself, the raised sealing edge, the
+    # membrane crossing it, and the funnel's slope pressing down, all
     # large in frame.
     view_dir = Vector((0.0, -1.0, 0.15))
     frame_camera(focus, zoom_radius, view_dir, lens=100, margin=1.15)
@@ -556,7 +556,7 @@ def render_membrane_clamp():
     render(scene, "membrane-clamp")
     # The render is a tight crop on the seal; the model is the whole cut
     # assembly, so a reader can scroll-zoom into that same joint and then
-    # orbit around it — which is the point of making it interactive.
+    # orbit around it, which is the point of making it interactive.
     export_glb("membrane-clamp", [base_obj, filter_obj, funnel_obj, membrane])
 
 
@@ -576,7 +576,7 @@ def render_filter_support_section():
     # This render's framing already works well; margin=1.0 with the
     # FOV-based frame_camera reproduces its previous composition almost
     # exactly (verified against the prior render's camera distance), so
-    # camera and crop are deliberately left untouched — only the material
+    # camera and crop are deliberately left untouched, only the material
     # and lighting below changed.
     add_shadow_catcher(lo, hi)
     lighting(center)

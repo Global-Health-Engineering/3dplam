@@ -6,7 +6,7 @@
  * opens a model, never on page load. That is the whole reason the site's
  * only JavaScript dependency is affordable: three.js is a few hundred
  * kilobytes, and a visitor who never clicks a render never downloads a
- * byte of it. Keep every three.js import inside this file — importing it
+ * byte of it. Keep every three.js import inside this file; importing it
  * from an .astro component's frontmatter or a top-level <script> would
  * pull it into the main bundle and defeat that.
  */
@@ -34,7 +34,7 @@ export function createViewer(container) {
   const renderer = new WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.outputColorSpace = SRGBColorSpace;
-  // No tone mapping, deliberately — the same call the Blender scene makes
+  // No tone mapping, deliberately: the same call the Blender scene makes
   // when it sets its view transform to "Standard" (see the comment in
   // tools/render_parts.py). A filmic curve rolls off highlights and
   // desaturates, which turned the funnel's ochre into a pale cream and
@@ -58,14 +58,14 @@ export function createViewer(container) {
   // The conventional CAD/three.js scheme, left at its defaults: left drag
   // orbits, right drag pans, middle drag and the wheel zoom. Panning was
   // switched off in the first version to stop a reader pushing the model
-  // out of frame — the wrong trade, because it also removed the only way
+  // out of frame. That was the wrong trade, because it also removed the only way
   // to look at an off-centre feature up close. "Reset view" is the
   // recovery path instead.
   controls.enablePan = true;
   controls.screenSpacePanning = true;
   controls.panSpeed = 0.9;
 
-  // Shift/Ctrl/Cmd + left-drag also pans — the trackpad escape hatch,
+  // Shift/Ctrl/Cmd + left-drag also pans. This is the trackpad escape hatch,
   // since a trackpad has no comfortable right-drag and its two-finger
   // drag is already spoken for (macOS reports that as a wheel event, so
   // it is the zoom). That modifier is OrbitControls' own behaviour once
@@ -80,7 +80,7 @@ export function createViewer(container) {
   // shading rather than path tracing. Total incident light is kept near
   // 1.0 on a lit surface: with no tone mapping there is no highlight
   // rolloff to absorb over-lighting, so anything much above that clips
-  // the base colours to white — which is exactly how the first attempt
+  // the base colours to white, which is exactly how the first attempt
   // (ambient 1.6 plus a 2.4 key) lost the palette.
   scene.add(new AmbientLight(0xffffff, 0.55));
   const key = new DirectionalLight(0xffffff, 1.45);
@@ -103,12 +103,12 @@ export function createViewer(container) {
     // Passing `false` was a real bug on every HiDPI screen: setPixelRatio
     // makes the drawing buffer devicePixelRatio times larger, and with no
     // CSS size written, the canvas's width/height *attributes* become its
-    // layout size — so on a 2x display an 898x558 stage held a canvas
+    // layout size, so on a 2x display an 898x558 stage held a canvas
     // laid out at 1796x1116 and only its top-left quarter was visible.
     // The model appeared jammed into a corner and the centre of rotation,
     // being the centre of the real canvas, sat off-screen. It looked
     // correct at 1x, which is exactly why it survived the first round of
-    // testing — see the CSS in Device.astro for the belt-and-braces cap.
+    // testing; see the CSS in Device.astro for the belt-and-braces cap.
     renderer.setSize(w, h);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
@@ -144,13 +144,13 @@ export function createViewer(container) {
     camera.updateProjectionMatrix();
 
     // The orbit pivot is the centre of that same sphere, which the model
-    // was just translated onto — so rotation turns the geometry in place
+    // was just translated onto, so rotation turns the geometry in place
     // rather than swinging it around some point off to one side.
     controls.target.set(0, 0, 0);
     // Bound the scroll so a reader cannot zoom through the geometry and
     // lose the model, nor zoom out until it is a speck. The near bound is
     // deliberately well inside the bounding sphere: the details worth
-    // opening a 3D view for — the sealing ridge, the strand mesh — are
+    // opening a 3D view for (the sealing ridge, the strand mesh) are
     // small features on a much larger part.
     controls.minDistance = radius * 0.3;
     controls.maxDistance = distance * 2.2;

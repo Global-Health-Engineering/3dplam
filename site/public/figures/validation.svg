@@ -1272,13 +1272,13 @@ z
    </g>
   </g>
   <g id="text_32">
-   <text style="fill: #3d444d; font: 18px ui-sans-serif, system-ui, -apple-system, 'Inter', 'Segoe UI', sans-serif" transform="translate(7.56 16.917187)">E. coli validation — 3DPLAM (rPET, ABS) vs Millipore EZ-Fit reference</text>
+   <text style="fill: #3d444d; font: 18px ui-sans-serif, system-ui, -apple-system, 'Inter', 'Segoe UI', sans-serif" transform="translate(7.56 16.917187)">E. coli validation: 3DPLAM (rPET, ABS) vs Millipore EZ-Fit reference</text>
    <text style="fill: #3d444d; font: 18px ui-sans-serif, system-ui, -apple-system, 'Inter', 'Segoe UI', sans-serif" transform="translate(7.56 37.07325)">8 sites × 3 manifolds × 3 replicates</text>
   </g>
   <g id="text_33">
-   <text style="fill: #3d444d; font: 11px ui-sans-serif, system-ui, -apple-system, 'Inter', 'Segoe UI', sans-serif" transform="translate(7.56 613.301156)">† sample 5: filtration stalled at roughly the 20 mL mark of the 100 mL sample — counts reflect ~80 mL filtered, not the full volume.   ‡</text>
-   <text style="fill: #3d444d; font: 11px ui-sans-serif, system-ui, -apple-system, 'Inter', 'Segoe UI', sans-serif" transform="translate(7.56 625.61875)">sample 7: tap water spiked with horse faecal suspension as a positive control, not a field sample — and (▲, below) the one case where</text>
-   <text style="fill: #3d444d; font: 11px ui-sans-serif, system-ui, -apple-system, 'Inter', 'Segoe UI', sans-serif" transform="translate(7.56 637.936344)">a printed manifold's risk classification did not match the reference even with the 5% boundary-tolerance rule applied.</text>
+   <text style="fill: #3d444d; font: 11px ui-sans-serif, system-ui, -apple-system, 'Inter', 'Segoe UI', sans-serif" transform="translate(7.56 613.301156)">† sample 5: filtration stalled at roughly the 20 mL mark of the 100 mL sample: counts reflect ~80 mL filtered, not the full volume.   ‡</text>
+   <text style="fill: #3d444d; font: 11px ui-sans-serif, system-ui, -apple-system, 'Inter', 'Segoe UI', sans-serif" transform="translate(7.56 625.61875)">sample 7: tap water spiked with horse faecal suspension as a positive control, not a field sample. It is also (▲, below) the one case</text>
+   <text style="fill: #3d444d; font: 11px ui-sans-serif, system-ui, -apple-system, 'Inter', 'Segoe UI', sans-serif" transform="translate(7.56 637.936344)">where a printed manifold's risk classification did not match the reference even with the 5 % boundary-tolerance rule applied.</text>
   </g>
  </g>
  <defs>

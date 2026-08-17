@@ -1,7 +1,7 @@
 # Printing
 
 Which files to print, and how to choose a filter support, funnel variant or
-material, are owned by [`../hardware/README.md`](../hardware/README.md) —
+material, are owned by [`../hardware/README.md`](../hardware/README.md), 
 start there for the parts table and envelopes. This page covers the print
 settings requirement, orientation guidance, and how the five printable
 materials compare under testing.
@@ -34,11 +34,11 @@ CSVs; this is the summary.
 
 | Material | Heat, 80 °C / 2 h | UV, 48 h | Outdoor, 14 days | 25 sterilisation cycles | Verdict |
 |---|---|---|---|---|---|
-| PLA | **Critical damage** — warping and shrinkage across base, funnel and filter support; parts no longer fit together | No structural damage; visible whitening vs. an unexposed part | No critical damage; no UV discolouration; brim bent | No damage or leakage | Not recommended — 60 °C glass transition, absorbs water |
-| PETG | **Critical damage** — connection diameters shrank, parts no longer fit | No structural damage; no visible discolouration | No critical damage; no UV discolouration | No damage or leakage | Viable below ~80 °C; no enclosure needed |
-| rPET | **Critical damage** — connection diameters shrank, parts no longer fit | No structural damage; discolouration not determined | No critical damage; no UV discolouration | No damage or leakage | Sustainable route — see [`rpet.md`](rpet.md). Use the [`../hardware/rpet/`](../hardware/rpet/) geometry |
-| **ABS** | No critical damage — all parts still fit | No structural damage; visible whitening vs. an unexposed part | No critical damage; no UV discolouration | No damage or leakage | **Recommended** — needs an enclosed printer |
-| ASA | No critical damage — all parts still fit | No structural damage; visible whitening vs. an unexposed part | No critical damage; no UV discolouration; brim bent | No damage or leakage | Equivalent to ABS; less widely available |
+| PLA | **Critical damage** (warping and shrinkage across base, funnel and filter support; parts no longer fit together | No structural damage; visible whitening vs. an unexposed part | No critical damage; no UV discolouration; brim bent | No damage or leakage | Not recommended) 60 °C glass transition, absorbs water |
+| PETG | **Critical damage**, connection diameters shrank, parts no longer fit | No structural damage; no visible discolouration | No critical damage; no UV discolouration | No damage or leakage | Viable below ~80 °C; no enclosure needed |
+| rPET | **Critical damage** (connection diameters shrank, parts no longer fit | No structural damage; discolouration not determined | No critical damage; no UV discolouration | No damage or leakage | Sustainable route) see [`rpet.md`](rpet.md). Use the [`../hardware/rpet/`](../hardware/rpet/) geometry |
+| **ABS** | No critical damage (all parts still fit | No structural damage; visible whitening vs. an unexposed part | No critical damage; no UV discolouration | No damage or leakage | **Recommended**) needs an enclosed printer |
+| ASA | No critical damage, all parts still fit | No structural damage; visible whitening vs. an unexposed part | No critical damage; no UV discolouration; brim bent | No damage or leakage | Equivalent to ABS; less widely available |
 
 Source data: [`../data/heat-resistance.csv`](../data/heat-resistance.csv),
 [`../data/uv-resistance.csv`](../data/uv-resistance.csv),

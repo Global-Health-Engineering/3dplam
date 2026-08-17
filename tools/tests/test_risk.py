@@ -30,7 +30,7 @@ def test_near_threshold_detects_boundary_proximity():
 
 
 def test_sample_4_abs_is_forgiven():
-    """ABS 9.97 (intermediate) vs Millipore 11.05 (high) — boundary case."""
+    """ABS 9.97 (intermediate) vs Millipore 11.05 (high), boundary case."""
     assert classify(9.97) != classify(11.05)
     assert is_acceptable(9.97, 11.05) is True
 
@@ -42,7 +42,7 @@ def test_sample_5_both_manifolds_forgiven():
 
 
 def test_sample_7_rpet_is_not_forgiven():
-    """3.66 (intermediate) vs 90.42 (high) — nowhere near a boundary."""
+    """3.66 (intermediate) vs 90.42 (high), nowhere near a boundary."""
     assert is_acceptable(3.66, 90.42) is False
 
 

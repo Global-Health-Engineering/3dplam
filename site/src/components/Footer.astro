@@ -7,10 +7,10 @@ const licences = [
 ];
 
 const authors = [
-  'Moreno Gabriel — ETH Zürich, Global Health Engineering',
-  'Jakub Tkaczuk — ETH Zürich, Global Health Engineering',
-  'Caetano Dorea — University of Victoria',
-  'Elizabeth Tilley — ETH Zürich, Global Health Engineering',
+  'Moreno Gabriel, ETH Zürich, Global Health Engineering',
+  'Jakub Tkaczuk, ETH Zürich, Global Health Engineering',
+  'Caetano Dorea, University of Victoria',
+  'Elizabeth Tilley, ETH Zürich, Global Health Engineering',
 ];
 ---
 <section id="cite" class="footer-section">
@@ -37,7 +37,7 @@ const authors = [
         metadata: <a href={`${site.repo}/blob/main/CITATION.cff`}>CITATION.cff</a>.
       </p>
       <p class="citation-text">
-        {site.name} — 3D-Printed Lightweight Affordable Manifold for
+        {site.name}, 3D-Printed Lightweight Affordable Manifold for
         Microbial Water Quality Testing.{' '}
         {authors.map((a, i) => (i > 0 ? `, ${a}` : a))}.{' '}
         <a href={site.repo}>{site.repo}</a>
@@ -55,7 +55,7 @@ const authors = [
 </section>
 
 <style>
-  /* Licence above citation, both at the page's single content width — no
+  /* Licence above citation, both at the page's single content width, no
      side-by-side grid. The GHE/ETH logo is deliberately not repeated
      here: it already appears once, in the top navigation banner. */
   .footer-section { padding-bottom: 48px; }

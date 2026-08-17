@@ -13,27 +13,27 @@ const parts = [
 // Two pairs, each a two-up grid at the page's single content width. Row 1
 // is the assembly renders; row 2 is the filter-support render next to the
 // close-up photograph of the same part. assembly-section.png has been
-// dropped from the design — do not re-add a reference to it.
+// dropped from the design; do not re-add a reference to it.
 //
 // `model` opts a tile into the click-to-open 3D viewer, and is the name of
 // a .glb written by tools/render_parts.py from the very same Blender scene
 // as the tile's poster image. The fourth tile has no model on purpose: it
 // is a photograph of the part as actually printed, which is evidence no
-// render can stand in for — a 3D model of it would show the CAD, not the
+// render can stand in for; a 3D model of it would show the CAD, not the
 // in-air strands that came off the machine.
 const renders = [
-  { dir: 'renders', src: 'assembly-exploded.png', model: 'assembly-exploded.glb', alt: 'The three printed parts separated in an exploded view, showing the correct stacking order: base, filter support, funnel.', caption: 'Exploded view — base, filter support, funnel, in stacking order.' },
-  { dir: 'renders', src: 'membrane-clamp.png', model: 'membrane-clamp.glb', alt: 'Close-up section of the sealing interface, where the membrane is clamped between the base’s raised edge and the funnel’s inner slope.', caption: 'The seal — membrane clamped between the base’s raised edge and the funnel’s slope.' },
-  { dir: 'renders', src: 'filter-support-section.png', model: 'filter-support-section.glb', alt: 'A section cut through the filter support, showing the individual printed strands of the strand-mesh design.', caption: 'Cut through the strand mesh — parallel in-air strands, each layer rotated 120°.' },
-  { dir: 'photos', src: 'filter-support-strand-mesh.webp', alt: 'Close-up photograph of the printed filter support, individual in-air printed strands visible.', caption: 'The strand-mesh filter support as printed — the default, and the one used for the <em>E. coli</em> validation.' },
+  { dir: 'renders', src: 'assembly-exploded.png', model: 'assembly-exploded.glb', alt: 'The three printed parts separated in an exploded view, showing the correct stacking order: base, filter support, funnel.', caption: 'Exploded view: base, filter support, funnel, in stacking order.' },
+  { dir: 'renders', src: 'membrane-clamp.png', model: 'membrane-clamp.glb', alt: 'Close-up section of the sealing interface, where the membrane is clamped between the base’s raised edge and the funnel’s inner slope.', caption: 'The seal: membrane clamped between the base’s raised edge and the funnel’s slope.' },
+  { dir: 'renders', src: 'filter-support-section.png', model: 'filter-support-section.glb', alt: 'A section cut through the filter support, showing the individual printed strands of the strand-mesh design.', caption: 'Cut through the strand mesh: parallel in-air strands, each layer rotated 120°.' },
+  { dir: 'photos', src: 'filter-support-strand-mesh.webp', alt: 'Close-up photograph of the printed filter support, individual in-air printed strands visible.', caption: 'The strand-mesh filter support as printed: the default, and the one used for the <em>E. coli</em> validation.' },
 ];
 ---
 <section id="device">
   <div class="eyebrow">Device</div>
   <h2>Device</h2>
   <p class="lead">
-    The manifold is three printed parts — a base, a funnel and a filter
-    support — each printed separately without support structures. They
+    The manifold is three printed parts (a base, a funnel and a filter
+    support), each printed separately without support structures. They
     lock together without adhesive except at the syringe joint. A 100 mL
     PVC syringe and a 0.45 µm membrane filter complete the assembly.
   </p>
@@ -65,7 +65,7 @@ const renders = [
     </table>
   </div>
   <p class="table-note">
-    Dimensions and files for the default configuration — strand-mesh filter
+    Dimensions and files for the default configuration: strand-mesh filter
     support, clamped-membrane funnel. See <a href={`${site.repo}/blob/main/hardware/README.md`}>hardware/README.md</a>
     for the concurrent alternatives: <code>filter-support-hex-hole.stl</code>
     (more forgiving to print) and <code>funnel-tape-fit.stl</code> (for a
@@ -123,7 +123,7 @@ const renders = [
 <script>
   // Progressive enhancement, in the strict sense: the posters are plain
   // <img> inside a <button>, so with this script dead the section still
-  // shows every render — only the extra 3D affordance is missing. Hence
+  // shows every render, only the extra 3D affordance is missing. Hence
   // the early returns rather than any fallback path.
   const dialog = document.getElementById('model-dialog') as HTMLDialogElement | null;
   const stage = document.getElementById('model-stage');
@@ -154,7 +154,7 @@ const renders = [
         status!.hidden = true;
       } catch (err) {
         // A WebGL-less browser or a failed fetch must not leave a blank
-        // box with no explanation — the poster image is still visible
+        // box with no explanation; the poster image is still visible
         // behind the dialog, so say what happened and let them close it.
         console.error(err);
         status!.hidden = false;
@@ -173,7 +173,7 @@ const renders = [
     document.getElementById('model-reset')?.addEventListener('click', () => viewer?.reset());
 
     // Covers Esc, which fires `close` on the dialog without going through
-    // the button above — the render loop has to stop either way.
+    // the button above; the render loop has to stop either way.
     dialog.addEventListener('close', () => {
       viewer?.stop();
       opener?.focus();
@@ -186,7 +186,7 @@ const renders = [
     // The press has to be checked as well as the release. A `click` fires
     // wherever the pointer is *released*, so testing that alone closed
     // the viewer whenever an orbit drag was released past the dialog
-    // edge — easy to do, since rotating means dragging a long way. Only a
+    // edge, easy to do, since rotating means dragging a long way. Only a
     // gesture that both starts and ends outside counts as a backdrop
     // click.
     let pressedOutside = false;

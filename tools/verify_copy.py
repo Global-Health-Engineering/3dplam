@@ -2,7 +2,7 @@
 """Release gate: this device is an alternative route to the same
 measurement, not a replacement for the instrument it was validated against.
 
-The Millipore EZ-Fit served as the reference instrument in validation — the
+The Millipore EZ-Fit served as the reference instrument in validation, the
 thing 3DPLAM's counts were checked against, not a product this project
 claims to supersede. Copy that frames it as a replacement or a rated
 equivalent overstates what the validation (n=8 sites, one field season)
@@ -29,7 +29,7 @@ BANNED_PHRASES = [
 # Scanned when no paths are given on the command line: every markdown page
 # plus the Astro site *source* (components, layouts, and the copy-holding
 # site.json). This catches banned phrasing at the point someone would
-# actually type it. It is deliberately not sufficient on its own — see
+# actually type it. It is deliberately not sufficient on its own; see
 # tools/README.md and .github/workflows/verify.yml, where a second
 # invocation scans the *built* site/dist/**/*.html, because the built HTML
 # is what actually ships and could in principle differ from any single
@@ -84,7 +84,7 @@ def main(patterns=None):
             f"\n{total_hits} banned phrase occurrence(s) in {len(files)} "
             f"file(s) scanned. The Millipore EZ-Fit is the reference "
             f"instrument this device is validated against, not a product "
-            f"it replaces — reword to describe an alternative route to the "
+            f"it replaces, reword to describe an alternative route to the "
             f"same measurement."
         )
         return 1

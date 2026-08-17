@@ -17,7 +17,7 @@ everything certified.
 
 This check only looks at paths Git actually tracks (`git ls-files`), so
 work-in-progress files sitting in an ignored directory such as `incoming/`
-never trip it — but anything `git add -f`'d against .gitignore will.
+never trip it, but anything `git add -f`'d against .gitignore will.
 
 Usage:  python3 tools/verify_scope.py
    or:  python3 -m tools.verify_scope
@@ -68,13 +68,13 @@ BANNED_EXTENSIONS = [
 # git-ignored and never reaches this check). It is not a ban on video as a
 # medium: the human partner explicitly requested this specific timelapse be
 # hosted in-repo (progress.md, "Out-of-band changes (human partner,
-# 2026-07-31)"), it is a size-reduced, purpose-encoded deliverable — not raw
-# footage — documented in site/public/ASSETS.md ("1168x720, H.264, 8.6s,
+# 2026-07-31)"): it is a size-reduced, purpose-encoded deliverable, not raw
+# footage, documented in site/public/ASSETS.md ("1168x720, H.264, 8.6s,
 # 3.0MB", down from the 2.9 MB incoming/videos/base_printing.mp4 raw
 # source), and it is deliberately embedded via a plain <video> element in
 # site/src/components/Print.astro (commit b60691e). Any *other* tracked
-# .mp4/.mov/.heic file — including a second video anywhere else in the
-# tree — still fails this gate.
+# .mp4/.mov/.heic file, including a second video anywhere else in the
+# tree, still fails this gate.
 ALLOWED_EXTENSION_EXCEPTIONS = {
     "site/public/video/base-printing-timelapse.mp4",
 }
@@ -97,11 +97,11 @@ def offending_reason(path):
 
     for needle in BANNED_SUBSTRINGS:
         if needle in lowered:
-            return f"contains {needle!r} — third-party design files are out of scope"
+            return f"contains {needle!r}, third-party design files are out of scope"
 
     for rule in BANNED_PATH_PREFIXES:
         if _matches_path_prefix(posix_path, rule):
-            return f"is under {rule!r} — excluded from the release"
+            return f"is under {rule!r}, excluded from the release"
 
     if posix_path in ALLOWED_EXTENSION_EXCEPTIONS:
         return None
@@ -109,7 +109,7 @@ def offending_reason(path):
     _, ext = os.path.splitext(posix_path)
     for banned in BANNED_EXTENSIONS:
         if fnmatch.fnmatch(ext.lower(), banned):
-            return f"has extension {ext!r} — excluded file type"
+            return f"has extension {ext!r}, excluded file type"
 
     return None
 

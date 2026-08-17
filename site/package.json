@@ -2,7 +2,7 @@
   "name": "3dplam-site",
   "version": "1.0.0",
   "private": true,
-  "description": "GitHub Pages site for 3DPLAM — open-source, 3D-printable membrane-filtration manifold for E. coli quantification in drinking water.",
+  "description": "GitHub Pages site for 3DPLAM, open-source, 3D-printable membrane-filtration manifold for E. coli quantification in drinking water.",
   "type": "module",
   "scripts": {
     "dev": "astro dev",

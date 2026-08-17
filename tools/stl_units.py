@@ -18,7 +18,7 @@ def read_stl(path):
         count = struct.unpack("<I", f.read(4))[0]
         raw = f.read(count * TRIANGLE_BYTES)
     if len(raw) < count * TRIANGLE_BYTES:
-        raise ValueError(f"{path}: truncated — expected {count} triangles")
+        raise ValueError(f"{path}: truncated, expected {count} triangles")
     data = np.frombuffer(raw, dtype=np.uint8).reshape(count, TRIANGLE_BYTES)
     floats = data[:, :48].copy().view(np.float32).reshape(count, 12)
     return floats[:, 3:12].reshape(count, 3, 3).astype(np.float64), count
