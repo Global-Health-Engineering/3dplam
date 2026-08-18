@@ -119,6 +119,14 @@ LABELS = {
 }
 ORDER = ["ft1", "ft2", "ft3"]
 
+# The legend spells each manifold out in full; a hover readout has no room
+# for that and the reader has already met the long form.
+SHORT_LABELS = {
+    "ft1": "3DPLAM (rPET)",
+    "ft2": "3DPLAM (ABS)",
+    "ft3": "Millipore EZ-Fit",
+}
+
 # Ink colour optimized for the white background the site always uses (the
 # page is light-only; there is no dark theme to also satisfy).
 INK = "#3d444d"           # axis text, ticks, spines, titles, legend, footnote
@@ -231,6 +239,79 @@ def shade_bands(ax, label=False):
                 fontsize=FS_BAND, color=INK, alpha=0.85)
 
 
+# --- hover layer ---------------------------------------------------------
+#
+# The published SVG is inlined into the page (see Performance.astro), which
+# is what lets it respond to a pointer at all: an <img>-embedded SVG is an
+# inert picture, so no amount of markup inside it would ever fire an event.
+#
+# matplotlib draws no hit targets of its own, and its painted marks are far
+# too small to aim at (a point is ~8 pt across). So each mark's position is
+# measured here, at plot time, and written out afterwards as a transparent
+# shape in a layer of its own. Two things fall out of doing it this way:
+# the hit target can be as large as it needs to be (24 pt across for a
+# point, per the interaction spec) without changing how the figure looks,
+# and the values ride along in data attributes, so the page needs no second
+# request and no copy of the dataset.
+HIT_RADIUS_PT = 12.0
+
+# Marks are located in figure-relative coordinates (0..1 on each axis)
+# rather than pixels. That is deliberate: matplotlib renders SVG at 72 dpi
+# regardless of the figure's own dpi setting, so a pixel measurement taken
+# here would be wrong by the ratio of the two. A fraction of the figure is
+# the same number in both.
+def fig_fraction(fig, ax, x, y):
+    """Data coordinates to figure fraction, origin bottom left."""
+    return fig.transFigure.inverted().transform(ax.transData.transform((x, y)))
+
+
+def to_svg_xy(frac, w_pt, h_pt):
+    """Figure fraction to SVG user units, origin top left."""
+    return frac[0] * w_pt, (1.0 - frac[1]) * h_pt
+
+
+def esc(text):
+    """Escape for an XML attribute value."""
+    return (str(text).replace("&", "&amp;").replace("<", "&lt;")
+            .replace(">", "&gt;").replace('"', "&quot;"))
+
+
+def inject_hit_layer(path, hits, w_pt, h_pt):
+    """Append the transparent hover targets to the finished SVG.
+
+    Every shape carries a <title> as well as its data attributes: with
+    JavaScript unavailable the browser still shows the title natively, so
+    the figure degrades to a slower tooltip rather than to nothing.
+    """
+    parts = ['<g id="figure-hits" fill="none" pointer-events="all">']
+    for h in hits:
+        attrs = (f'class="hit hit-{h["kind"]}" '
+                 f'data-value="{esc(h["value"])}" '
+                 f'data-label="{esc(h["label"])}" '
+                 f'data-detail="{esc(h["detail"])}"')
+        title = f'<title>{esc(h["label"])}: {esc(h["value"])}</title>'
+        if h["kind"] == "point":
+            parts.append(
+                f'<circle cx="{h["cx"]:.2f}" cy="{h["cy"]:.2f}" '
+                f'r="{HIT_RADIUS_PT:.2f}" {attrs}>{title}</circle>')
+        else:
+            parts.append(
+                f'<rect x="{h["x"]:.2f}" y="{h["y"]:.2f}" '
+                f'width="{h["w"]:.2f}" height="{h["h"]:.2f}" '
+                f'{attrs}>{title}</rect>')
+    parts.append("</g>")
+    layer = "\n".join(parts) + "\n</svg>"
+
+    with open(path, encoding="utf-8") as f:
+        svg = f.read()
+    if "</svg>" not in svg:
+        raise SystemExit(f"{path}: no closing </svg> to insert the hit layer before.")
+    svg = svg.replace("</svg>", layer)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(svg)
+    return len(hits)
+
+
 def main(out_path=DEFAULT_OUT):
     measurements = load(QUANTIFICATION_CSV)
     summary = load(SUMMARY_CSV)
@@ -245,6 +326,12 @@ def main(out_path=DEFAULT_OUT):
         for r in summary
         if r["is_reference"] == "no" and r["acceptable_within_5pct"] == "no"
     }
+
+    site_of = {r["sample_no"]: r["sample_site"] for r in summary}
+    gm_of = {(r["manifold_id"], r["sample_no"]): r["geometric_mean"]
+             for r in summary}
+    # Collected while plotting, written into the SVG afterwards.
+    hits = []
 
     fig, (top, bot) = plt.subplots(
         2, 1, figsize=(FIG_W, FIG_H), dpi=150, sharex=True,
@@ -272,8 +359,17 @@ def main(out_path=DEFAULT_OUT):
                 # across and 0.06 data units is ~5 pt here, so replicates
                 # read as a tight triplet that still stays clear of the
                 # neighbouring manifold's group 0.24 units away.
-                xs.append(si + offset + (ri - 1) * 0.06)
-                ys.append(float(m["cfu_per_100ml"]))
+                px = si + offset + (ri - 1) * 0.06
+                py = float(m["cfu_per_100ml"])
+                xs.append(px)
+                ys.append(py)
+                hits.append({
+                    "kind": "point", "ax": top, "x": px, "y": py,
+                    "value": f"{m['cfu_per_100ml']} CFU/100 mL",
+                    "label": SHORT_LABELS[mid],
+                    "detail": (f"Site {sample}, {site_of[sample]} "
+                               f"(replicate {m['replicate']})"),
+                })
         # Black outline keeps each point readable where the three viridis
         # stops overlap, and against the shaded risk bands behind them.
         top.scatter(xs, ys, s=64, color=COLOURS[mid], label=LABELS[mid],
@@ -291,9 +387,22 @@ def main(out_path=DEFAULT_OUT):
                      if r["manifold_id"] == mid and r["sample_no"] == s)
                 for s in samples]
         xs = x + (i - 1) * width
-        bot.bar(xs, vals, width, bottom=YMIN, color=COLOURS[mid],
-                label=LABELS[mid], zorder=3)
-        for xi, s, v in zip(xs, samples, vals):
+        bars = bot.bar(xs, vals, width, bottom=YMIN, color=COLOURS[mid],
+                       label=LABELS[mid], edgecolor=MARKER_EDGE,
+                       linewidth=0.7, zorder=3)
+        for rect, xi, s, v in zip(bars, xs, samples, vals):
+            reps = sorted(
+                (r for r in measurements
+                 if r["manifold_id"] == mid and r["sample_no"] == s),
+                key=lambda r: r["replicate"])
+            shown = ", ".join(r["cfu_per_100ml"] for r in reps)
+            hits.append({
+                "kind": "bar", "ax": bot, "rect": rect,
+                "value": f"{gm_of[(mid, s)]} CFU/100 mL",
+                "label": f"{SHORT_LABELS[mid]}, geometric mean",
+                "detail": (f"Site {s}, {site_of[s]}. "
+                           f"Replicates: {shown} CFU/100 mL"),
+            })
             if (mid, s) in hard_mismatches:
                 bot.plot(xi, v * 1.4, marker="^", color=MISMATCH,
                          markersize=12, markeredgecolor=MARKER_EDGE,
@@ -330,11 +439,31 @@ def main(out_path=DEFAULT_OUT):
     dirname = os.path.dirname(out_path)
     if dirname:
         os.makedirs(dirname, exist_ok=True)
+    # Positions are read only now: tight_layout has moved both axes since
+    # the marks were drawn, so anything measured earlier would be stale.
+    fig.canvas.draw()
+    w_pt, h_pt = FIG_W * 72.0, FIG_H * 72.0
+    for h in hits:
+        if h["kind"] == "point":
+            h["cx"], h["cy"] = to_svg_xy(
+                fig_fraction(fig, h["ax"], h["x"], h["y"]), w_pt, h_pt)
+        else:
+            rect = h["rect"]
+            x0, y0 = to_svg_xy(fig_fraction(
+                fig, h["ax"], rect.get_x(), rect.get_y()), w_pt, h_pt)
+            x1, y1 = to_svg_xy(fig_fraction(
+                fig, h["ax"], rect.get_x() + rect.get_width(),
+                rect.get_y() + rect.get_height()), w_pt, h_pt)
+            h["x"], h["w"] = min(x0, x1), abs(x1 - x0)
+            h["y"], h["h"] = min(y0, y1), abs(y1 - y0)
+
     fig.savefig(out_path, transparent=True, metadata={"Date": None})
     plt.close(fig)
     if out_path.lower().endswith(".svg"):
         n = retarget_font_family(out_path)
-        print(f"wrote {out_path} ({n} font declarations set to the site stack)")
+        k = inject_hit_layer(out_path, hits, w_pt, h_pt)
+        print(f"wrote {out_path} ({n} font declarations set to the site "
+              f"stack, {k} hover targets)")
     else:
         # A raster preview bakes in whatever font matplotlib measured with,
         # so it cannot carry the site stack, only the shipped SVG can.

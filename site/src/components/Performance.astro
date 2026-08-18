@@ -1,9 +1,63 @@
 ---
+import fs from 'node:fs';
 import site from '../data/site.json';
 
 const rawBase = import.meta.env.BASE_URL;
 const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
 const v = site.validation;
+
+// The figure is inlined rather than referenced with <img>. An
+// <img>-embedded SVG is an inert picture: it renders, but it receives no
+// events, so the per-mark hover readout that tools/plot_validation.py
+// writes into it would never fire. Inlining is what makes the marks
+// reachable. Read at build time, so this costs the reader nothing beyond
+// the markup itself, and one fewer request than the <img> version.
+const figureSvg = fs
+  .readFileSync(new URL('../../public/figures/validation.svg', import.meta.url), 'utf8')
+  .replace(/<\?xml[^>]*\?>\s*/, '')
+  .replace(/<!DOCTYPE[^>]*>\s*/, '')
+  // Drop the fixed pt size so CSS can scale it; the viewBox stays and
+  // carries the aspect ratio.
+  .replace(/<svg([^>]*?)\s+width="[^"]*"\s+height="[^"]*"/, '<svg$1')
+  .replace('<svg', '<svg role="img" aria-labelledby="validation-figure-title"');
+
+// Values behind the figure, for the table under it. A tooltip must never
+// be the only way to a number, and this is also the keyboard and
+// screen-reader path: 96 marks would otherwise mean 96 tab stops.
+function parseCsv(path) {
+  const text = fs.readFileSync(new URL(path, import.meta.url), 'utf8').trim();
+  const rows = [];
+  let row = [], field = '', quoted = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (quoted) {
+      if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+      else if (c === '"') quoted = false;
+      else field += c;
+    } else if (c === '"') quoted = true;
+    else if (c === ',') { row.push(field); field = ''; }
+    else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+    else if (c !== '\r') field += c;
+  }
+  row.push(field); rows.push(row);
+  const head = rows.shift();
+  return rows.map((r) => Object.fromEntries(head.map((h, i) => [h, r[i]])));
+}
+
+const quant = parseCsv('../../../data/ecoli-quantification.csv');
+const summary = parseCsv('../../../data/ecoli-summary.csv');
+const manifoldName = { ft1: '3DPLAM (rPET)', ft2: '3DPLAM (ABS)', ft3: 'Millipore EZ-Fit' };
+const sampleNos = [...new Set(summary.map((r) => r.sample_no))].sort((a, b) => +a - +b);
+const tableRows = sampleNos.flatMap((no) =>
+  ['ft1', 'ft2', 'ft3'].map((mid) => {
+    const reps = quant
+      .filter((r) => r.sample_no === no && r.manifold_id === mid)
+      .sort((a, b) => a.replicate.localeCompare(b.replicate))
+      .map((r) => r.cfu_per_100ml);
+    const s = summary.find((r) => r.sample_no === no && r.manifold_id === mid);
+    return { no, site: s.sample_site, manifold: manifoldName[mid], reps, gm: s.geometric_mean };
+  }),
+);
 
 const mismatches = [
   { sample: 4, manifold: 'ABS', gm: '9.97', band: 'intermediate', ref: '11.05', refBand: 'high', outcome: 'Accepted: within 5 % of the 10 boundary' },
@@ -49,12 +103,47 @@ const scope = [
   </div>
 
   <figure class="validation-figure">
-    <img
-      src={`${base}/figures/validation.svg`}
-      alt="Two-panel validation figure: geometric-mean E. coli counts per site and manifold against WHO risk bands, and the boundary-tolerance comparison to the Millipore reference."
-      loading="lazy"
-    />
+    <span id="validation-figure-title" class="visually-hidden">
+      Two-panel validation figure: individual E. coli plate counts and
+      geometric means per site and manifold against WHO risk bands,
+      compared with the Millipore reference. Every plotted value is listed
+      in the table below the figure.
+    </span>
+    <div class="figure-stage" id="figure-stage">
+      <Fragment set:html={figureSvg} />
+      <div class="figure-tip" id="figure-tip" role="status" aria-live="polite" hidden>
+        <span class="tip-value"></span>
+        <span class="tip-label"></span>
+        <span class="tip-detail"></span>
+      </div>
+    </div>
+    <figcaption class="figure-note">
+      Hover a point for its plate count, or a bar for its three replicates
+      and their geometric mean.
+    </figcaption>
   </figure>
+
+  <details class="values-table">
+    <summary>All plotted values</summary>
+    <div class="scroll-x">
+      <table>
+        <thead>
+          <tr><th>Sample</th><th>Site</th><th>Manifold</th><th>Replicates (CFU/100 mL)</th><th>Geometric mean</th></tr>
+        </thead>
+        <tbody>
+          {tableRows.map((r) => (
+            <tr>
+              <td>{r.no}</td>
+              <td>{r.site}</td>
+              <td>{r.manifold}</td>
+              <td>{r.reps.join(', ')}</td>
+              <td>{r.gm}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </details>
 
   <div class="headline-row">
     <div class="headline">
@@ -141,8 +230,145 @@ print('raw match', sum(1 for r in rows if r['matches_reference'] == 'yes'), 'of'
   </p>
 </section>
 
+<script>
+  // Per-mark hover readout. tools/plot_validation.py writes a transparent
+  // target over every point and bar, each carrying its own values, so this
+  // only has to position a box and copy three strings out of the element.
+  const stage = document.getElementById('figure-stage');
+  const tip = document.getElementById('figure-tip');
+
+  if (stage && tip) {
+    const valueEl = tip.querySelector('.tip-value') as HTMLElement;
+    const labelEl = tip.querySelector('.tip-label') as HTMLElement;
+    const detailEl = tip.querySelector('.tip-detail') as HTMLElement;
+    let active: Element | null = null;
+
+    function place(event: PointerEvent) {
+      const box = stage!.getBoundingClientRect();
+      const w = tip!.offsetWidth;
+      const h = tip!.offsetHeight;
+      // Clamp inside the figure so a mark at the edge cannot push the
+      // readout off the card and out of view.
+      let x = event.clientX - box.left + 14;
+      let y = event.clientY - box.top - h - 12;
+      if (x + w > box.width) x = event.clientX - box.left - w - 14;
+      if (y < 0) y = event.clientY - box.top + 18;
+      tip!.style.transform = `translate(${Math.max(0, x)}px, ${Math.max(0, y)}px)`;
+    }
+
+    function show(target: Element, event: PointerEvent) {
+      if (target !== active) {
+        active?.classList.remove('is-hovered');
+        target.classList.add('is-hovered');
+        active = target;
+        // textContent, never innerHTML: these strings come out of the
+        // dataset and include site names typed during fieldwork.
+        valueEl.textContent = target.getAttribute('data-value') ?? '';
+        labelEl.textContent = target.getAttribute('data-label') ?? '';
+        detailEl.textContent = target.getAttribute('data-detail') ?? '';
+        tip!.hidden = false;
+      }
+      place(event);
+    }
+
+    function hide() {
+      active?.classList.remove('is-hovered');
+      active = null;
+      tip!.hidden = true;
+    }
+
+    stage.addEventListener('pointermove', (event) => {
+      const pe = event as PointerEvent;
+      // Coarse pointers get no hover state at all; a tap would leave the
+      // readout stuck open with nothing to dismiss it.
+      if (pe.pointerType === 'touch') return;
+      const target = (pe.target as Element)?.closest?.('.hit');
+      if (target) show(target, pe);
+      else if (active) hide();
+    });
+    stage.addEventListener('pointerleave', hide);
+  }
+</script>
+
 <style>
   #validation h3 { margin: 32px 0 10px; }
+
+  /* The stage is the positioning context for the readout. */
+  .figure-stage { position: relative; }
+  .figure-stage :global(svg) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  /* Transparent hover targets written by tools/plot_validation.py. They
+     are larger than the painted marks on purpose (24 pt across for a
+     point), because an 8 pt dot is not something a pointer lands on
+     reliably. */
+  .figure-stage :global(#figure-hits .hit) {
+    fill: transparent;
+    cursor: pointer;
+  }
+  .figure-stage :global(#figure-hits .hit.is-hovered) {
+    fill: color-mix(in srgb, var(--accent) 14%, transparent);
+    stroke: var(--accent);
+    stroke-width: 1.2;
+  }
+
+  .figure-tip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    pointer-events: none;
+    max-width: 280px;
+    padding: 8px 11px;
+    border-radius: 7px;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    box-shadow: 0 6px 18px rgba(16, 19, 23, .13);
+    line-height: 1.35;
+  }
+  .figure-tip[hidden] { display: none; }
+  /* The reader already knows which mark they are pointing at; what they
+     came for is the number, so it leads. */
+  .tip-value {
+    display: block;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--fg);
+  }
+  .tip-label { display: block; font-size: 12.5px; color: var(--fg); margin-top: 2px; }
+  .tip-detail { display: block; font-size: 12px; color: var(--fg-dim); margin-top: 1px; }
+
+  .figure-note {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--fg-dim);
+  }
+  .values-table { margin: 4px 0 28px; }
+  .values-table summary {
+    cursor: pointer;
+    font-size: 13.5px;
+    color: var(--fg-dim);
+    padding: 6px 0;
+  }
+  .values-table summary:hover { color: var(--accent); }
+  .values-table table { margin-top: 10px; font-size: 13.5px; }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* No hover on a touch screen, so the invitation would be a lie. */
+  @media (hover: none) {
+    .figure-note { display: none; }
+  }
+
 
   .scope-table {
     margin: 16px 0 28px;
