@@ -194,17 +194,8 @@ const scope = [
   <p class="table-note">
     The sole comparison that fails even with the tolerance applied is
     sample 7, rPET, the same sample that is a spiked positive control, not
-    a field sample. Both headline counts can be reproduced directly from
-    the shipped data:
+    a field sample.
   </p>
-  <div class="scroll-x">
-    <pre><code>python3 -c "
-import csv
-rows = [r for r in csv.DictReader(open('data/ecoli-summary.csv')) if r['is_reference'] == 'no']
-print('accepted', sum(1 for r in rows if r['acceptable_within_5pct'] == 'yes'), 'of', len(rows))
-print('raw match', sum(1 for r in rows if r['matches_reference'] == 'yes'), 'of', len(rows))
-"</code></pre>
-  </div>
 
   <h3>Material and fatigue results</h3>
   <div class="scroll-x">
