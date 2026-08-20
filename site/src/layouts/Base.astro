@@ -39,6 +39,31 @@ const navLinks = [
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Privacy-friendly analytics by Plausible -->
+    <!--
+      Cookieless and carries no personal data, so it needs no consent
+      banner. The site identity is baked into the script filename, which
+      is why there is no data-domain attribute to keep in sync.
+
+      Both tags need is:inline. Without it Astro bundles them as modules,
+      which defers execution and breaks the second one outright: it
+      assigns to window.plausible and calls init, and a module would run
+      after the async loader it is meant to precede.
+
+      Guarded to production so a dev or preview run cannot reach the
+      endpoint at all. Plausible also ignores localhost of its own accord,
+      so this is the second of two locks, not the only one.
+    -->
+    {import.meta.env.PROD && (
+      <Fragment>
+        <script is:inline async src="https://plausible.io/js/pa-sg9oayxWns0q5pwbuWsRA.js"></script>
+        <script is:inline>
+          window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+          plausible.init()
+        </script>
+      </Fragment>
+    )}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
