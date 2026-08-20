@@ -10,10 +10,10 @@ filament.
 
 The filament-making machine used is a rebuild of **Petamentor2**, an
 open-source PET-bottle-to-filament machine designed by **Ondřej Šraitr**:
-<https://petamentor2.com/>. The author of this project built a Petamentor2
-himself; he did not design the machine. Its design files are Šraitr's
-work and are deliberately **not** redistributed in this repository; build
-your own from the upstream project.
+<https://petamentor2.com/>. We built a Petamentor2 ourselves; we did not
+design the machine. Its design files are Šraitr's work and are
+deliberately **not** redistributed in this repository; build your own
+from the upstream project.
 
 ## The route: bottle to filament
 

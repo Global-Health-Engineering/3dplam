@@ -1,13 +1,10 @@
 # Operating the manifold
 
-This is the *E. coli* membrane-filtration protocol used for the validation
-reported in [`validation.md`](validation.md), transcribed verbatim from the
-author's own lab documentation (`Functional Testing/E. coli
-Quantification_README.txt` in the project handover; reproduced in the
-thesis, Appendix B). It assumes the manifold is already built; see
-[`assembly.md`](assembly.md) first.
-
-The steps below reproduce the protocol exactly; they are not paraphrased.
+This is the complete *E. coli* membrane-filtration protocol used for the
+validation reported in [`validation.md`](validation.md). It comes from our
+lab documentation (`Functional Testing/E. coli Quantification_README.txt`
+in the project handover; reproduced in the thesis, Appendix B). It assumes
+the manifold is already built; see [`assembly.md`](assembly.md) first.
 
 ## Consumables
 

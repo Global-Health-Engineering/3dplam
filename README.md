@@ -58,7 +58,7 @@ hardware/              CERN-OHL-S v2: the parts to print
 docs/                  CC BY 4.0: how to print, build, run and interpret it
 ├── printing.md        Print settings, orientation, materials matrix
 ├── assembly.md        Putting the three parts together
-├── operation.md       The E. coli filtration protocol, verbatim
+├── operation.md       The E. coli filtration protocol
 ├── validation.md      What was tested and the headline result
 ├── rpet.md            Bottle-to-filament, with upstream credit
 ├── design-history.md  Version history predating this repository
