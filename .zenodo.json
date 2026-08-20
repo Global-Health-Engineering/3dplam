@@ -1,0 +1,54 @@
+{
+  "title": "3DPLAM, 3D-Printed Lightweight Affordable Manifold for Microbial Water Quality Testing",
+  "description": "<p>An open-source, 3D-printable membrane-filtration manifold for <i>Escherichia coli</i> quantification in drinking water. Three parts (base, funnel, filter support) print without support structures on a consumer FDM printer and, with a 100 mL syringe and a 0.45 um membrane filter, perform the membrane-filtration measurement used in WHO and UNICEF household drinking-water quality surveys.</p><p>Validated at 8 sample sites against a Millipore EZ-Fit stainless-steel manifold as the reference instrument, with 3 manifolds and 3 replicates per manifold per site (72 filtrations, 16 printed-vs-reference comparisons). 15 of 16 classifications are accepted under a 5 % WHO boundary-tolerance rule and 12 of 16 match the reference risk band exactly with no tolerance applied. 3DPLAM does not replace the EZ-Fit; its contribution is that the design is open and can be printed locally.</p><p>This archive contains the print-ready and editable geometry, the slicer profiles required for a gas-tight print, the full protocol and assembly documentation, the tidied validation and material-test datasets with a codebook, and the scripts that regenerate every figure.</p><p>The hardware design in hardware/ is licensed CERN-OHL-S v2. The documentation, data, site and tooling are licensed CC BY 4.0.</p>",
+  "upload_type": "software",
+  "version": "1.0.0",
+  "language": "eng",
+  "access_right": "open",
+  "license": "cern-ohl-s-2.0",
+  "creators": [
+    {
+      "name": "Gabriel, Moreno",
+      "affiliation": "ETH Zurich, Global Health Engineering",
+      "orcid": "0009-0008-8260-2625"
+    },
+    {
+      "name": "Tkaczuk, Jakub",
+      "affiliation": "ETH Zurich, Global Health Engineering",
+      "orcid": "0000-0001-7997-9423"
+    },
+    {
+      "name": "Dorea, Caetano",
+      "affiliation": "University of Victoria",
+      "orcid": "0000-0001-9367-0668"
+    },
+    {
+      "name": "Tilley, Elizabeth",
+      "affiliation": "ETH Zurich, Global Health Engineering",
+      "orcid": "0000-0002-2095-9724"
+    }
+  ],
+  "keywords": [
+    "open hardware",
+    "water quality",
+    "Escherichia coli",
+    "membrane filtration",
+    "3D printing",
+    "WASH",
+    "drinking water",
+    "recycled PET"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://global-health-engineering.github.io/3dplam",
+      "relation": "isDocumentedBy",
+      "resource_type": "publication-other",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/Global-Health-Engineering/3dplam",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

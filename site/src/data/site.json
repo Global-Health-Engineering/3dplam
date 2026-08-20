@@ -2,12 +2,12 @@
   "name": "3DPLAM",
   "tagline": "Open-source, 3D-printable membrane-filtration manifold for E. coli quantification in drinking water",
   "repo": "https://github.com/Global-Health-Engineering/3dplam",
-  "cost_usd": 0.80,
+  "onshape": "https://cad.onshape.com/documents/85e843dab749166d5c0b6f2d/w/d2011a4cf432978d33b486bf/e/728e4b207954dc08243541f4",
+  "cost_usd": 0.8,
   "mass_g": 32,
   "print_minutes": 100,
   "millipore_cost_usd": 2460,
-  "glam2_cost_usd": 1.50,
-
+  "glam2_cost_usd": 1.5,
   "print_profile": {
     "layer_height_mm": 0.16,
     "wall_loops": 6,
@@ -17,7 +17,6 @@
     "infill_pattern": "grid",
     "nozzle_mm": 0.4
   },
-
   "validation": {
     "sites": 8,
     "manifolds": 3,
@@ -30,11 +29,9 @@
     "matches_no_tolerance": 12,
     "matches_no_tolerance_of": 16
   },
-
   "context": {
     "population_without_safe_water_bn": 2.1,
     "population_without_water_quality_data_pct": 28
   },
-
   "oshwa_uid": null
 }

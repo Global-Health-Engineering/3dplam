@@ -72,6 +72,24 @@ const renders = [
     tape-sealed base joint).
   </p>
 
+  <div class="cad-note">
+    <h3>Edit the design yourself</h3>
+    <p>
+      The source CAD is public in Onshape. Open it, use <em>Make a copy</em>,
+      and you have your own editable document: change a dimension, a
+      tolerance or a fit for your printer or your membrane without asking
+      anyone. An Onshape account is free, and nothing you do in your copy
+      touches the published design.
+    </p>
+    <a class="cad-link" href={site.onshape} rel="noopener">Open the source CAD in Onshape</a>
+    <p class="cad-sub">
+      Editable STEP for every part also ships in the repository, under
+      <a href={`${site.repo}/tree/main/hardware/step`}>hardware/step/</a>.
+      Exporting from Onshape? Set units to millimetres; see
+      <a href={`${site.repo}/blob/main/hardware/onshape.md`}>hardware/onshape.md</a>.
+    </p>
+  </div>
+
   <div class="render-grid">
     {renders.map((r) => (
       <figure class="render">
@@ -239,6 +257,32 @@ const renders = [
     border-radius: 4px;
     font-size: .92em;
     overflow-wrap: break-word;
+  }
+
+  .cad-note {
+    margin: 28px 0 4px;
+    padding: 20px 24px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .cad-note h3 { margin: 0 0 8px; }
+  .cad-note p { margin: 0 0 14px; }
+  .cad-link {
+    display: inline-block;
+    padding: 9px 16px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--ghe-white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .cad-link:hover { background: var(--fg); }
+  .cad-sub {
+    margin: 14px 0 0 !important;
+    font-size: 13px;
+    color: var(--fg-dim);
   }
 
   .render-grid {

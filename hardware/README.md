@@ -59,7 +59,7 @@ The base's top connection also accepts **commercial Millipore Microfil funnels**
 
 Filenames carry no version numbers: these files are the current release, and git records their history. The shipped revisions are base V1.3, funnel V6.1, and filter supports V5 (strand mesh) and V1.2 (hex hole), recorded in [`../docs/design-history.md`](../docs/design-history.md) along with what changed between them.
 
-Source CAD lives in Onshape; see [`onshape.md`](onshape.md).
+Source CAD lives in Onshape and is public: [open the design](https://cad.onshape.com/documents/85e843dab749166d5c0b6f2d/w/d2011a4cf432978d33b486bf/e/728e4b207954dc08243541f4) and use *Make a copy* to get your own editable document. See [`onshape.md`](onshape.md) for every version and for the export settings that keep units in millimetres.
 
 ## Units
 

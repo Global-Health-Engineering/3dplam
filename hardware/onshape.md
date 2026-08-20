@@ -2,6 +2,18 @@
 
 The 3DPLAM was designed in Onshape. The final release is **Version 1.3**.
 
+## Copy it and edit it yourself
+
+The published design is open in Onshape. Open it and use *Make a copy* to
+get your own editable document; you do not need permission and nothing you
+do there touches this one.
+
+**[Open the 3DPLAM source CAD in Onshape](https://cad.onshape.com/documents/85e843dab749166d5c0b6f2d/w/d2011a4cf432978d33b486bf/e/728e4b207954dc08243541f4)**
+
+An Onshape account is free. Editing the copy is how to change a dimension,
+a tolerance or a fit for your own printer or membrane. If your change is
+worth sharing, open an issue with the exported STEP.
+
 | Release | Onshape document |
 |---|---|
 | **V1.3, final** | https://cad.onshape.com/documents/9c3be81daa349a1904cb00f1/w/5660800de7ba8d6695e60895/e/a83cd824ff588ff52e4f649e |
@@ -15,8 +27,8 @@ The 3DPLAM was designed in Onshape. The final release is **Version 1.3**.
 ## Re-exporting
 
 **Set `Units` to `Millimeter`.** Onshape's original exports for this project
-were in metres. STEP and 3MF record their units so they survive; STL does
-not, and a metre-scale STL imports into any slicer 1000x too small.
+were in metres. STEP records its units so they survive; STL does not, and a
+metre-scale STL imports into any slicer 1000x too small.
 
 | Format | Setting |
 |---|---|
@@ -27,9 +39,6 @@ When exporting the assembly, make sure only **one** filter support is
 visible. Both designs occupy the same slot, so exporting with both shown
 produces an assembly containing two interpenetrating supports. The shipped
 assembly uses the strand mesh.
-
-Do not export 3MF from Onshape, `hardware/3mf/` files are generated in
-Bambu Studio so they carry the print profile. See `hardware/print-profiles/`.
 
 After any re-export, run:
 

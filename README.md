@@ -53,7 +53,7 @@ hardware/              CERN-OHL-S v2: the parts to print
 ├── rpet/              Shrinkage-compensated geometry for recycled PET
 ├── assembly/          Reference assembly (not a printable part)
 ├── print-profiles/    Slicer settings for a gas-tight print
-└── onshape.md         Source CAD, by version
+└── onshape.md         Source CAD in Onshape, copy it and edit your own
 
 docs/                  CC BY 4.0: how to print, build, run and interpret it
 ├── printing.md        Print settings, orientation, materials matrix

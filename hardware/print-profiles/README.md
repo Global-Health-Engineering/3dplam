@@ -65,27 +65,5 @@ printer.
 | `3dplam-x1c-abs.json` | Bambu Studio process profile, X1 Carbon, ABS |
 | `3dplam-p2s-abs.json` | Bambu Studio process profile, P2S, ABS |
 
-Import a `.json` with *Preset → Process → Import*. See
-[Generating ready-to-slice 3MF projects](#generating-ready-to-slice-3mf-projects)
-below for a bundled alternative, not yet shipped.
-
-## Generating ready-to-slice 3MF projects
-
-Not yet shipped. To add them:
-
-1. *Preset → Process → Import* → `3dplam-x1c-abs.json`
-2. For each part in `../stl/`: open it, apply the **3DPLAM gas-tight**
-   process preset, confirm the object measures in tens of millimetres, then
-   *File → Export → Export Project* to `../3mf/<same-name>.3mf`
-3. Verify each export carries its settings, geometry-only exports are the
-   defect this repository exists to avoid:
-
-```bash
-for f in hardware/3mf/*.3mf; do
-  n=$(unzip -l "$f" | grep -c "project_settings.config")
-  echo "$n  $f"
-done
-```
-
-Every line must read `1`. A `0` means it was exported as geometry, not a
-project, and carries no print settings.
+Import a `.json` with *Preset → Process → Import*, then apply the
+**3DPLAM gas-tight** process preset to each part before slicing.
