@@ -9,6 +9,15 @@ abstract: >-
 type: software
 version: 1.0.0
 date-released: 2026-08-20
+# The concept DOI, which always resolves to the newest version. It is the
+# one to cite and the one in the README badge, so neither goes stale when
+# a later release is archived. The DOI for this specific release is under
+# identifiers below.
+doi: 10.5281/zenodo.22025813
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22025814
+    description: Archived record for version 1.0.0 specifically
 # A single value, not a list: Zenodo takes one licence per record.
 # The hardware in hardware/ is CERN-OHL-S v2, which is the more
 # restrictive of the two and the one that governs the design itself;
