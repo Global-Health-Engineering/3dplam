@@ -36,11 +36,15 @@ const authors = [
         If you use this hardware, please cite it. Full machine-readable
         metadata: <a href={`${site.repo}/blob/main/CITATION.cff`}>CITATION.cff</a>.
       </p>
+      {/* site.doi is the concept DOI, which resolves to the newest
+          release, so this citation does not go stale when a later
+          version is archived. */}
       <p class="citation-text">
         {site.name}, 3D-Printed Lightweight Affordable Manifold for
         Microbial Water Quality Testing.{' '}
         {authors.map((a, i) => (i > 0 ? `, ${a}` : a))}.{' '}
-        <a href={site.repo}>{site.repo}</a>
+        Version {site.version}.{' '}
+        <a href={`https://doi.org/${site.doi}`}>https://doi.org/{site.doi}</a>
       </p>
       {site.oshwa_uid && (
         <p class="oshwa">

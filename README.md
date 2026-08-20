@@ -1,7 +1,7 @@
 <!-- badges: start -->
 [![Licence: CERN-OHL-S v2](https://img.shields.io/badge/hardware-CERN--OHL--S%20v2-873671)](LICENSE-CERN-OHL-S-2.0.md)
 [![Licence: CC BY 4.0](https://img.shields.io/badge/docs%20%26%20data-CC%20BY%204.0-457ec1)](LICENSE-CC-BY-4.0.md)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22025813.svg)](https://doi.org/10.5281/zenodo.22025813)
+[![DOI: 10.5281/zenodo.22025813](.github/badges/doi.svg)](https://doi.org/10.5281/zenodo.22025813)
 [![Deploy site to GitHub Pages](https://github.com/Global-Health-Engineering/3dplam/actions/workflows/deploy-site.yml/badge.svg)](https://github.com/Global-Health-Engineering/3dplam/actions/workflows/deploy-site.yml)
 <!-- badges: end -->
 
@@ -76,8 +76,8 @@ If you use this hardware, please cite it; see [`CITATION.cff`](CITATION.cff) for
 
 > 3DPLAM, 3D-Printed Lightweight Affordable Manifold for Microbial Water
 > Quality Testing. Moreno Gabriel, Jakub Tkaczuk, Caetano Dorea, Elizabeth Tilley.
-> ETH Zürich, Global Health Engineering.
-> https://github.com/Global-Health-Engineering/3dplam
+> ETH Zürich, Global Health Engineering. Version 1.0.0.
+> https://doi.org/10.5281/zenodo.22025813
 
 ## License
 
