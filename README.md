@@ -8,6 +8,10 @@
 <br>
 <p align="middle">
 <img src="site/public/brand/ETH_GHE_logo.svg" width="480" alt="Global Health Engineering, ETH Zurich">
+<br><br>
+This work is certified by the Open Source Hardware Association.
+<br>
+<a href="https://certification.oshwa.org/ch000032.html"><img src="site/public/brand/certification-mark-CH000032-wide.svg" width=300></a>
 </p>
 
 # 3DPLAM

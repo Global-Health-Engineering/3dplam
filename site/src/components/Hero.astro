@@ -14,6 +14,20 @@ const costLabel = `$${site.cost_usd.toFixed(2)}`;
     <p class="hero-meta">
       open hardware · any FDM printer · ~{site.print_minutes} min print time · no supports
     </p>
+    {site.oshwa_uid && (
+      <a
+        class="oshwa-mark"
+        href={`https://certification.oshwa.org/${site.oshwa_uid.toLowerCase()}.html`}
+        rel="noopener"
+      >
+        <img
+          src={`${base}/brand/certification-mark-${site.oshwa_uid}-wide.svg`}
+          alt={`Certified open source hardware by the Open Source Hardware Association, UID ${site.oshwa_uid}`}
+          width="590"
+          height="165"
+        />
+      </a>
+    )}
     <p class="lead">
       The manifold consists of three printed parts (base, funnel and
       filter support) plus a 100 mL syringe and a 0.45 µm membrane
@@ -54,6 +68,25 @@ const costLabel = `$${site.cost_usd.toFixed(2)}`;
     color: var(--accent-2);
     margin: 0 0 18px;
   }
+  /* The certification mark. width/height are the SVG's own 590x165 so the
+     browser reserves the right box before it loads, and max-width caps it
+     at a badge rather than letting it compete with the headline. */
+  .oshwa-mark {
+    display: inline-block;
+    margin: 0 0 20px;
+    line-height: 0;
+  }
+  .oshwa-mark img {
+    display: block;
+    width: 100%;
+    max-width: 230px;
+    height: auto;
+  }
+  .oshwa-mark:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
   .hero .lead { font-size: 17px; }
   .hero-ctas {
     display: flex;
