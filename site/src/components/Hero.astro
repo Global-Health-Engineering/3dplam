@@ -71,15 +71,20 @@ const costLabel = `$${site.cost_usd.toFixed(2)}`;
   /* The certification mark. width/height are the SVG's own 590x165 so the
      browser reserves the right box before it loads, and max-width caps it
      at a badge rather than letting it compete with the headline. */
+  /* Centred in the hero column rather than left-aligned with the copy:
+     a certification mark is a seal, not a run of text. width: fit-content
+     keeps the link box tight to the image so the auto margins centre the
+     mark itself and the focus ring does not stretch the column width. */
   .oshwa-mark {
-    display: inline-block;
-    margin: 0 0 20px;
+    display: block;
+    width: fit-content;
+    margin: 0 auto 24px;
     line-height: 0;
   }
   .oshwa-mark img {
     display: block;
     width: 100%;
-    max-width: 230px;
+    max-width: 345px;
     height: auto;
   }
   .oshwa-mark:focus-visible {
