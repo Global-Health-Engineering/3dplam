@@ -39,6 +39,5 @@ membrane without dragging the membrane off the filter support with it.
 
 ## Retrofitting a commercial funnel
 
-The base's top connection also accepts commercial Millipore Microfil
-funnels in place of the printed one; see "Retrofitting a commercial
-funnel" in [`../hardware/README.md`](../hardware/README.md).
+The base's top connection also accepts **commercial Millipore Microfil
+funnels**, so an existing kit can be used with a printed base.

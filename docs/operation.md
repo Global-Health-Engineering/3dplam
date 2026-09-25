@@ -25,7 +25,8 @@ inoculum out of the funnel.
 1. Disinfect hands using 70 % ethanol.
 2. Sterilize the upper surface of the filter support and the inner surface
    of the funnel using a 70 % isopropyl alcohol wipe (60 mm x 30 mm).
-3. Disinfect the forceps using pure ethanol and a flame.
+3. Disinfect the forceps using pure ethanol and a flame (a 70 % isopropyl
+   alcohol wipe can also be used for this step).
 4. Place the filter membrane, gridded side up, on top of the filter support
    using the forceps.
 5. Lock the funnel onto the base.

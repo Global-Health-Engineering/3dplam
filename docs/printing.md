@@ -19,11 +19,14 @@ Read that page before slicing anything; it is not repeated here.
 
 ## Orientation
 
-Print the filter support **on its smaller-diameter side**. Printing it the
-other way up puts the strand mesh directly on the bed, and bed adhesion
-distorts the mesh's top layer. Print the filter support **as its own
-job**, separately from the base and funnel, for the best surface quality on
-the side that sat on the bed.
+Print the filter support **in its normal upright position**, the way it
+sits in the base, with the bayonet slots opening on the bottom side. The
+bottom of the mesh is then the side exposed to the heat of the print bed,
+where the strands may deform slightly; the top of the mesh prints precise
+and uniform, and that is the side the water reaches first. (Earlier
+filter-support versions had a sloped side; the current ones do not.) Print
+the filter support **as its own job**, separately from the base and
+funnel, for the best surface quality on the side that sat on the bed.
 
 ## Materials
 
@@ -34,11 +37,11 @@ CSVs; this is the summary.
 
 | Material | Heat, 80 °C / 2 h | UV, 48 h | Outdoor, 14 days | 25 sterilisation cycles | Verdict |
 |---|---|---|---|---|---|
-| PLA | **Critical damage** (warping and shrinkage across base, funnel and filter support; parts no longer fit together | No structural damage; visible whitening vs. an unexposed part | No critical damage; no UV discolouration; brim bent | No damage or leakage | Not recommended) 60 °C glass transition, absorbs water |
-| PETG | **Critical damage**, connection diameters shrank, parts no longer fit | No structural damage; no visible discolouration | No critical damage; no UV discolouration | No damage or leakage | Viable below ~80 °C; no enclosure needed |
-| rPET | **Critical damage** (connection diameters shrank, parts no longer fit | No structural damage; discolouration not determined | No critical damage; no UV discolouration | No damage or leakage | Sustainable route) see [`rpet.md`](rpet.md). Use the [`../hardware/rpet/`](../hardware/rpet/) geometry |
-| **ABS** | No critical damage (all parts still fit | No structural damage; visible whitening vs. an unexposed part | No critical damage; no UV discolouration | No damage or leakage | **Recommended**) needs an enclosed printer |
-| ASA | No critical damage, all parts still fit | No structural damage; visible whitening vs. an unexposed part | No critical damage; no UV discolouration; brim bent | No damage or leakage | Equivalent to ABS; less widely available |
+| PLA | **Critical damage**: warping and shrinkage across base, funnel and filter support; parts no longer fit together | No structural damage; visible whitening vs. an unexposed part | No critical damage; no UV discolouration; brim bent | No damage or leakage | Not recommended: 60 °C glass transition, absorbs water |
+| PETG | **Critical damage**: connection diameters shrank, parts no longer fit | No structural damage; no visible discolouration | No critical damage; no UV discolouration | No damage or leakage | Viable below ~80 °C; no enclosure needed |
+| rPET | **Critical damage**: connection diameters shrank, parts no longer fit | No structural damage; discolouration not determined | No critical damage; no UV discolouration | No damage or leakage | Sustainable route: see [`rpet.md`](rpet.md). Use the [`../hardware/rpet/`](../hardware/rpet/) geometry |
+| **ABS** | No critical damage: all parts still fit | No structural damage; visible whitening vs. an unexposed part | No critical damage; no UV discolouration | No damage or leakage | **Recommended**: needs an enclosed printer |
+| ASA | No critical damage: all parts still fit | No structural damage; visible whitening vs. an unexposed part | No critical damage; no UV discolouration; brim bent | No damage or leakage | Equivalent to ABS; less widely available |
 
 Source data: [`../data/heat-resistance.csv`](../data/heat-resistance.csv),
 [`../data/uv-resistance.csv`](../data/uv-resistance.csv),
@@ -53,5 +56,5 @@ The mechanical-fatigue result is not limited to the printed funnel: the
 filtrations (see [`validation.md`](validation.md)) without structural
 damage or leakage.
 
-A timelapse of the base being printed is on the project site
+A timelapse of the final base (V1.3) being printed in rPET is on the project site
 (`site/public/video/base-printing-timelapse.gif`).

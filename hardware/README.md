@@ -24,7 +24,7 @@ Two designs are current; they are alternatives, not revisions.
 | File                             | Use it when |
 | -------------------------------- | ----------- |
 | `filter-support-strand-mesh.stl` | **Default.** Parallel in-air printed strands, each layer rotated 120°. Uses 35 % less material, and gave uniform filtration in testing. This is the design used for the *E. coli* validation |
-| `filter-support-hex-hole.stl`    | Hexagonal hole pattern. More forgiving to print: no in-air bridging. Use if the strand mesh prints poorly on your machine |
+| `filter-support-hex-hole.stl`    | Hexagonal hole pattern. More forgiving to print: no in-air bridging. Filtration is not uniform: bacteria collect in hexagonal patches over a smaller effective area, so colonies are denser and harder to count. Use only if the strand mesh prints poorly on your machine |
 
 ## Funnel variants
 

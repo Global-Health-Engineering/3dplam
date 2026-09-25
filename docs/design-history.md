@@ -47,10 +47,11 @@ per-part V1.1/V1.2/V5/V6.1 labels above), are documented there:
   printed one.
 - **Version 4** replaced the hex-hole filter support with the strand-mesh
   design (later finalised as filter support V5) and reworked the base for
-  watertightness. The author's own printing note from this round is the
-  source of the orientation guidance in [`printing.md`](printing.md): print
-  the filter support on its smaller-diameter side, and print it
-  separately, so bed adhesion does not distort the mesh's top layer.
+  watertightness. The filter support of this round still had a sloped
+  side, and the author's printing note from it said to print the support
+  on its smaller-diameter side, separately from the other parts. Later
+  versions dropped the slope; the current orientation guidance is in
+  [`printing.md`](printing.md).
 
 Versions between and after these (V1.1 through V1.3, V5, V6 and V6.1) are
 recorded only as the Onshape documents linked from
