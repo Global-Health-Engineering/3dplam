@@ -22,10 +22,10 @@ const parts = [
 // render can stand in for; a 3D model of it would show the CAD, not the
 // in-air strands that came off the machine.
 const renders = [
-  { dir: 'renders', src: 'assembly-exploded.png', model: 'assembly-exploded.glb', alt: 'The three printed parts separated in an exploded view, showing the correct stacking order: base, filter support, funnel.', caption: 'Exploded view: base, filter support, funnel, in stacking order.' },
-  { dir: 'renders', src: 'membrane-clamp.png', model: 'membrane-clamp.glb', alt: 'Close-up section of the sealing interface, where the membrane is clamped between the base’s raised edge and the funnel’s inner slope.', caption: 'The seal: membrane clamped between the base’s raised edge and the funnel’s slope.' },
-  { dir: 'renders', src: 'filter-support-section.png', model: 'filter-support-section.glb', alt: 'A section cut through the filter support, showing the individual printed strands of the strand-mesh design.', caption: 'Cut through the strand mesh: parallel in-air strands, each layer rotated 120°.' },
-  { dir: 'photos', src: 'filter-support-strand-mesh.webp', alt: 'Close-up photograph of the printed filter support, individual in-air printed strands visible.', caption: 'The strand-mesh filter support as printed: the default, and the one used for the <em>E. coli</em> validation.' },
+  { dir: 'renders', src: 'assembly-exploded.png', model: 'assembly-exploded.glb', alt: 'The three printed parts separated in an exploded view, showing the correct stacking order of base, filter support and funnel.', caption: 'Exploded view of the base, filter support and funnel in stacking order.' },
+  { dir: 'renders', src: 'membrane-clamp.png', model: 'membrane-clamp.glb', alt: 'Close-up section of the sealing interface, where the membrane is clamped between the base’s raised edge and the funnel’s inner slope.', caption: 'The seal, with the membrane clamped between the base’s raised edge and the funnel’s slope.' },
+  { dir: 'renders', src: 'filter-support-section.png', model: 'filter-support-section.glb', alt: 'A section cut through the filter support, showing the individual printed strands of the strand-mesh design.', caption: 'Cut through the strand mesh, showing parallel in-air strands with each layer rotated 120°.' },
+  { dir: 'photos', src: 'filter-support-strand-mesh.webp', alt: 'Close-up photograph of the printed filter support, with individual in-air printed strands visible.', caption: 'The strand-mesh filter support as printed. This default part was used for the <em>E. coli</em> validation.' },
 ];
 ---
 <section id="device">
@@ -65,26 +65,26 @@ const renders = [
     </table>
   </div>
   <p class="table-note">
-    Dimensions and files for the default configuration: strand-mesh filter
-    support, clamped-membrane funnel. See <a href={`${site.repo}/blob/main/hardware/README.md`}>hardware/README.md</a>
-    for the concurrent alternatives: <code>filter-support-hex-hole.stl</code>
-    (more forgiving to print, but filters less uniformly) and <code>funnel-tape-fit.stl</code> (for a
-    tape-sealed base joint).
+    Dimensions and files are for the default configuration, which uses the
+    strand-mesh filter support and the clamped-membrane funnel. See <a href={`${site.repo}/blob/main/hardware/README.md`}>hardware/README.md</a>
+    for the two concurrent alternatives. <code>filter-support-hex-hole.stl</code>
+    is more forgiving to print but filters less uniformly. <code>funnel-tape-fit.stl</code>
+    is for a tape-sealed base joint.
   </p>
 
   <div class="cad-note">
     <h3>Edit the design yourself</h3>
     <p>
-      The source CAD is public in Onshape. If you want to edit it,
-      <em>Make a copy</em> first, so you can change dimensions,
-      tolerances, or the fit for your printer or membrane.
+      The source CAD is public in Onshape. To edit it, use
+      <em>Make a copy</em> first. In your copy you can change dimensions,
+      tolerances or the fit for your printer or membrane.
       An Onshape account is free.
     </p>
     <a class="cad-link" href={site.onshape} rel="noopener">Open the source CAD in Onshape</a>
     <p class="cad-sub">
       Editable STEP for every part also ships in the repository, under
       <a href={`${site.repo}/tree/main/hardware/step`}>hardware/step/</a>.
-      If exporting from Onshape, set units to millimetres (see
+      If you export from Onshape, set units to millimetres (see
       <a href={`${site.repo}/blob/main/hardware/onshape.md`}>hardware/onshape.md</a>).
     </p>
   </div>

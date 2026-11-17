@@ -15,11 +15,11 @@ const settings = [
 ];
 
 const materials = [
-  { name: 'ABS', enclosure: 'Yes', note: 'Recommended: best heat and mechanical performance' },
+  { name: 'ABS', enclosure: 'Yes', note: 'Recommended, with the best heat and mechanical performance' },
   { name: 'ASA', enclosure: 'Yes', note: 'Equivalent to ABS, less widely available' },
   { name: 'PETG', enclosure: 'No', note: 'Viable below ~80 °C' },
-  { name: 'rPET', enclosure: 'No', note: 'Sustainable route: needs the compensated hardware/rpet/ geometry' },
-  { name: 'PLA', enclosure: 'No', note: 'Not recommended: 60 °C glass transition, absorbs water' },
+  { name: 'rPET', enclosure: 'No', note: 'Sustainable option that needs the compensated hardware/rpet/ geometry' },
+  { name: 'PLA', enclosure: 'No', note: 'Not recommended, because of its 60 °C glass transition and water absorption' },
 ];
 
 const slicers = [
@@ -37,11 +37,11 @@ const profiles = [
   <div class="eyebrow">Print settings</div>
   <h2>Print settings</h2>
   <p class="lead">
-    At least {pp.wall_loops} wall loops are necessary for the printed
-    wall not to be porous: the syringe otherwise draws air through
-    the material instead of water through the membrane, and filtration
-    fails. The table below lists every setting that must be changed
-    from a slicer's stock defaults.
+    At least {pp.wall_loops} wall loops are needed to keep the printed
+    wall from being porous. With fewer loops, the syringe draws air
+    through the material instead of water through the membrane, and
+    filtration fails. The table below lists the settings of the validated
+    prints and marks the ones that differ from a slicer's stock defaults.
   </p>
 
   <div class="scroll-x">
@@ -61,16 +61,16 @@ const profiles = [
     </table>
   </div>
   <p class="table-note">
-    Everything else can stay at your slicer's defaults for the material.
-    Full rationale, both Bambu Studio process profiles, and printer notes:
-    <a href={`${site.repo}/blob/main/hardware/print-profiles/README.md`}>hardware/print-profiles/README.md</a>.
+    Every other setting can stay at your slicer's defaults for the material.
+    <a href={`${site.repo}/blob/main/hardware/print-profiles/README.md`}>hardware/print-profiles/README.md</a>
+    gives the full rationale, both Bambu Studio process profiles and printer notes.
   </p>
 
   <h3>Any slicer</h3>
   <p>
-    The requirement is geometric, not vendor-specific: at least
-    {pp.wall_loops} perimeter loops, and top and bottom shells of at least
-    {pp.top_shell_layers} solid layers each.
+    The requirement is geometric, so it applies in every slicer. Use at
+    least {pp.wall_loops} perimeter loops, and top and bottom shells of at
+    least {pp.top_shell_layers} solid layers each.
   </p>
   <div class="scroll-x">
     <table>
@@ -106,8 +106,9 @@ const profiles = [
 
   <h3>Profiles</h3>
   <p>
-    Bambu Studio process profiles for the printers used to validate this
-    design, importable directly:
+    These Bambu Studio process profiles can be imported directly. The
+    validated parts were printed on the X1 Carbon; the P2S profile has the
+    same settings but was used only for tolerance test prints.
   </p>
   <ul class="profile-list">
     {profiles.map((p) => (
@@ -128,7 +129,7 @@ const profiles = [
   <img
     class="timelapse"
     src={`${base}/video/base-printing-timelapse.gif`}
-    alt="Timelapse of the final base (V1.3) printing in dark blue rPET: repeating loop, no support structures."
+    alt="Timelapse of the final base (V1.3) printing in dark blue rPET without support structures, shown as a repeating loop."
     width="800"
     height="493"
     loading="lazy"

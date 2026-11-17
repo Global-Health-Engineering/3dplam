@@ -1,18 +1,18 @@
 # Source CAD
 
-The 3DPLAM was designed in Onshape. The final release is **Version 1.3**.
+The 3DPLAM was designed in Onshape. The final release is Version 1.3.
 
 ## Copy it and edit it yourself
 
 The published design is open in Onshape. Open it and use *Make a copy* to
-get your own editable document; you do not need permission and nothing you
-do there touches this one.
+get your own editable document. You do not need permission, and nothing
+you do in the copy touches the published design.
 
 **[Open the 3DPLAM source CAD in Onshape](https://cad.onshape.com/documents/85e843dab749166d5c0b6f2d/w/d2011a4cf432978d33b486bf/e/728e4b207954dc08243541f4)**
 
-An Onshape account is free. Editing the copy is how to change a dimension,
-a tolerance or a fit for your own printer or membrane. If your change is
-worth sharing, open an issue with the exported STEP.
+An Onshape account is free. To change a dimension, a tolerance or a fit
+for your own printer or membrane, edit the copy. If your change is worth
+sharing, open an issue with the exported STEP.
 
 | Release | Onshape document |
 |---|---|
@@ -27,8 +27,8 @@ worth sharing, open an issue with the exported STEP.
 ## Re-exporting
 
 **Set `Units` to `Millimeter`.** Onshape's original exports for this project
-were in metres. STEP records its units so they survive; STL does not, and a
-metre-scale STL imports into any slicer 1000x too small.
+were in metres. STEP records its units, so they survive. STL does not
+record units, and a metre-scale STL imports into any slicer 1000x too small.
 
 | Format | Setting |
 |---|---|

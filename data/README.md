@@ -18,20 +18,20 @@ Functional and material test data for the 3DPLAM manifold. Every column of every
 
 ## Headline result
 
-Comparing the two 3D-printed manifolds (rPET, ABS) against the steel Millipore reference across 8 sample sites (16 comparisons total):
+The two 3D-printed manifolds (rPET, ABS) were compared against the steel Millipore reference across 8 sample sites, giving 16 comparisons in total.
 
-- **12 of 16** classifications match the reference's WHO risk category exactly, with **no tolerance** applied.
-- **15 of 16** are acceptable once the **5 % boundary-tolerance rule** is applied (a geometric mean within 5 % of a WHO band boundary may be classified into either adjacent band).
+- **12 of 16** classifications match the reference's WHO risk category exactly, with no tolerance applied.
+- **15 of 16** are acceptable once the 5 % boundary-tolerance rule is applied (a geometric mean within 5 % of a WHO band boundary may be classified into either adjacent band).
 
-These are two different counts for two different rules; always state which one is meant. See `ecoli-summary.csv` (`matches_reference` = the
+The two counts come from two different rules, so always state which one is meant. See `ecoli-summary.csv` (`matches_reference` = the
 12/16 figure, `acceptable_within_5pct` = the 15/16 figure) and `tools/risk.py` for the classification logic.
 
 ## Sample sites
 
-Site names are in English, and are the exact `sample_site` values in
-`ecoli-quantification.csv` and `ecoli-summary.csv`, the same strings the
-validation figure labels its axis with. Four were translated from the
-German of the handover record; see the note below the table.
+Site names are in English. They are the exact `sample_site` values in
+`ecoli-quantification.csv` and `ecoli-summary.csv`, and the validation
+figure uses the same strings as axis labels. Four names were translated
+from the German of the handover record, as noted below the table.
 
 | #     | `sample_site`                                | Location                                                       |
 | ----- | -------------------------------------------- | -------------------------------------------------------------- |
@@ -45,8 +45,8 @@ German of the handover record; see the note below the table.
 | 8     | ETH Zurich CLA, tap water                    | [47°22'38.4"N 8°32'49.6"E](https://maps.app.goo.gl/57Mg5KN6icj9zju26) |
 
 **Translated from the handover record.** The original German descriptions
-are kept here so any published value can be traced back to what was
-written down in the field:
+are kept here so that any published value can be traced back to what was
+written down in the field.
 
 | # | As collected              | As published            |
 | - | ------------------------- | ----------------------- |
@@ -55,14 +55,15 @@ written down in the field:
 | 5 | Ircheltuempel             | Irchel pond             |
 | 6 | Resi-Weiher               | Resi pond               |
 
-Only descriptive words were translated. Proper place names were not:
-Platzspitz and Rentenwiese are names, not words, and Resi-Weiher keeps
-Resi while *-Weiher* (pond) is translated. Site 2 loses its "Sihl, "
-prefix because the German named the river twice. The translation lives in
-`SITES` in [`../tools/tidy_data.py`](../tools/tidy_data.py), the one
-place these CSVs are generated.
+Only descriptive words were translated, and proper place names were kept.
+Platzspitz and Rentenwiese are place names, so they were left as they are.
+Resi-Weiher keeps Resi, while *-Weiher* (pond) is translated. Site 2 loses
+its "Sihl, " prefix because the German named the river twice. The
+translation is defined in `SITES` in
+[`../tools/tidy_data.py`](../tools/tidy_data.py), the only place where
+these CSVs are generated.
 
-[^1]: Sample not fully drawn through the filter membrane. Filtration stalled at roughly the 20 mL mark of the 100 mL sample, so about 80 mL was actually filtered. The recorded CFU counts for sample 5 (`ecoli-quantification.csv`, `ecoli-summary.csv`) reflect this partial volume, not the full 100 mL.
+[^1]: The sample was not fully drawn through the filter membrane. Filtration stalled at roughly the 20 mL mark of the 100 mL sample, so about 80 mL was actually filtered. The recorded colony-forming unit (CFU) counts for sample 5 (`ecoli-quantification.csv`, `ecoli-summary.csv`) reflect this partial volume, not the full 100 mL.
 
-[^2]: Tap water spiked with 25 mL of horse fecal suspension as a positive control, not a field sample.
+[^2]: This sample was tap water spiked with 25 mL of horse fecal suspension. It served as a positive control and is not a field sample.
 

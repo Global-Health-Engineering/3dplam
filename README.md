@@ -21,9 +21,9 @@ This work is certified by the Open Source Hardware Association.
 - **Caetano Dorea** [![ORCID](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png) 0000-0001-9367-0668](https://orcid.org/0000-0001-9367-0668) (University of Victoria) *supervision*
 - **Elizabeth Tilley** [![ORCID](https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png) 0000-0002-2095-9724](https://orcid.org/0000-0002-2095-9724) (ETH Zürich, Global Health Engineering) *supervision*
 
-**Open-source, 3D-printable membrane-filtration manifold for *Escherichia coli* quantification in drinking water.** Three printed parts (base, funnel and filter support, all printable without support structures on any FDM printer) test drinking water with a syringe and a membrane filter. Validated against a Millipore EZ-Fit™ stainless-steel manifold as the **reference instrument** for the household drinking-water testing used in WHO/UNICEF water-quality surveys. 3DPLAM does not replace the Millipore EZ-Fit™; its contribution is that the design is open and can be printed locally at low cost, whereas the reference instrument can only be bought, at a comparatively high price.
+**Open-source, 3D-printable membrane-filtration manifold for *Escherichia coli* quantification in drinking water.** The manifold consists of three printed parts (base, funnel and filter support) and tests drinking water with a syringe and a membrane filter. All three parts print without support structures on any FDM printer. 3DPLAM was validated against a Millipore EZ-Fit™ stainless-steel manifold, the reference instrument for the household drinking-water testing used in WHO/UNICEF water-quality surveys. 3DPLAM is an alternative route to the same measurement and does not replace the Millipore EZ-Fit™. The 3DPLAM design is open and can be printed locally at low cost, whereas the reference instrument can only be bought at a comparatively high price.
 
-**Full site, with photos, renders and the print-settings requirement are available [here](https://global-health-engineering.github.io/3dplam/).**
+**The full site, with photos, renders and the print-settings requirement, is available [here](https://global-health-engineering.github.io/3dplam/).**
 
 ## At a glance
 
@@ -41,11 +41,11 @@ This work is certified by the Open Source Hardware Association.
 ## Quick start
 
 1. Read [`hardware/README.md`](hardware/README.md) for the parts table, envelopes, and the choice between the two filter-support and two funnel variants.
-2. A manifold sliced at default settings is porous: the syringe draws air through the walls instead of pulling water through the membrane, and filtration fails. Import the profile for your printer from [`hardware/print-profiles/`](hardware/print-profiles/) and read [`hardware/print-profiles/README.md`](hardware/print-profiles/README.md) for the any-slicer equivalents.
+2. A manifold sliced at default settings is porous. The syringe then draws air through the walls instead of pulling water through the membrane, and filtration fails. Import the profile for your printer from [`hardware/print-profiles/`](hardware/print-profiles/) and read [`hardware/print-profiles/README.md`](hardware/print-profiles/README.md) for the any-slicer equivalents.
 3. Print `stl/base.stl`, `stl/funnel.stl` and `stl/filter-support-strand-mesh.stl` (the default, validated filter support) as separate jobs.
 4. Assemble and operate the manifold following [`docs/assembly.md`](docs/assembly.md) and [`docs/operation.md`](docs/operation.md).
 
-When printing in recycled PET instead of ABS, use the geometry in [`hardware/rpet/`](hardware/rpet/), not `hardware/stl/` and see [`docs/rpet.md`](docs/rpet.md).
+When printing in recycled PET instead of ABS, use the geometry in [`hardware/rpet/`](hardware/rpet/) instead of `hardware/stl/`, and follow [`docs/rpet.md`](docs/rpet.md).
 
 ## Repository layout
 
@@ -76,7 +76,7 @@ CITATION.cff           Machine-readable citation metadata
 
 ## Citation
 
-If you use this hardware, please cite it; see [`CITATION.cff`](CITATION.cff) for the machine-readable record:
+If you use this hardware, please cite it as shown below. [`CITATION.cff`](CITATION.cff) holds the machine-readable record.
 
 > 3DPLAM, 3D-Printed Lightweight Affordable Manifold for Microbial Water
 > Quality Testing. Moreno Gabriel, Jakub Tkaczuk, Caetano Dorea, Elizabeth Tilley.
@@ -94,4 +94,4 @@ Different parts of this repository are released under different licenses, follow
 | Datasets ([`data/`](data/))                                  | [CC BY 4.0](LICENSE-CC-BY-4.0.md)          |
 | Site and tooling ([`site/`](site/), [`tools/`](tools/))      | [CC BY 4.0](LICENSE-CC-BY-4.0.md)          |
 
-The rPET route in [`hardware/rpet/`](hardware/rpet/) and [`docs/rpet.md`](docs/rpet.md) rebuilds **Petamentor2**, an open-source PET-bottle-to-filament machine designed by **Ondřej Šraitr** (<https://petamentor2.com/>), credited, not redistributed; build your own from the upstream project.
+The rPET route in [`hardware/rpet/`](hardware/rpet/) and [`docs/rpet.md`](docs/rpet.md) rebuilds Petamentor2, an open-source PET-bottle-to-filament machine designed by Ondřej Šraitr (<https://petamentor2.com/>). This repository credits Petamentor2 and does not redistribute its files. To build one, use the upstream project.

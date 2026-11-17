@@ -86,10 +86,10 @@ const scope = [
   <div class="eyebrow">Validation</div>
   <h2>Validation</h2>
   <p class="lead">
-    The design was validated at {v.sites} sample sites using
-    {v.manifolds} manifolds (an ABS 3DPLAM, an rPET 3DPLAM, and a steel
-    Millipore EZ-Fit as the <strong>reference instrument</strong>) with
-    {v.replicates} replicates per manifold per site.
+    The design was validated at {v.sites} sample sites with
+    {v.replicates} replicates per manifold per site. The {v.manifolds}
+    manifolds were an ABS 3DPLAM, an rPET 3DPLAM and a steel Millipore
+    EZ-Fit, which was the reference instrument.
   </p>
 
   <div class="scroll-x">
@@ -104,7 +104,7 @@ const scope = [
 
   <figure class="validation-figure">
     <span id="validation-figure-title" class="visually-hidden">
-      Two-panel validation figure: individual E. coli plate counts and
+      Two-panel validation figure showing individual E. coli plate counts and
       geometric means per site and manifold against WHO risk bands,
       compared with the Millipore reference. Every plotted value is listed
       in the table below the figure.
@@ -164,11 +164,11 @@ const scope = [
   </div>
 
   <p>
-    These are two distinct counts governed by two different rules, and the
-    two are not interchangeable. Four raw mismatches sit at a WHO band
-    boundary, where a small measurement difference changes the classified
-    band without indicating a real disagreement about water quality; the
-    {v.boundary_tolerance_pct} % rule resolves three of the four:
+    The two counts follow different rules and are not interchangeable.
+    Four raw mismatches sit at a WHO band boundary. There, a small
+    measurement difference changes the classified band without indicating
+    a real disagreement about water quality. The
+    {v.boundary_tolerance_pct} % rule resolves three of the four.
   </p>
 
   <div class="scroll-x">
@@ -192,9 +192,9 @@ const scope = [
     </table>
   </div>
   <p class="table-note">
-    The sole comparison that fails even with the tolerance applied is
-    sample 7, rPET, the same sample that is a spiked positive control, not
-    a field sample.
+    The only comparison that fails with the tolerance applied is sample 7
+    on the rPET manifold. Sample 7 is a spiked positive control and not a
+    field sample.
   </p>
 
   <h3>Material and fatigue results</h3>
@@ -209,14 +209,15 @@ const scope = [
     </table>
   </div>
   <p>
-    Across all five materials, the printed funnel survived 25 cycles of
-    alcohol-wipe decontamination with no damage or leakage, and the 100 mL
+    In all five materials, the printed funnel survived 25 cycles of
+    alcohol-wipe decontamination with no damage or leakage. The 100 mL
     PVC syringe survived all {v.filtrations} filtrations of this validation
-    without structural damage or leakage. Separately, watertightness
-    prototyping found a taped rPET–Millipore-funnel joint leaking at
-    roughly 5 minutes, which is what motivated the clamped-membrane seal
-    used in the published base; an ABS base with an ABS funnel (also
-    taped) showed no leakage over 2.5 hours. Full breakdown:
+    without structural damage or leakage. During watertightness
+    prototyping, a taped joint between an rPET base and a Millipore funnel
+    leaked after roughly 5 minutes. That leak motivated the
+    clamped-membrane seal used in the published base. An ABS base with an
+    ABS funnel (also taped) showed no leakage over 2.5 hours. The full
+    breakdown is in
     <a href={`${site.repo}/blob/main/docs/validation.md`}>docs/validation.md</a>.
   </p>
 </section>

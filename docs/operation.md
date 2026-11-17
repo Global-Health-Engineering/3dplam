@@ -1,10 +1,10 @@
 # Operating the manifold
 
-This is the complete *E. coli* membrane-filtration protocol used for the
-validation reported in [`validation.md`](validation.md). It comes from our
-lab documentation (`Functional Testing/E. coli Quantification_README.txt`
+This page gives the complete *E. coli* membrane-filtration protocol used for
+the validation reported in [`validation.md`](validation.md). The protocol
+comes from our lab documentation (`Functional Testing/E. coli Quantification_README.txt`
 in the project handover; reproduced in the thesis, Appendix B). It assumes
-the manifold is already built; see [`assembly.md`](assembly.md) first.
+the manifold is already built, so read [`assembly.md`](assembly.md) first.
 
 ## Consumables
 
@@ -17,7 +17,7 @@ the manifold is already built; see [`assembly.md`](assembly.md) first.
 | Disinfecting wipes | 70 % isopropyl alcohol, 60 × 30 mm |
 | Disinfectant | 70 % ethanol (hands, forceps) |
 
-A sterile 1 mL disposable syringe is also used, in step 7, to draw the plate
+Step 7 also uses a sterile 1 mL disposable syringe to draw the plate
 inoculum out of the funnel.
 
 ## Filtration workflow
@@ -45,15 +45,15 @@ inoculum out of the funnel.
 ## Incubation and reading
 
 Incubate the inoculated Compact Dry™ ECO plate for **24 h at 37 °C**, then
-count colonies. How those counts become a WHO risk classification (the 0.5
-CFU/100 mL convention for "no colonies," the risk bands, and the 5 %
-boundary-tolerance rule) is covered in [`validation.md`](validation.md),
-not repeated here.
+count colonies. [`validation.md`](validation.md) describes how those counts
+become a WHO risk classification. That page covers the 0.5 CFU/100 mL
+convention for "no colonies," the risk bands, and the 5 % boundary-tolerance
+rule.
 
 ## Notes from the source protocol
 
-Two of the eight validation samples needed special handling, carried
-through unchanged into [`data/README.md`](../data/README.md)'s caveats:
-sample 5 stalled at roughly the 20 mL mark of step 8 (~80 mL actually
-pulled through), and sample 7 is a positive control (1,250 mL of tap water
-spiked with 25 mL of a faecal suspension) rather than a field sample.
+Two of the eight validation samples needed special handling. Sample 5
+stalled at roughly the 20 mL mark of step 8 (~80 mL actually pulled
+through). Sample 7 is a positive control (1,250 mL of tap water spiked with
+25 mL of a faecal suspension) and not a field sample. Both notes carry
+through unchanged into [`data/README.md`](../data/README.md).

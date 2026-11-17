@@ -6,11 +6,11 @@ const v = site.validation;
 const limits = [
   {
     title: 'Particle-laden samples',
-    detail: 'Samples 5 and 7 both needed non-standard handling (sample 5 stalled partway through filtration (~80 mL of the 100 mL sample actually pulled through), and sample 7 is a spiked positive control, not a field sample) and both are implicated in the classification disagreements described in Validation.',
+    detail: 'Samples 5 and 7 both needed non-standard handling. Suspended particles clogged the membranes of sample 5, and only ~80 mL of the 100 mL sample was pulled through. Sample 7 is a spiked positive control and not a field sample. Both samples are implicated in the classification disagreements described in Validation.',
   },
   {
     title: 'Non-identical manifold construction',
-    detail: `The ABS manifold used a fully 3D-printed funnel; the rPET manifold used a commercial Millipore funnel on a printed base. If a printed funnel traps bacteria more readily than a steel one, that would be expected to show up as the all-printed manifold reading systematically low, and it does: the ABS manifold returned the lowest count of the three manifolds at 6 of the 8 sites (sites 1-6). At site 7, the rPET manifold (with its commercial funnel) read lowest instead, and that is also the sole classification mismatch. At site 8, all three manifolds tied at the detection floor.`,
+    detail: `The ABS manifold used a fully 3D-printed funnel. The rPET manifold used a commercial Millipore funnel on a printed base. If a printed funnel traps bacteria more readily than a steel one, the all-printed manifold would be expected to read systematically low. Consistent with this, the ABS manifold returned the lowest count of the three manifolds at 6 of the 8 sites (sites 1-6). At site 7, the rPET manifold (with its commercial funnel) read lowest instead, and that comparison is also the sole classification mismatch. At site 8, all three manifolds tied at the detection floor.`,
   },
   {
     title: 'Single operator and single testing season',
@@ -18,11 +18,11 @@ const limits = [
   },
   {
     title: 'Non-randomised filtration order',
-    detail: 'The manifolds were run in blocks: on each of the two test days, all 12 filtrations of that day\'s four samples were done on the rPET manifold, then on the ABS manifold, then on the Millipore reference. Settling of particles, or growth during storage, while the printed manifolds were run first could inflate the reference counts relative to them.',
+    detail: 'The manifolds were run in blocks. On each of the two test days, all 12 filtrations of that day\'s four samples were done on the rPET manifold, then on the ABS manifold, then on the Millipore reference. Particles may have settled, or bacteria grown during storage, while the printed manifolds were run first. Either effect could inflate the reference counts relative to the printed manifolds.',
   },
   {
     title: 'Sample storage and plate reading',
-    detail: 'All samples were collected on 31 May 2026 and filtered 1 to 2 days later, stored in dim light without refrigeration. The funnels of all three manifolds, including the commercial Millipore funnels, were reused after an alcohol wipe. Plates were read once, at 24 h, by the operator, who knew which manifold each plate came from. Small colonies on plates with particles or algae were hard to tell apart.',
+    detail: 'All samples were collected on 31 May 2026 and stored in dim light without refrigeration. They were filtered 1 to 2 days later. The funnels of all three manifolds, including the commercial Millipore funnels, were reused after an alcohol wipe. Plates were read once, at 24 h, by the operator, who knew which manifold each plate came from. Small colonies on plates with particles or algae were hard to tell apart.',
   },
 ];
 ---
@@ -31,9 +31,9 @@ const limits = [
   <h2>Limitations</h2>
   <p class="lead">
     3DPLAM is an open, locally 3D-printable alternative route to the same
-    measurement the Millipore EZ-Fit performs. It has been validated
-    against that instrument as a reference, not shown to be identical to
-    it.
+    measurement the Millipore EZ-Fit performs. 3DPLAM was validated
+    against that instrument as a reference. The validation does not show
+    that the two are identical.
   </p>
 
   <ul class="limits-list">
