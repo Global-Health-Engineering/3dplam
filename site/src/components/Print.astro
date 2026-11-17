@@ -6,7 +6,7 @@ const base = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
 const pp = site.print_profile;
 
 const settings = [
-  { label: 'Layer height', value: `${pp.layer_height_mm} mm`, changed: 'no' },
+  { label: 'Layer height', value: `${pp.layer_height_mm.toFixed(2)} mm`, changed: 'no' },
   { label: 'Sparse infill', value: `${pp.infill_pct} % ${pp.infill_pattern}`, changed: 'no' },
   { label: 'Wall loops', value: pp.wall_loops, changed: 'yes (stock 2)' },
   { label: 'Top shell layers', value: pp.top_shell_layers, changed: 'yes (stock 5)' },

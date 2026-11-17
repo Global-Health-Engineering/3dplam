@@ -15,7 +15,7 @@ Three parts make one manifold. All print **without support structures**.
 In ABS at the recommended settings the set costs about **$0.80**, weighs about **32 g**, and prints in about **100 minutes**.
 
 A part sliced at default settings looks correct but is not gas-tight: the syringe cannot pull a vacuum through it, and filtration fails. The required
-settings are **6 wall loops, 6 top shell layers, and 6 bottom shell layers, at the preset's 0.16 mm layer height**. Importable Bambu Studio profiles for the X1 Carbon and P2S are in [`print-profiles/`](print-profiles/), along with the full requirement and cross-slicer equivalents.
+settings are **6 wall loops, 6 top shell layers, and 6 bottom shell layers, at a 0.20 mm layer height**, which the joint tolerances assume. Importable Bambu Studio profiles for the X1 Carbon and P2S are in [`print-profiles/`](print-profiles/), along with the full requirement and cross-slicer equivalents.
 
 ## Filter support variants
 

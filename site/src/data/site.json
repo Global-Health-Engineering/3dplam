@@ -11,7 +11,7 @@
   "millipore_cost_usd": 2460,
   "glam2_cost_usd": 1.5,
   "print_profile": {
-    "layer_height_mm": 0.16,
+    "layer_height_mm": 0.2,
     "wall_loops": 6,
     "top_shell_layers": 6,
     "bottom_shell_layers": 6,

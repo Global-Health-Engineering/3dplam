@@ -12,9 +12,9 @@ this directory implement them exactly.
 
 | Setting | Value | Changed from stock? |
 |---|---|---|
-| Base profile | `0.16mm Optimal @BBL X1C` / `@BBL P2S` |, |
+| Base profile | `0.20mm Standard @BBL X1C` / `@BBL P2S` |, |
 | Filament | ABS |, |
-| Layer height | 0.16 mm | no |
+| Layer height | 0.20 mm | no |
 | Wall loops | **6** | yes (stock 2) |
 | Top shell layers | **6** | yes (stock 5) |
 | Bottom shell layers | **6** | yes (stock 3) |
