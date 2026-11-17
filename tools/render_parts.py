@@ -280,12 +280,19 @@ def load_assembly_bodies():
     pieces.sort(key=centroid_z)
     base_obj, filter_obj, funnel_obj = pieces
 
-    n_base = len(base_obj.data.polygons)
-    n_filter = len(filter_obj.data.polygons)
-    n_funnel = len(funnel_obj.data.polygons)
-    assert n_base > 300000, f"expected base to be the ~361k-tri body, got {n_base}"
-    assert 9500 < n_filter < 12000, f"expected filter support ~10656 tri, got {n_filter}"
-    assert 7500 < n_funnel < 9800, f"expected funnel ~9216 tri, got {n_funnel}"
+    # Cross-check by size, not triangle count: the count depends on the
+    # export resolution chosen in Onshape, the envelope does not.
+    def dims_mm(o):
+        lo, hi = world_bbox(o)
+        d = (hi - lo) / MM
+        return sorted((round(d.x, 1), round(d.y, 1), round(d.z, 1)))
+
+    for o, name, expected in ((base_obj, "base", (38.7, 77.0, 77.0)),
+                              (filter_obj, "filter support", (2.9, 37.3, 37.3)),
+                              (funnel_obj, "funnel", (55.5, 71.8, 71.8))):
+        got = dims_mm(o)
+        assert all(abs(g - e) < 1.0 for g, e in zip(got, expected)), \
+            f"expected {name} of about {expected} mm, got {got} mm"
 
     base_obj.name, filter_obj.name, funnel_obj.name = "base", "filter-support", "funnel"
     return base_obj, filter_obj, funnel_obj

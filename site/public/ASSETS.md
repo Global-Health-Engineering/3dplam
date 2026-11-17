@@ -37,9 +37,9 @@ render of the same name.
 
 | File | Triangles | Size |
 |---|---|---|
-| `assembly-exploded.glb` | 79 k | 1.7 MB |
-| `membrane-clamp.glb` | 75 k | 2.0 MB |
-| `filter-support-section.glb` | 10 k | 0.5 MB |
+| `assembly-exploded.glb` | 106 k | 2.2 MB |
+| `membrane-clamp.glb` | 115 k | 2.9 MB |
+| `filter-support-section.glb` | 51 k | 1.4 MB |
 
 The base arrives from CAD at 362 k triangles, which is far too heavy to
 ship: `render_parts.py` reduces it to a 60 k budget for the web copy only,
