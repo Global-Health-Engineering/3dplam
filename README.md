@@ -80,7 +80,7 @@ If you use this hardware, please cite it as shown below. [`CITATION.cff`](CITATI
 
 > 3DPLAM, 3D-Printed Lightweight Affordable Manifold for Microbial Water
 > Quality Testing. Moreno Gabriel, Jakub Tkaczuk, Caetano Dorea, Elizabeth Tilley.
-> ETH Zürich, Global Health Engineering. Version 1.0.0.
+> ETH Zürich, Global Health Engineering. Version 1.0.1.
 > https://doi.org/10.5281/zenodo.22025813
 
 ## License

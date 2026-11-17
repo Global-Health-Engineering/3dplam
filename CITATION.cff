@@ -7,8 +7,8 @@ abstract: >-
   stainless-steel manifold. Its base, funnel and filter support print without
   support structures on a consumer FDM printer.
 type: software
-version: 1.0.0
-date-released: 2026-08-20
+version: 1.0.1
+date-released: 2026-11-17
 # The concept DOI, which always resolves to the newest version. It is the
 # one to cite and the one in the README badge, so neither goes stale when
 # a later release is archived. The DOI for this specific release is under
