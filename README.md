@@ -30,8 +30,8 @@ This work is certified by the Open Source Hardware Association.
 | Characteristic       | Description                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------ |
 | Parts                | Base + funnel + filter support (2 concurrent alternatives), no supports                    |
-| Material cost        | ≈ $0.80 per set (ABS)                                                                      |
-| Mass                 | ≈ 32 g                                                                                     |
+| Material cost        | ≈ $1.30 per set (ABS)                                                                      |
+| Mass                 | ≈ 52 g                                                                                     |
 | Print time           | ≈ 100 min                                                                                  |
 | Reference instrument | Millipore EZ-Fit™ stainless-steel manifold (≈ $2,460)                                      |
 | Validation           | 8 sites × 3 manifolds × 3 replicates = 72 filtrations, 16 printed-vs-reference comparisons |

@@ -10,7 +10,7 @@ the manifold is already built; see [`assembly.md`](assembly.md) first.
 
 | Item | Spec / supplier |
 |---|---|
-| Membrane filter | 0.45 µm nitrocellulose mixed-ester (MCE), ADVANTEC |
+| Membrane filter | 47 mm, 0.45 µm nitrocellulose mixed-ester (MCE), ADVANTEC A045H047Y |
 | Culture plate | Compact Dry™ ECO, Shimadzu Diagnostics |
 | Sample-pull syringe | 100 mL PVC |
 | Forceps | for membrane handling |

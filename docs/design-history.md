@@ -19,6 +19,16 @@ reached their shipped form by V1.1 and have been byte-identical in every
 release since. Source Onshape documents for each labelled version are
 linked from [`../hardware/onshape.md`](../hardware/onshape.md).
 
+## Corrections in v1.0.1
+
+The strand-mesh filter support released in v1.0.0 had been exported
+without the four slots of its bayonet lock, so it could not lock into the
+base. v1.0.1 replaces it, and the assembly that contains it, with the
+design as printed and tested. v1.0.1 also corrects the layer height in
+the print profiles to 0.20 mm, the value the validated parts were printed
+at and the joint tolerances assume, and the mass of a printed set to
+about 52 g.
+
 ## Base revision V1.2 to V1.3
 
 The *E. coli* validation reported in [`validation.md`](validation.md) was

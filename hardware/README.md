@@ -12,7 +12,7 @@ Three parts make one manifold. All print **without support structures**.
 | Funnel         | `stl/funnel.stl`                     | 71.8 mm × 71.8 mm × 55.5 mm | 16.0 cm³ solid |
 | Filter support | `stl/filter-support-strand-mesh.stl` | 37.3 mm × 37.3 mm × 2.9 mm  | 1.4 cm³ solid  |
 
-In ABS at the recommended settings the set costs about **$0.80**, weighs about **32 g**, and prints in about **100 minutes**.
+In ABS at the recommended settings the set costs about **$1.30**, weighs about **52 g**, and prints in about **100 minutes**.
 
 A part sliced at default settings looks correct but is not gas-tight: the syringe cannot pull a vacuum through it, and filtration fails. The required
 settings are **6 wall loops, 6 top shell layers, and 6 bottom shell layers, at a 0.20 mm layer height**, which the joint tolerances assume. Importable Bambu Studio profiles for the X1 Carbon and P2S are in [`print-profiles/`](print-profiles/), along with the full requirement and cross-slicer equivalents.
@@ -24,7 +24,7 @@ Two designs are current; they are alternatives, not revisions.
 | File                             | Use it when |
 | -------------------------------- | ----------- |
 | `filter-support-strand-mesh.stl` | **Default.** Parallel in-air printed strands, each layer rotated 120°. Uses 35 % less material, and gave uniform filtration in testing. This is the design used for the *E. coli* validation |
-| `filter-support-hex-hole.stl`    | Hexagonal hole pattern. More forgiving to print: no in-air bridging. Filtration is not uniform: bacteria collect in hexagonal patches over a smaller effective area, so colonies are denser and harder to count. Use only if the strand mesh prints poorly on your machine |
+| `filter-support-hex-hole.stl`    | Hexagonal hole pattern. More forgiving to print: no in-air bridging. Filtration is not uniform: in an ink test, water passed only through the membrane above the holes, in a hexagonal pattern. The smaller effective area would make colonies denser and harder to count. Use only if the strand mesh prints poorly on your machine |
 
 ## Funnel variants
 

@@ -15,7 +15,8 @@ filtrations = 72 filtrations**, recorded in
 [`../data/ecoli-quantification.csv`](../data/ecoli-quantification.csv) and
 summarised per manifold/site in
 [`../data/ecoli-summary.csv`](../data/ecoli-summary.csv) (24 rows: 8 sites
-× 3 manifolds).
+× 3 manifolds). All samples were collected on 31 May 2026; sites 1–4 were
+filtered on 1 June and sites 5–8 on 2 June.
 
 The protocol is transcribed in full in [`operation.md`](operation.md).
 
@@ -137,7 +138,17 @@ damage or leakage
 - **A single operator ran all 72 filtrations, in a single testing period.**
   Neither operator variability nor seasonal variation in source water is
   captured.
-- **Filtration order was not randomised across manifolds.** The Millipore
-  reference was filtered last at each site, so any sedimentation of the
-  sample while earlier manifolds were run could inflate its counts
-  relative to the two printed manifolds.
+- **Filtration order was not randomised across manifolds.** The manifolds
+  were run in blocks: on each test day, all 12 filtrations of that day's
+  four samples were done on the rPET manifold, then on the ABS manifold,
+  then on the Millipore reference. Settling of particles, or growth during
+  storage, while the printed manifolds were run first could inflate the
+  reference counts relative to them. A time trend alone does not explain
+  the ABS manifold reading lowest, because it ran after the rPET manifold.
+- **Samples were stored before filtration, and counting was not blinded.**
+  All samples were collected on 31 May 2026 and filtered 1 to 2 days
+  later, stored in dim light without refrigeration. The funnels of all
+  three manifolds, including the commercial Millipore funnels, were
+  reused after an alcohol wipe. Plates were read once, at 24 h, by the
+  operator, who knew which manifold each plate came from. Small colonies
+  on plates with particles or algae were hard to tell apart.

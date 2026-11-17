@@ -40,13 +40,16 @@ loops, and top and bottom shells of at least 6 solid layers each.
 
 ## Printers used
 
-Both machines produced working parts: the design is not tied to a single
-printer.
+The validated parts were all printed on the X1 Carbon. The P2S was used
+only for tolerance test prints, so the P2S profile has not been checked
+for gas-tightness. Before relying on it, check one printed base: glue in
+the syringe tip, seal the top of the water channel, submerge the base and
+push air in with the syringe. No bubbles should leave the walls.
 
 | Printer | Where | Notes |
 |---|---|---|
 | Bambu Lab X1 Carbon | ETH GHE lab | Enclosed, required for ABS and ASA. Used for the validated prints |
-| Bambu Lab P2S | Author's own | Enclosed |
+| Bambu Lab P2S | Author's own | Enclosed. Used for tolerance test prints only |
 
 ## Materials
 
